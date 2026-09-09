@@ -1,0 +1,56 @@
+{
+  "description": "Hand-auditable simulated accounting, not provider prices or actual model calls. Cached input is included in input; reasoning is included in output. Costs are USD per million tokens.",
+  "run_id": "accounting-fixture",
+  "token_limit": 10000,
+  "cost_limit": "0.01",
+  "price": {
+    "provider": "offline-fixture",
+    "model": "fixture-v1",
+    "service_tier": "default",
+    "currency": "USD",
+    "version": "offline-v1",
+    "effective_date": "2026-09-09",
+    "retrieved_date": "2026-09-09",
+    "source_url": "offline fixture; deliberately invented test rates, not market prices",
+    "simulated": true,
+    "rate_units": "per_million_tokens",
+    "input_per_million": "1",
+    "cached_input_per_million": "0.25",
+    "output_per_million": "2"
+  },
+  "attempts": [
+    {
+      "attempt_id": "worker-first", "agent": "worker-1", "task_id": "search-1", "logical_call_id": "search-1", "attempt": 0,
+      "purpose": "research", "input_estimate": 1000, "max_output": 300, "outcome": "completed",
+      "usage": {"input_tokens": 1000, "output_tokens": 200, "total_tokens": 1200, "input_tokens_details": {"cached_tokens": 400}, "output_tokens_details": {"reasoning_tokens": 80}},
+      "expected_cost": "0.0011", "arithmetic": "((1000-400)*1 + 400*0.25 + 200*2)/1000000 = 0.0011"
+    },
+    {
+      "attempt_id": "coordinator-first", "agent": "coordinator", "task_id": "coordinate-1", "logical_call_id": "coordinate-1", "attempt": 0,
+      "purpose": "coordination", "input_estimate": 500, "max_output": 200, "outcome": "completed",
+      "usage": {"input_tokens": 500, "output_tokens": 100, "input_tokens_details": {"cached_tokens": 0}, "output_tokens_details": {"reasoning_tokens": 20}},
+      "expected_cost": "0.0007", "arithmetic": "(500*1 + 100*2)/1000000 = 0.0007"
+    },
+    {
+      "attempt_id": "worker-ambiguous", "agent": "worker-1", "task_id": "search-2", "logical_call_id": "search-2", "attempt": 0,
+      "purpose": "research", "input_estimate": 1000, "max_output": 300, "outcome": "timed_out_unknown",
+      "usage": null, "expected_cost": null,
+      "arithmetic": "Usage unknown; retain 1300 tokens and (1000*1 + 300*2)/1000000 = 0.0016 reserved USD"
+    },
+    {
+      "attempt_id": "worker-retry", "agent": "worker-1", "task_id": "search-2", "logical_call_id": "search-2", "attempt": 1,
+      "purpose": "research", "input_estimate": 1000, "max_output": 300, "outcome": "completed",
+      "usage": {"input_tokens": 800, "output_tokens": 100, "input_tokens_details": {"cached_tokens": 200}, "output_tokens_details": {"reasoning_tokens": 40}},
+      "expected_cost": "0.00085", "arithmetic": "((800-200)*1 + 200*0.25 + 100*2)/1000000 = 0.00085"
+    }
+  ],
+  "expected": {
+    "attempts": 4, "actual_calls": 0, "simulated_calls": 4, "actual_model_cost": "0",
+    "input_tokens": 2300, "output_tokens": 400, "cached_input_tokens": 600, "reasoning_tokens": 140,
+    "total_tokens": 2700, "reserved_tokens": 1300, "committed_tokens": 4000, "remaining_tokens": 6000,
+    "estimated_tokens": 4600, "estimated_cost": "0.0057", "observed_cost": "0.00265", "known_cost": "0.00265",
+    "reserved_cost": "0.0016", "committed_cost": "0.00425", "remaining_cost": "0.00575",
+    "unknown_attempts": 1, "pending_attempts": 0, "unresolved_charges": 4, "retry_attempts": 1,
+    "retry_cost": "0.00085", "cost_total": null
+  }
+}
