@@ -233,6 +233,15 @@ This checks the live integration and accounting on a tiny instance. It supplies
 no evidence that communication improves quality, and the calculated cost has
 not been reconciled against billing. See the [pilot record](terra-pilot.md).
 
+A separately authorized difficulty calibration then used three solo decisions
+at each of m=18 and m=24. The first m=18 decision reached its optimum of eight.
+At m=24, all three decisions returned eight members while independent evaluation
+established an optimum of ten. The predeclared rule therefore selected m=24 for
+a proposed comparison. The six calls used 10,395 tokens and USD 0.102580 calculated
+API cost. Every output repeated the same eight-member construction; extra calls
+did not improve either trace's candidate size. These are calibration observations,
+kept separate from the comparative sample. See the [calibration report](terra-calibration-results.md).
+
 Before completing this section, report the following from authorized comparative live runs:
 
 - Exact model/version, prompts, settings, price dates and total ceilings.

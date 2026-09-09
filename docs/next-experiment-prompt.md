@@ -1,6 +1,6 @@
 # Follow-on prompt: from the Terra pilot to an article experiment
 
-Status update, 2026-09-09: the owner approved the recommended six-call calibration wording below. That authorization is recorded in [the calibration protocol](calibration-protocol.md). The following original prompt is retained as the handoff; its request for calibration approval is now satisfied for this one stage. It must not be used to repeat the stage or authorize the later comparison.
+Status update, 2026-09-09: the owner approved the recommended six-call calibration wording below, and that [calibration is complete](terra-calibration-results.md). It used 10,395 tokens and USD 0.102580 calculated cost; the frozen rule selected m=24. The following original prompt is retained as the handoff; its calibration authorization is exhausted. Continue with preparing the comparison and article package, not repeating calibration. The later comparison remains unauthorized.
 
 Copy the prompt below into a new task in this repository. It requests preparation and implementation; it does not itself authorize new paid inference. Add a separate calibration authorization if desired. The proposed calibration is at most six Terra calls across m=18 and m=24, with USD 2 and 100,000-token **combined** ceilings and zero retries. Those ceilings may stop calibration before all six calls finish. A comparative campaign needs a separately approved budget after calibration.
 
