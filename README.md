@@ -1,6 +1,6 @@
 # Agent Swarm Lab
 
-**Ten Agents, One Checkable Problem: When Does Coordination Help?**
+**Four Agents, One Checkable Problem: When Does Coordination Help?**
 
 Current pilot version: **0.1.1**. See the [changelog](CHANGELOG.md) and [follow-on task prompt](docs/next-experiment-prompt.md).
 
@@ -64,15 +64,21 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 - [Completed Terra pilot and public trace](docs/terra-pilot.md)
 - [Authorized difficulty calibration protocol](docs/calibration-protocol.md)
 - [Completed difficulty calibration and m=24 selection](docs/terra-calibration-results.md)
-- [Proposed four-condition live comparison](docs/live-comparison-proposal.md)
+- [Approved four-condition live comparison protocol](docs/live-comparison-protocol.md) and [original proposal](docs/live-comparison-proposal.md)
 - [Architecture](docs/architecture.md) and [predefined experiment protocol](docs/experiment-protocol.md)
 - [Claims and evidence](docs/claims-evidence.md)
 - [Article working draft](docs/article-draft.md) and [LinkedIn draft](docs/linkedin-draft.md), unpublished
 - [Original handoff](docs/codex-swarm-lab-handoff.md), describing the broader intended project
 
-Checkpoint/fork causal interventions, a paid campaign, and empirical claims of emergent or effective cooperation remain future work. The message-withholding prototype is not a causal experiment. See the protocol for the required leakage controls.
+Checkpoint/fork causal interventions and empirical claims of emergent or effective cooperation remain future work. The message-withholding prototype is not a causal experiment. See the protocol for the required leakage controls.
 
-The separately approved solo difficulty calibration at m=18 and m=24 is complete: six calls, 10,395 tokens and USD 0.102580 calculated cost, with zero retries. m=18 was first-call optimal; m=24 retained a verified gap of two and was selected by the frozen rule. `python3 -m swarm_lab.calibration prepare` freezes a protocol and shared ledger without API requests; `execute --allow-live` is guarded against repeating this completed authorization. See the protocol and result record. No swarm comparison is authorized yet.
+The separately approved solo difficulty calibration at m=18 and m=24 is complete: six calls, 10,395 tokens and USD 0.102580 calculated cost, with zero retries. m=18 was first-call optimal; m=24 retained a verified gap of two and was selected by the frozen rule. `python3 -m swarm_lab.calibration prepare` freezes a protocol and shared ledger without API requests; `execute --allow-live` is guarded against repeating this completed authorization.
+
+The owner approved the m=24 comparison on 2026-09-09: five repetitions each of solo, independent, fixed and adaptive, with up to twelve total calls per run. Its separate ceilings are 240 calls, USD 20 and 2,000,000 tokens, preallocated as twenty equal twelve-call, USD 1 and 100,000-token allowances. Zero retries and a persistent execution claim prevent automatic repeat runs. Follow the [execution protocol](docs/live-comparison-protocol.md); an unknown charge or ambiguous dispatch halts the campaign. Preparation makes no API calls:
+
+```sh
+python3 -m swarm_lab.comparison prepare --price-file configs/gpt-5.6-terra-price.json --out runs/terra-comparison
+```
 
 ## License
 

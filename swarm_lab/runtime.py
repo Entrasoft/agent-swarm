@@ -122,7 +122,7 @@ class AgentState:
 class Runtime:
     def __init__(self, config: RunConfig, directory: Path, provider=None, *,
                  ledger_path: Path | None = None, campaign_id: str | None = None,
-                 stop_on_failure: bool = False):
+                 stop_on_failure: bool = False, run_id: str | None = None):
         config.validate()
         if (ledger_path is None) != (campaign_id is None):
             raise ValueError('Shared ledger path and campaign ID must be supplied together.')
@@ -136,11 +136,19 @@ class Runtime:
         self.directory.mkdir(parents=True, exist_ok=True)
         if any(self.directory.iterdir()):
             raise ValueError('Output directory must be empty; use replay for an existing run.')
-        self.run_id = str(uuid.uuid4())
-        self.store = EventStore(self.directory, self.run_id)
+        if run_id is not None and (not isinstance(run_id, str) or not run_id):
+            raise ValueError('A supplied run ID must be a nonempty string.')
+        self.run_id = run_id if run_id is not None else str(uuid.uuid4())
         self.ledger = Ledger(ledger_path or self.directory / 'usage.sqlite3')
-        self.ledger.create_run(self.run_id, config.token_limit, config.cost_limit, config.price,
-                               simulated=config.mode != 'live', campaign_id=campaign_id)
+        try:
+            self.ledger.create_run(self.run_id, config.token_limit, config.cost_limit, config.price,
+                                   simulated=config.mode != 'live', campaign_id=campaign_id)
+            if self.ledger.summary(self.run_id)['attempts']:
+                raise ValueError('This run already has attempts; refusing redispatch.')
+        except BaseException:
+            self.ledger.close()
+            raise
+        self.store = EventStore(self.directory, self.run_id)
         self.team = [AgentState(f'agent-{i}', 'coordinator' if i == 0 and config.condition in {'fixed','adaptive'} else 'searcher',
                                random.Random(config.seed * 1009 + i)) for i in range(config.agents)]
         self.by_id = {a.agent_id:a for a in self.team}
