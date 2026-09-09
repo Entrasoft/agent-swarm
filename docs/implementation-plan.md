@@ -1,0 +1,11 @@
+# Implementation plan — 2026-09-09
+
+1. Establish independently tested mathematical validation and bounded exact evaluation.
+2. Build an offline asynchronous runtime, durable event store and usage ledger before live access.
+3. Exercise solo, independent, fixed and adaptive routing with scoped observations and bounded work.
+4. Add a local desktop trace viewer, scripted replay, and bounded experiment commands.
+5. Add an opt-in provider adapter, requiring explicit model, frozen price configuration and spending ceiling.
+6. Run offline smoke experiments, publish raw small traces, and write evidence-aware documentation and article outlines.
+7. Review the implementation, run checks in a fresh environment, then create and merge a pull request.
+
+Public repository and pull request creation/merging are authorized. MIT was selected by the owner. No paid model run is authorized yet. API credentials must come from the environment; they must never enter configuration artifacts, logs, source, or commits.
