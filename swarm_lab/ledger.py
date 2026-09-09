@@ -1,8 +1,8 @@
 """Durable attempt accounting and atomic run-budget admission, without dependencies.
 
 Prices are frozen per run. Token counters follow OpenAI's inclusive semantics:
-cached input is a subset of input, and reasoning is a subset of output. Calculated
-cost is an estimate from observed usage; only ``reconcile`` records billed money.
+cache reads and writes are disjoint subsets of input; reasoning is a subset of
+output. Calculated cost estimates observed usage; only ``reconcile`` records billed money.
 Missing usage retains the reservation, including for failed/cancelled attempts.
 """
 
@@ -21,7 +21,8 @@ from typing import Any, Iterator
 
 ZERO = Decimal("0")
 MILLION = Decimal("1000000")
-RATE_FIELDS = ("input_per_million", "cached_input_per_million", "output_per_million")
+RATE_FIELDS = ("input_per_million", "cached_input_per_million", "output_per_million",
+               "cache_write_per_million")
 
 
 def _now() -> str:
@@ -70,7 +71,8 @@ def _scrub(value: Any) -> Any:
 def normalize_usage(usage: dict[str, Any] | None) -> dict[str, Any]:
     """Normalize inclusive counters; partial/missing totals remain unknown."""
     result: dict[str, Any] = {"input_tokens": None, "output_tokens": None,
-                              "cached_input_tokens": None, "reasoning_tokens": None,
+                              "cached_input_tokens": None, "cache_write_tokens": None,
+                              "reasoning_tokens": None,
                               "total_tokens": None, "complete": False}
     if usage is None:
         return result
@@ -80,16 +82,22 @@ def normalize_usage(usage: dict[str, Any] | None) -> dict[str, Any]:
         if usage.get(key) is not None:
             result[key] = _count(usage[key], key)
     for details, key, output in (("input_tokens_details", "cached_tokens", "cached_input_tokens"),
+                                 ("input_tokens_details", "cache_write_tokens", "cache_write_tokens"),
                                  ("output_tokens_details", "reasoning_tokens", "reasoning_tokens")):
-        source = usage.get(details) or {}
+        source = usage.get(details)
+        source = {} if source is None else source
         if not isinstance(source, dict):
             raise ValueError(f"{details} must be an object")
         if source.get(key) is not None:
             result[output] = _count(source[key], output)
     for subset, total in (("cached_input_tokens", "input_tokens"),
+                          ("cache_write_tokens", "input_tokens"),
                           ("reasoning_tokens", "output_tokens")):
         if result[subset] is not None and result[total] is not None and result[subset] > result[total]:
             raise ValueError(f"{subset} cannot exceed {total}")
+    if (result["input_tokens"] is not None and
+            (result["cached_input_tokens"] or 0) + (result["cache_write_tokens"] or 0) > result["input_tokens"]):
+        raise ValueError("cache reads + cache writes cannot exceed input_tokens")
     if result["input_tokens"] is not None and result["output_tokens"] is not None:
         result["total_tokens"] = result["input_tokens"] + result["output_tokens"]
         result["complete"] = True
@@ -100,16 +108,27 @@ def normalize_usage(usage: dict[str, Any] | None) -> dict[str, Any]:
 
 
 def _cost(price: dict[str, Any], input_tokens: int, output_tokens: int,
-          cached_tokens: int = 0, *, reservation: bool = False) -> Decimal | None:
+          cached_tokens: int | None = 0, cache_write_tokens: int | None = None,
+          *, reservation: bool = False) -> Decimal | None:
     """Price only disjoint per-million token buckets; never invent missing rates."""
     rates = {field: None if price.get(field) is None else _money(price[field], field)
              for field in RATE_FIELDS}
-    input_rate, cached_rate, output_rate = (rates[field] for field in RATE_FIELDS)
+    input_rate, cached_rate, output_rate, write_rate = (rates[field] for field in RATE_FIELDS)
+    write_accounting = "cache_write_per_million" in price or bool(cache_write_tokens)
     if reservation:
-        # Cache could cost more than ordinary input for a configured provider.
-        if input_rate is not None and cached_rate is not None:
-            input_rate = max(input_rate, cached_rate)
-    buckets = ((input_tokens - cached_tokens, input_rate), (cached_tokens, cached_rate),
+        # Any input could be an ordinary token, cache read, or cache write.
+        # A missing applicable rate makes the bound unknown, never zero.
+        input_rates = [input_rate, cached_rate] + ([write_rate] if write_accounting else [])
+        input_rate = None if any(rate is None for rate in input_rates) else max(input_rates)
+        cached_tokens = cache_write_tokens = 0
+    elif write_accounting and input_tokens and (cached_tokens is None or cache_write_tokens is None):
+        # New tariffs require disjoint counters. The API docs do not define
+        # absent write telemetry as zero. Preserve the conservative reservation.
+        return None
+    cached_tokens = cached_tokens or 0
+    cache_write_tokens = cache_write_tokens or 0
+    buckets = ((input_tokens - cached_tokens - cache_write_tokens, input_rate),
+               (cached_tokens, cached_rate), (cache_write_tokens, write_rate),
                (output_tokens, output_rate))
     if any(tokens and rate is None for tokens, rate in buckets):
         return None
@@ -201,6 +220,8 @@ class Ledger:
         for key in ("context_estimates", "usage", "normalized"):
             value = result.pop(f"{key}_json")
             result[key] = json.loads(value) if value is not None else None
+        # Existing databases retain their frozen legacy tariff and counters.
+        result["normalized"].setdefault("cache_write_tokens", None)
         result.update(result["normalized"])
         return result
 
@@ -318,14 +339,16 @@ class Ledger:
             # Partial counters can increase exposure, but never release the
             # original reservation before both totals have been reported.
             observed = (_cost(run["price"], normalized["input_tokens"], normalized["output_tokens"],
-                              normalized["cached_input_tokens"] or 0) if normalized["complete"] else None)
+                              normalized["cached_input_tokens"], normalized["cache_write_tokens"])
+                        if normalized["complete"] else None)
             partial_input = max(old["input_estimate"], normalized["input_tokens"] or 0)
             partial_output = max(old["max_output"], normalized["output_tokens"] or 0)
             reserved_tokens = 0 if normalized["complete"] else partial_input + partial_output
             if old["reconciled_cost"] is not None or observed is not None:
                 reserved_cost = ZERO
             else:
-                reserve_estimate = _cost(run["price"], partial_input, partial_output, reservation=True)
+                reserve_estimate = _cost(run["price"], partial_input, partial_output,
+                                         cache_write_tokens=normalized["cache_write_tokens"], reservation=True)
                 reserved_cost = (_money(run["cost_limit"]) if reserve_estimate is None else
                                  max(reserve_estimate, _money(old["reserved_cost"])))
             status = ("reconciled" if old["reconciled_cost"] is not None else
@@ -372,7 +395,14 @@ class Ledger:
             entry["price_version"] = run["price"].get("version")
             entry["currency"] = run["price"].get("currency", "USD")
             entry["context_accounting"] = "estimated"
-            entry["cache_accounting"] = "reported_subset" if entry["cached_input_tokens"] is not None else "unreported; priced as uncached"
+            if entry["input_tokens"] == 0:
+                entry["cache_accounting"] = "no input tokens"
+            elif "cache_write_per_million" in run["price"] or entry["cache_write_tokens"]:
+                reported = entry["cached_input_tokens"] is not None and entry["cache_write_tokens"] is not None
+                entry["cache_accounting"] = ("reported_disjoint_subsets" if reported
+                                              else "incomplete subsets; cost unknown")
+            else:
+                entry["cache_accounting"] = "reported_subset" if entry["cached_input_tokens"] is not None else "unreported; priced as uncached"
             entry["corrections"] = [dict(item) for item in db.execute(
                 "SELECT correction_id,timestamp,kind,reason,before_json,after_json FROM corrections WHERE attempt_id=? ORDER BY correction_id",
                 (entry["attempt_id"],))]
@@ -398,8 +428,10 @@ class Ledger:
             "input_tokens": sum(entry["normalized"]["input_tokens"] for entry in complete),
             "output_tokens": sum(entry["normalized"]["output_tokens"] for entry in complete),
             "cached_input_tokens": sum(entry["normalized"]["cached_input_tokens"] or 0 for entry in complete),
+            "cache_write_tokens": sum(entry["normalized"]["cache_write_tokens"] or 0 for entry in complete),
             "reasoning_tokens": sum(entry["normalized"]["reasoning_tokens"] or 0 for entry in complete),
             "cache_reporting_attempts": sum(entry["normalized"]["cached_input_tokens"] is not None for entry in complete),
+            "cache_write_reporting_attempts": sum(entry["normalized"]["cache_write_tokens"] is not None for entry in complete),
             "missing_cache_pricing_attempts": sum(entry["normalized"]["cached_input_tokens"] is None and
                                                    entry["normalized"]["input_tokens"] > 0 and
                                                    entry["observed_cost"] is not None for entry in complete),
@@ -465,7 +497,7 @@ class Ledger:
                                         "committed_tokens": cumulative["committed_tokens"],
                                         "committed_cost": cumulative["committed_cost"]})
         result["timeline_basis"] = "attempt dispatch order; cumulative latest accounting, not historical balances"
-        result["usage_semantics"] = "cached input is included in input; reasoning is included in output"
+        result["usage_semantics"] = "cache reads and writes are disjoint subsets of input; reasoning is included in output"
         return result
 
     def export(self, run_id: str, directory: str | Path) -> dict[str, str]:
@@ -484,7 +516,7 @@ class Ledger:
         fields = ["attempt_id", "run_id", "agent", "task_id", "logical_call_id", "attempt", "purpose",
                   "provider", "model", "service_tier", "price_version", "currency", "simulated", "created_at",
                   "updated_at", "request_id", "outcome", "status", "input_estimate", "max_output", "estimated_tokens",
-                  "estimated_cost", "input_tokens", "output_tokens", "cached_input_tokens", "reasoning_tokens", "total_tokens",
+                  "estimated_cost", "input_tokens", "output_tokens", "cached_input_tokens", "cache_write_tokens", "reasoning_tokens", "total_tokens",
                   "observed_cost", "reconciled_cost", "reserved_tokens", "reserved_cost", "context_estimates", "usage"]
         with paths["csv"].open("w", newline="", encoding="utf-8") as handle:
             writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")

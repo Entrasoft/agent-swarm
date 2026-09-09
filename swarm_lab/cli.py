@@ -12,6 +12,7 @@ import statistics
 import sys
 
 from .math_task import exact_optimum, validate_candidate
+from .providers import REASONING_EFFORTS
 from .runtime import RunConfig, Runtime
 from .store import write_json
 
@@ -160,9 +161,13 @@ def main(argv=None):
     run.add_argument('--token-limit',type=int)
     run.add_argument('--cost-limit')
     run.add_argument('--model')
+    run.add_argument('--reasoning-effort', choices=REASONING_EFFORTS,
+                     help='Reasoning setting for live requests (live default: medium)')
     run.add_argument('--price-file',type=Path)
     run.add_argument('--max-output',type=int,default=512)
     run.add_argument('--max-retries',type=int,default=1)
+    run.add_argument('--timeout',type=float,default=30,
+                     help='Provider request timeout in seconds, at most 120 (default: 30)')
     run.add_argument('--oracle-timeout',type=float,default=5)
     run.add_argument('--allow-live',action='store_true')
     run.add_argument('--out',type=Path,required=True)
@@ -189,6 +194,7 @@ def main(argv=None):
                 token_limit=args.token_limit if args.token_limit is not None else 100000,
                 cost_limit=args.cost_limit if args.cost_limit is not None else '1',
                 model=args.model or 'fixture-v1',max_output=args.max_output,max_retries=args.max_retries,
+                reasoning_effort=args.reasoning_effort,timeout_seconds=args.timeout,
                 oracle_timeout=args.oracle_timeout,allow_live=args.allow_live)
             if args.price_file:
                 config.price=json.loads(args.price_file.read_text())

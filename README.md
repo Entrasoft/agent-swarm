@@ -52,9 +52,9 @@ Each run saves `config.json`, `events.jsonl`, SQLite stores, `summary.json`, `us
 
 ## Optional live provider
 
-The adapter uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), checked on 2026-09-09. It offers a narrow candidate/message schema, with no hosted tools or arbitrary code execution. Secrets are read only from `OPENAI_API_KEY` in the process environment; environment contents and authorization headers are never recorded.
+The adapter uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), checked on 2026-09-09. It offers a narrow candidate/message schema, with no hosted tools or arbitrary code execution. Secrets come from `OPENAI_API_KEY` in the process environment or a protected local `.env`; credential contents and authorization headers are never recorded. Run `python3 -m swarm_lab.credentials setup` in an interactive Terminal to enter the key at a hidden prompt.
 
-Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price-file`, `--token-limit`, and `--cost-limit`. There is no default live model or embedded live price. See [live configuration and limitations](docs/live-provider.md) before an explicitly budgeted run. This session has authorized no paid run.
+Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price-file`, `--token-limit`, and `--cost-limit`. There is no default live model. A nonsecret Terra price snapshot is supplied and must be reverified on the run date. See [Terra setup, read-only access check, and the prepared $2 pilot](docs/live-provider.md) before an explicitly budgeted run. This session has authorized no paid run.
 
 ## Evidence and design
 

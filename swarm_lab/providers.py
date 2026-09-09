@@ -3,9 +3,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
-import os
 import urllib.error
 import urllib.request
+
+from .credentials import get_api_key
+
+REASONING_EFFORTS = ('none', 'low', 'medium', 'high', 'xhigh', 'max')
 
 SYSTEM_PROMPT = '''Find large subsets of integers 1..m without three distinct a<b<c with a+c=2*b.
 You are one scoped decision agent. Use only your observation, private best and delivered messages.
@@ -52,19 +55,25 @@ class ProviderFailure(Exception):
 
 
 class OpenAIProvider:
-    def __init__(self, model: str, max_output: int, timeout_seconds: float = 30):
+    def __init__(self, model: str, max_output: int, timeout_seconds: float = 30,
+                 reasoning_effort: str | None = None):
         if not model:
             raise ValueError('Live mode requires an explicit model ID.')
-        if not os.environ.get('OPENAI_API_KEY'):
-            raise ValueError('Live mode requires OPENAI_API_KEY in the process environment.')
+        if reasoning_effort is not None and reasoning_effort not in REASONING_EFFORTS:
+            raise ValueError('Unsupported reasoning effort.')
+        self._api_key = get_api_key()
         self.model, self.max_output, self.timeout_seconds = model, max_output, timeout_seconds
+        self.reasoning_effort = reasoning_effort
 
     def payload(self, observation: dict) -> dict:
-        return dict(model=self.model, instructions=SYSTEM_PROMPT,
+        payload = dict(model=self.model, instructions=SYSTEM_PROMPT,
                     input=json.dumps(observation, sort_keys=True), max_output_tokens=self.max_output,
                     store=False, service_tier='default',
                     text={'format': {'type':'json_schema','name':'agent_action',
                                      'strict':True,'schema':ACTION_SCHEMA}})
+        if self.reasoning_effort is not None:
+            payload['reasoning'] = {'effort': self.reasoning_effort}
+        return payload
 
     def estimate(self, observation: dict) -> int:
         # Deliberately conservative UTF-8-byte estimate, including schema and framing allowance.
@@ -74,7 +83,7 @@ class OpenAIProvider:
     def call(self, observation: dict) -> ProviderResult:
         request = urllib.request.Request('https://api.openai.com/v1/responses',
             data=json.dumps(self.payload(observation)).encode(),
-            headers={'Authorization':'Bearer '+os.environ['OPENAI_API_KEY'],
+            headers={'Authorization':'Bearer '+self._api_key,
                      'Content-Type':'application/json'}, method='POST')
         try:
             with urllib.request.urlopen(request, timeout=self.timeout_seconds) as response:

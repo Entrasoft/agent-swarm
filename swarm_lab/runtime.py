@@ -17,7 +17,7 @@ from typing import Literal
 from .ledger import Ledger
 from .math_task import exact_optimum, validate_candidate
 from .policies import decide, exploratory_priority
-from .providers import OpenAIProvider, ProviderFailure
+from .providers import OpenAIProvider, ProviderFailure, REASONING_EFFORTS
 from .store import EventStore, write_json
 
 PROTOCOL = {'request_help','propose_claim','submit_candidate','challenge_claim','share_artifact','report_result'}
@@ -47,6 +47,7 @@ class RunConfig:
     timeout_seconds: float = 30.0
     oracle_timeout: float = 5.0
     model: str = 'fixture-v1'
+    reasoning_effort: str | None = None
     price: dict = field(default_factory=lambda: dict(OFFLINE_PRICE))
     allow_live: bool = False
     # Withhold one message including its provenance descendants for paired experiments.
@@ -79,12 +80,16 @@ class RunConfig:
             raise ValueError('Provider timeout must be in (0,120].')
         if not math.isfinite(self.oracle_timeout) or not 0 <= self.oracle_timeout <= 60:
             raise ValueError('Oracle timeout must be in [0,60].')
+        if self.reasoning_effort is not None and self.reasoning_effort not in REASONING_EFFORTS:
+            raise ValueError('Unsupported reasoning effort.')
         if self.mode == 'live':
             if not self.allow_live:
                 raise ValueError('Live mode requires explicit --allow-live and a budget.')
             required = {'provider','model','service_tier','currency','version','effective_date','retrieved_date','source_url',
                         'input_per_million','cached_input_per_million','output_per_million'}
-            if self.price.keys() - (required | {'simulated', 'verified_on', 'rate_units'}):
+            if self.model == 'gpt-5.6-terra' or self.model.startswith('gpt-5.6-terra-'):
+                required.add('cache_write_per_million')
+            if self.price.keys() - (required | {'simulated', 'verified_on', 'rate_units', 'cache_write_per_million'}):
                 raise ValueError('Price snapshots may contain only documented price metadata, never credentials.')
             if not required <= self.price.keys() or self.price.get('simulated', False):
                 raise ValueError('Live mode requires a complete, verified non-simulated price snapshot.')
@@ -96,6 +101,9 @@ class RunConfig:
                 raise ValueError('Verify the official model prices today and set verified_on in the snapshot.')
             if self.token_limit <= 0 or Decimal(self.cost_limit) <= 0:
                 raise ValueError('Live ceilings must be positive.')
+            # Persist the effective setting so reproducible live runs never depend on a model default.
+            if self.reasoning_effort is None:
+                self.reasoning_effort = 'medium'
         elif self.model != 'fixture-v1' or self.price != OFFLINE_PRICE:
             raise ValueError('Offline modes use clearly simulated fixture-v1 prices.')
 
@@ -116,7 +124,8 @@ class Runtime:
         config.validate()
         self.config, self.directory = config, Path(directory)
         # Authenticate before creating files; never serialize provider configuration or environment.
-        self.provider = provider or (OpenAIProvider(config.model, config.max_output, config.timeout_seconds)
+        self.provider = provider or (OpenAIProvider(config.model, config.max_output, config.timeout_seconds,
+                                                   reasoning_effort=config.reasoning_effort)
                                      if config.mode == 'live' else None)
         self.directory.mkdir(parents=True, exist_ok=True)
         if any(self.directory.iterdir()):

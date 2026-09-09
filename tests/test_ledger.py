@@ -16,6 +16,8 @@ PRICE = dict(provider="offline-fixture", model="fixture-v1", service_tier="defau
              version="offline-v1", effective_date="2026-09-09", retrieved_date="2026-09-09",
              source_url="offline fixture; not market prices", simulated=True,
              input_per_million="1", cached_input_per_million="0.25", output_per_million="2")
+WRITE_PRICE = dict(PRICE, input_per_million="2", cached_input_per_million="0.20",
+                   cache_write_per_million="2.50", output_per_million="12")
 
 
 class LedgerTests(unittest.TestCase):
@@ -79,6 +81,106 @@ class LedgerTests(unittest.TestCase):
         self.assertEqual(entry["cached_input_tokens"], 40)
         self.assertEqual(entry["reasoning_tokens"], 10)
         self.assertEqual(self.ledger.summary("r")["actual_model_cost"], "0")
+
+    def test_cache_reads_and_writes_are_disjoint_priced_subsets(self):
+        self.ledger.create_run("writes", 10000, "1", WRITE_PRICE, True)
+        self.assertTrue(self.reserve(run_id="writes"))
+        usage = self.usage()
+        usage["input_tokens_details"]["cache_write_tokens"] = 30
+        self.ledger.settle("a", "completed", usage)
+        entry = self.ledger.entries("writes")[0]
+        # 30 ordinary * 2 + 40 read * .20 + 30 write * 2.50 + 20 output * 12.
+        self.assertEqual(Decimal(entry["observed_cost"]), Decimal("0.000383"))
+        self.assertEqual(Decimal(entry["estimated_cost"]), Decimal("0.00085"))
+        self.assertEqual(entry["total_tokens"], 120)
+        self.assertEqual(entry["cache_write_tokens"], 30)
+        self.assertEqual(entry["usage"], usage)
+        self.assertEqual(entry["cache_accounting"], "reported_disjoint_subsets")
+        result = self.ledger.summary("writes")
+        self.assertEqual(result["cache_write_tokens"], 30)
+        self.assertEqual(result["cache_write_reporting_attempts"], 1)
+        self.assertEqual(result["reserved_cost"], "0")
+        for groups in result["groups"].values():
+            self.assertEqual(sum(group["cache_write_tokens"] for group in groups.values()), 30)
+        paths = self.ledger.export("writes", Path(self.temp.name) / "writes-export")
+        with Path(paths["csv"]).open(newline="") as handle:
+            row = next(csv.DictReader(handle))
+        self.assertEqual(row["cache_write_tokens"], "30")
+        self.assertEqual(json.loads(row["usage"]), usage)
+
+    def test_new_tariff_missing_cache_subset_retains_unknown_cost(self):
+        for missing in ("cached_tokens", "cache_write_tokens"):
+            with self.subTest(missing=missing):
+                self.ledger.create_run(missing, 10000, "0.00085", WRITE_PRICE, True)
+                self.assertTrue(self.reserve(missing, run_id=missing))
+                usage = self.usage()
+                usage["input_tokens_details"]["cache_write_tokens"] = 30
+                del usage["input_tokens_details"][missing]
+                self.ledger.settle(missing, "completed", usage)
+                result = self.ledger.summary(missing)
+                self.assertEqual(result["total_tokens"], 120)
+                self.assertIsNone(result["cost_total"])
+                self.assertEqual(result["unpriced_attempts"], 1)
+                self.assertEqual(Decimal(result["reserved_cost"]), Decimal("0.00085"))
+                entry = self.ledger.entries(missing)[0]
+                self.assertEqual(entry["cache_accounting"], "incomplete subsets; cost unknown")
+                self.assertFalse(self.reserve(f"next-{missing}", run_id=missing))
+                usage["input_tokens_details"][missing] = 0
+                self.ledger.correct(missing, usage, "provider supplied missing cache counter")
+                self.assertIsNotNone(self.ledger.summary(missing)["cost_total"])
+                self.assertEqual(self.ledger.summary(missing)["reserved_cost"], "0")
+
+    def test_zero_input_requires_no_cache_counters_or_prices(self):
+        self.ledger.create_run("empty-input", 10000, "1", dict(WRITE_PRICE,
+            input_per_million=None, cached_input_per_million=None, cache_write_per_million=None), True)
+        self.assertTrue(self.reserve(run_id="empty-input", input_estimate=0))
+        self.ledger.settle("a", "completed", {"input_tokens": 0, "output_tokens": 20})
+        self.assertEqual(self.ledger.summary("empty-input")["cost_total"], "0.00024")
+
+    def test_cache_write_counts_are_validated_as_disjoint_subsets(self):
+        for written, cached in ((-1, 0), (True, 0), (1.5, 0), (101, 0), (61, 40)):
+            with self.subTest(written=written, cached=cached):
+                usage = self.usage(cached=cached)
+                usage["input_tokens_details"]["cache_write_tokens"] = written
+                with self.assertRaises(ValueError):
+                    normalize_usage(usage)
+        for details in ([], False, "bad"):
+            with self.assertRaises(ValueError):
+                normalize_usage(dict(self.usage(), input_tokens_details=details))
+
+    def test_missing_write_rate_is_unknown_and_blocks_parallel_admission(self):
+        self.ledger.create_run("write-rate", 10000, "1", dict(WRITE_PRICE, cache_write_per_million=None), True)
+        self.assertTrue(self.reserve(run_id="write-rate"))
+        self.assertFalse(self.reserve("next", run_id="write-rate"))
+        usage = self.usage()
+        usage["input_tokens_details"]["cache_write_tokens"] = 30
+        self.ledger.settle("a", "completed", usage)
+        result = self.ledger.summary("write-rate")
+        self.assertIsNone(result["cost_total"])
+        self.assertEqual(result["reserved_cost"], "1")
+
+    def test_unexpected_write_charge_on_legacy_tariff_holds_full_currency_ceiling(self):
+        self.assertTrue(self.reserve())
+        usage = self.usage()
+        usage["input_tokens_details"]["cache_write_tokens"] = 30
+        self.ledger.settle("a", "completed", usage)
+        result = self.ledger.summary("r")
+        self.assertIsNone(result["cost_total"])
+        self.assertEqual(result["reserved_cost"], "1")
+        self.assertFalse(self.reserve("next"))
+
+    def test_existing_database_without_write_counter_keeps_legacy_cost(self):
+        self.reserve()
+        self.ledger.settle("a", "completed", self.usage())
+        normalized = normalize_usage(self.usage())
+        del normalized["cache_write_tokens"]
+        self.ledger._db.execute("UPDATE attempts SET normalized_json=? WHERE attempt_id='a'",
+                                (json.dumps(normalized),))
+        with Ledger(self.path) as reopened:
+            entry = reopened.entries("r")[0]
+            self.assertIsNone(entry["cache_write_tokens"])
+            self.assertEqual(entry["observed_cost"], "0.00011")
+            self.assertEqual(reopened.summary("r")["cache_write_reporting_attempts"], 0)
 
     def test_ambiguous_timeout_cancel_failure_retains_reservation(self):
         for index, outcome in enumerate(("timed_out", "cancelled", "failed")):
@@ -153,6 +255,22 @@ class LedgerTests(unittest.TestCase):
             admitted = list(workers.map(admit, range(40)))
         self.assertEqual(sum(admitted), 6)
         self.assertEqual(self.ledger.summary("currency")["remaining_cost"], "0")
+
+    def test_concurrent_admission_reserves_most_expensive_input_bucket(self):
+        for highest in ("input_per_million", "cached_input_per_million", "cache_write_per_million"):
+            with self.subTest(highest=highest):
+                price = dict(WRITE_PRICE, **{highest: "3"})
+                self.ledger.create_run(highest, 10000, "0.0012", price, True)
+
+                def admit(index):
+                    with Ledger(self.path) as connection:
+                        return connection.reserve(highest, f"{highest}-{index}", "a", "t", str(index),
+                                                  0, "research", 100, 0, "fixture-v1")
+
+                with ThreadPoolExecutor(max_workers=8) as workers:
+                    admitted = list(workers.map(admit, range(16)))
+                self.assertEqual(sum(admitted), 4)
+                self.assertEqual(self.ledger.summary(highest)["remaining_cost"], "0")
 
     def test_conflicting_telemetry_requires_audited_correction(self):
         self.reserve()
