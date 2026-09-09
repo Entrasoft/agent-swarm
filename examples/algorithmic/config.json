@@ -1,0 +1,70 @@
+{
+  "agents": 4,
+  "allocation": "round_robin",
+  "allow_live": false,
+  "code_revision": "aecaa7b207a094941f977931593e9db6fb46df5f",
+  "concurrency": 4,
+  "condition": "independent",
+  "context_bytes": 16384,
+  "cost_limit": "1",
+  "m": 12,
+  "mailbox_limit": 16,
+  "max_output": 512,
+  "max_retries": 1,
+  "message_bytes": 4096,
+  "mode": "algorithmic",
+  "model": "fixture-v1",
+  "oracle_timeout": 5,
+  "price": {
+    "cached_input_per_million": "0.25",
+    "currency": "USD",
+    "effective_date": "2026-09-09",
+    "input_per_million": "1",
+    "model": "fixture-v1",
+    "output_per_million": "2",
+    "provider": "offline-fixture",
+    "retrieved_date": "2026-09-09",
+    "service_tier": "default",
+    "simulated": true,
+    "source_url": "offline fixture; not market prices",
+    "version": "offline-v1"
+  },
+  "run_id": "0dbbf7d1-a2cc-4518-a9c4-00eb0757ac7a",
+  "scheduling": "offline: serial immediate delivery in agent order; live: concurrency-limited tasks with round barriers",
+  "seed": 0,
+  "source_sha256": {
+    "__init__.py": "5352aa74be6931d69f07ee3e9b7057338e452aa9335b553cf239f362131b09be",
+    "__main__.py": "3129adff95e0f38b87ab34cddfc27082c7892bcaec267ff5d40f160fdf55b44a",
+    "cli.py": "184e3d380e62b8e6dd3153b09dae74f0866faf7f36f60774a9cc96d0bbf8ccde",
+    "display.py": "7daaf01389b43834ce386fddf649a58bfa783f96292077ddb34457979114ad0c",
+    "ledger.py": "9670561a2dea7529fa11c238ea873ee7ada222e746f5827e6bab462e30e13eb7",
+    "math_task.py": "168202a6db600bd4f15e10f67e58f3f1ac34397edea01737f0ef1cf3dfae5f1f",
+    "policies.py": "855d2f148cdb3d6807f1df11ceaa6c3a24f22f1bc5c216254e325061b2e9cbb4",
+    "providers.py": "e307967ada161336cdf0083da4685a6113933869d733d3aa78b8dac3084d7781",
+    "runtime.py": "8093b181d891c63975ec1498b6deae7e7a681c6772e1d03ad7febcd71b153569",
+    "store.py": "add7b83f409ed8f48e2cf5215a5734b5c7e46912228b2ce5928f5f0676827860"
+  },
+  "steps": 24,
+  "team": [
+    {
+      "agent_id": "agent-0",
+      "role": "searcher"
+    },
+    {
+      "agent_id": "agent-1",
+      "role": "searcher"
+    },
+    {
+      "agent_id": "agent-2",
+      "role": "searcher"
+    },
+    {
+      "agent_id": "agent-3",
+      "role": "searcher"
+    }
+  ],
+  "timeout_seconds": 30.0,
+  "token_limit": 100000,
+  "withhold_message": null,
+  "working_tree_dirty": false
+}

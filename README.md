@@ -36,6 +36,8 @@ python -m swarm_lab oracle --m 24
 
 The viewer is a **local Tk desktop application**, requiring a Python installation with Tk and a graphical session. It shows real recorded events and can follow an active run. Pause, step, scrub, or replay; inspect public payloads and provenance. No website is deployed. See [display instructions](docs/display.md).
 
+![Actual local replay display](docs/images/display.jpg)
+
 Independent workers receive no peer findings or global incumbent. Fixed and adaptive teams each contain one coordinator and `N−1` searchers. Fixed routing is a coordinator star; adaptive algorithmic routing uses a disclosed heuristic. The deterministic scheduler and verifier do not count as agents. Scheduling is bounded and offline execution is reproducible for fixed settings; live completion order can vary.
 
 The exact evaluator runs after workers stop, outside their observations. Candidate validation establishes a lower bound; only independent evaluation can tighten the upper bound. A run is marked solved only when those bounds meet. The deterministic solver is extremely fast on these small instances; this is an orchestration laboratory, not evidence that agents outperform ordinary algorithms.
