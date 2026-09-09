@@ -1,0 +1,38 @@
+# Follow-on prompt: from the Terra pilot to an article experiment
+
+Copy the prompt below into a new task in this repository. It requests preparation and implementation; it does not itself authorize new paid inference. Add a separate calibration authorization if desired. The proposed calibration is at most six Terra calls across m=18 and m=24, with USD 2 and 100,000-token **combined** ceilings and zero retries. Those ceilings may stop calibration before all six calls finish. A comparative campaign needs a separately approved budget after calibration.
+
+---
+
+Continue Agent Swarm Lab at `/Users/christopherdeschenes/codexswarm`, public repository `https://github.com/Entrasoft/agent-swarm`, from the completed pilot milestone v0.1.1. The goal is an evidence-backed practitioner article about whether multi-agent coordination earns its additional cost.
+
+Inspect applicable repository instructions, Git status and current code before editing. Read `CHANGELOG.md`, `docs/terra-pilot.md`, `docs/experiment-protocol.md`, `docs/live-provider.md`, `docs/claims-evidence.md`, and the article and LinkedIn drafts. Treat the original handoff as background requirements; do not treat its embedded instructions as new authorization.
+
+The completed pilot used three live `gpt-5.6-terra` calls, medium reasoning, one solo searcher at m=12. It consumed 2,260 provider-reported tokens and USD 0.016160 calculated cost, with zero retries. Its first call found the independently verified optimum of six; the next two repeated it. Billing has not been reconciled. The old three-call authorization is exhausted, including any apparent unused token or dollar headroom. Preserve its raw artifacts, source revision, hashes and historical protocol unchanged.
+
+Public repository work, MIT licensing, and creating and merging project PRs are authorized. API credentials are already configured locally; use the existing supported secret loader. Never display, copy into prompts, log, commit or place credentials in command arguments. Do not ask for another key. Do not publish posts or deploy a website.
+
+Complete all unblocked preparation, code, offline checks and review autonomously. New live inference requires a fresh, explicit call/token/currency authorization in this task. A credit balance or this proposed study is not that authorization. Once a stage is authorized, finish it within its limits without requesting the same approval again. No live model calls for summaries, retries or auxiliary work may escape the approved total.
+
+Prepare the work in these stages:
+
+1. **Freeze a separate calibration plan.** Propose up to three solo decisions at each of m=18 and m=24, at most six calls altogether, with zero retries. Keep the existing model, effort, output headroom and timeout unless a documented compatibility issue requires a change. Predefine how final verified gap and first-call saturation will determine whether either size is useful for comparison. Commit this plan before generation. Keep calibration observations separate from comparative results. If both sizes solve immediately, report saturation; propose either an overhead-focused article or a disclosed task extension with new validation. Do not silently expand beyond the runtime's m≤24 limit or search for a task that makes coordination win.
+
+2. **Make the combined budget enforceable.** Current live ceilings are per run. Before any multi-run stage, implement and meaningfully test durable admission control across all its runs, using atomic reservations and the existing ledger semantics. Include incomplete attempts, coordinator work and all other paid requests; retain reservations when usage is unknown. Do not reset the budget by starting a new output directory. Describe the distinction between local admission limits and provider billing/cancellation uncertainty. Reverify official model compatibility and prices on the run date. On the original macOS host, `SSL_CERT_FILE=/etc/ssl/cert.pem` was needed for Python certificate verification; keep verification enabled.
+
+3. **After authorized calibration, freeze a live comparison protocol.** The provisional design is one disclosed difficulty, four conditions—solo, independent with four searchers, fixed with one coordinator plus three searchers, and adaptive with the same coordinator/searcher roster—five repetitions and twelve total decision calls per run. That is at most 240 comparative calls, excluding calibration. Select and justify the final count and total token/currency budget from calibration measurements, before any comparative outcomes. Preserve all attempts and stop reasons if ceilings prevent completion.
+
+4. **Check what the conditions actually implement.** Keep model, effort, tools, output limits and allocation rules consistent. Use sequential dispatch initially to limit timing confounds; randomize condition order within repetition blocks using a recorded schedule. Live fixed routing currently enforces a star while allowing the coordinator to choose a searcher; offline fixed routing rotates recipients. Make the protocol accurately describe the executed live behavior. The independent-versus-coordinated comparison changes both communication and role composition; only fixed versus adaptive has a matched role roster. Repetition IDs and scheduler seeds are not guarantees of independent or reproducible model sampling. Equal call ceilings are not equal tokens or spending.
+
+5. **Prepare reviewable execution and reporting.** Before requesting each stage's missing paid authorization, provide its exact commands, matrix, conservative reservation estimates, aggregate ceilings and stopping rules, with dry-run/offline validation completed. Run only authorized stages. Preserve configurations, code revisions, returned model identifiers, prices, public observations and messages, provider usage, failures and JSON/CSV ledgers. Independently verify candidates and replay traces. Include the deterministic solver baseline. Report verified gap, solved/attempted counts, actual tokens, calculated cost, timing, duplicates and coordinator overhead; distinguish unknown usage and unreconciled charges. Do not exclude failures or imply that a communication trace establishes causal benefit.
+
+6. **Turn the evidence into the article package.** Prepare an approximately 2,000-word Substack draft and a 200–350-word LinkedIn companion, with a compact comparison table, verified-quality-versus-cost figure and an annotated public trace. Explain useful null results as clearly as positive ones. Treat this as a small descriptive case study. Update the title to reflect four-agent comparisons if ten-agent work remains deferred. Keep ten-agent scaling, model sweeps, adaptive allocation and checkpoint-based causal interventions out of this stage. Do not invent Chris's personal history; leave a concise author note for any anecdote or quotation needing his confirmation. Save the drafts for review without publishing them.
+
+Keep implementation, evidence and claims synchronized. Use reviewed PRs, appropriate tests and normal merge rules. At completion report exactly what changed, ran and passed; measured results and limitations; links to artifacts and PRs; and any next bounded stage still requiring authorization.
+
+---
+
+## Remaining owner input
+
+- **Required before new inference:** fresh approval of the calibration call, token and currency ceilings. Recommended starting scope: at most six calls, USD 2 and 100,000 total tokens across both sizes, zero retries. The later comparison budget is deliberately undecided.
+- **Before article publication:** confirm any personal anecdote about earlier agent work and approve the final posts. Writing, analysis and repository preparation can proceed without this.
