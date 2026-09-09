@@ -54,6 +54,19 @@ class ProviderFailure(Exception):
         self.outcome, self.request_id = outcome, request_id
 
 
+def request_payload(model: str, max_output: int, reasoning_effort: str | None,
+                    observation: dict) -> dict:
+    """Build the public request independently of credential loading or transport."""
+    payload = dict(model=model, instructions=SYSTEM_PROMPT,
+                   input=json.dumps(observation, sort_keys=True), max_output_tokens=max_output,
+                   store=False, service_tier='default',
+                   text={'format': {'type':'json_schema','name':'agent_action',
+                                    'strict':True,'schema':ACTION_SCHEMA}})
+    if reasoning_effort is not None:
+        payload['reasoning'] = {'effort': reasoning_effort}
+    return payload
+
+
 class OpenAIProvider:
     def __init__(self, model: str, max_output: int, timeout_seconds: float = 30,
                  reasoning_effort: str | None = None):
@@ -66,14 +79,7 @@ class OpenAIProvider:
         self.reasoning_effort = reasoning_effort
 
     def payload(self, observation: dict) -> dict:
-        payload = dict(model=self.model, instructions=SYSTEM_PROMPT,
-                    input=json.dumps(observation, sort_keys=True), max_output_tokens=self.max_output,
-                    store=False, service_tier='default',
-                    text={'format': {'type':'json_schema','name':'agent_action',
-                                     'strict':True,'schema':ACTION_SCHEMA}})
-        if self.reasoning_effort is not None:
-            payload['reasoning'] = {'effort': self.reasoning_effort}
-        return payload
+        return request_payload(self.model, self.max_output, self.reasoning_effort, observation)
 
     def estimate(self, observation: dict) -> int:
         # Deliberately conservative UTF-8-byte estimate, including schema and framing allowance.

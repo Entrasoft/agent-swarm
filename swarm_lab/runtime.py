@@ -120,8 +120,14 @@ class AgentState:
 
 
 class Runtime:
-    def __init__(self, config: RunConfig, directory: Path, provider=None):
+    def __init__(self, config: RunConfig, directory: Path, provider=None, *,
+                 ledger_path: Path | None = None, campaign_id: str | None = None,
+                 stop_on_failure: bool = False):
         config.validate()
+        if (ledger_path is None) != (campaign_id is None):
+            raise ValueError('Shared ledger path and campaign ID must be supplied together.')
+        self.campaign_id = campaign_id
+        self.stop_on_failure = stop_on_failure
         self.config, self.directory = config, Path(directory)
         # Authenticate before creating files; never serialize provider configuration or environment.
         self.provider = provider or (OpenAIProvider(config.model, config.max_output, config.timeout_seconds,
@@ -132,9 +138,9 @@ class Runtime:
             raise ValueError('Output directory must be empty; use replay for an existing run.')
         self.run_id = str(uuid.uuid4())
         self.store = EventStore(self.directory, self.run_id)
-        self.ledger = Ledger(self.directory / 'usage.sqlite3')
+        self.ledger = Ledger(ledger_path or self.directory / 'usage.sqlite3')
         self.ledger.create_run(self.run_id, config.token_limit, config.cost_limit, config.price,
-                               simulated=config.mode != 'live')
+                               simulated=config.mode != 'live', campaign_id=campaign_id)
         self.team = [AgentState(f'agent-{i}', 'coordinator' if i == 0 and config.condition in {'fixed','adaptive'} else 'searcher',
                                random.Random(config.seed * 1009 + i)) for i in range(config.agents)]
         self.by_id = {a.agent_id:a for a in self.team}
@@ -286,7 +292,9 @@ class Runtime:
                 if self.stop:
                     self.store.emit('task_cancelled', actor=agent.agent_id, task_id=task_id, payload={'reason': self.stop})
                     return
-                attempt_id = f'{task_id}/attempt-{attempt}'
+                local_attempt_id = f'{task_id}/attempt-{attempt}'
+                attempt_id = (f'{self.run_id}/{local_attempt_id}'
+                              if self.campaign_id is not None else local_attempt_id)
                 admitted = self.ledger.reserve(self.run_id, attempt_id, agent.agent_id, task_id, task_id, attempt,
                     'coordination' if agent.role == 'coordinator' else 'research', estimate,
                     self.config.max_output, self.config.model,
@@ -305,6 +313,13 @@ class Runtime:
                         if result.service_tier and result.service_tier != 'default':
                             usage = None  # Unexpected billing semantics remain unresolved.
                             outcome, action = 'unexpected_service_tier', None
+                        if self.campaign_id is not None:
+                            if result.model != self.config.model:
+                                usage = None
+                                outcome, action = 'unexpected_model', None
+                            elif result.service_tier != 'default':
+                                usage = None
+                                outcome, action = 'unexpected_service_tier', None
                         self.store.emit('provider_result', actor=agent.agent_id, task_id=task_id,
                             payload={'model':result.model,'service_tier':result.service_tier,'outcome':outcome, 'usage':result.usage})
                         if usage is not None:
@@ -337,15 +352,24 @@ class Runtime:
                         committed_cost=ledger_summary.get('committed_cost'), remaining_cost=ledger_summary.get('remaining_cost'),
                         committed_tokens=ledger_summary.get('committed_tokens'), remaining_tokens=ledger_summary.get('remaining_tokens')))
                 self.ledger.export(self.run_id, self.directory)
+                if self.stop_on_failure and (ledger_summary['unknown_attempts'] or
+                                             ledger_summary['unknown_cost_attempts']):
+                    self.stop = 'unresolved_usage'
                 if action is not None and outcome == 'completed':
                     break
                 action = None
                 self.store.emit('attempt_failed', actor=agent.agent_id, task_id=task_id,
                                 payload={'attempt':attempt,'outcome':outcome,'possible_charge':usage is None})
+                if self.stop_on_failure:
+                    self.stop = self.stop or 'provider_failure'
+                    break
             agent.calls += 1
             self.stats[agent.agent_id]['pulls'] += 1
             if action is not None:
+                invalid_before = self.invalid
                 self.accept(agent, action, observation, task_id, assignment)
+                if self.stop_on_failure and self.invalid != invalid_before:
+                    self.stop = 'invalid_candidate'
                 self.workers_completed += 1
             self.store.emit('task_completed' if action is not None else 'task_failed', actor=agent.agent_id, task_id=task_id)
 
@@ -368,6 +392,10 @@ class Runtime:
                         scheduling='offline: serial immediate delivery in agent order; live: concurrency-limited tasks with round barriers',
                         source_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob('*.py')},
                         team=[{'agent_id':a.agent_id,'role':a.role} for a in self.team])
+        if self.campaign_id is not None:
+            metadata['campaign_id'] = self.campaign_id
+        if self.stop_on_failure:
+            metadata['stop_on_failure'] = True
         write_json(self.directory/'config.json',metadata)
         self.store.emit('run_started',payload=metadata)
         worker_seconds = 0.0
@@ -395,7 +423,7 @@ class Runtime:
             self.upper_bound = oracle.upper_bound
             gap = self.upper_bound-self.lower_bound
             self.store.emit('evaluation', actor='evaluator', payload=asdict(oracle))
-            if gap == 0:
+            if gap == 0 and self.stop == 'step_limit':
                 self.stop = 'solved'
             optimal_times = [e['elapsed_seconds'] for e in self.store.events() if e['event_type']=='verification'
                              and e['payload'].get('valid') and len(e['payload'].get('candidate',[]))==self.upper_bound]

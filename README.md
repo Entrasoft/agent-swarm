@@ -62,12 +62,17 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 
 - [Results and reproducible commands](docs/results.md)
 - [Completed Terra pilot and public trace](docs/terra-pilot.md)
+- [Authorized difficulty calibration protocol](docs/calibration-protocol.md)
+- [Completed difficulty calibration and m=24 selection](docs/terra-calibration-results.md)
+- [Proposed four-condition live comparison](docs/live-comparison-proposal.md)
 - [Architecture](docs/architecture.md) and [predefined experiment protocol](docs/experiment-protocol.md)
 - [Claims and evidence](docs/claims-evidence.md)
 - [Article working draft](docs/article-draft.md) and [LinkedIn draft](docs/linkedin-draft.md), unpublished
 - [Original handoff](docs/codex-swarm-lab-handoff.md), describing the broader intended project
 
 Checkpoint/fork causal interventions, a paid campaign, and empirical claims of emergent or effective cooperation remain future work. The message-withholding prototype is not a causal experiment. See the protocol for the required leakage controls.
+
+The separately approved solo difficulty calibration at m=18 and m=24 is complete: six calls, 10,395 tokens and USD 0.102580 calculated cost, with zero retries. m=18 was first-call optimal; m=24 retained a verified gap of two and was selected by the frozen rule. `python3 -m swarm_lab.calibration prepare` freezes a protocol and shared ledger without API requests; `execute --allow-live` is guarded against repeating this completed authorization. See the protocol and result record. No swarm comparison is authorized yet.
 
 ## License
 

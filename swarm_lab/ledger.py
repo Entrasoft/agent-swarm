@@ -68,6 +68,18 @@ def _scrub(value: Any) -> Any:
     return value
 
 
+def _freeze_price(price: dict[str, Any], simulated: bool) -> dict[str, Any]:
+    frozen = json.loads(_json(_scrub(price)))
+    for field in RATE_FIELDS:
+        if frozen.get(field) is not None:
+            frozen[field] = _amount(_money(frozen[field], field))
+    if frozen.get("rate_units", "per_million_tokens") != "per_million_tokens":
+        raise ValueError("this ledger supports per_million_tokens pricing only")
+    if not simulated and frozen.get("simulated"):
+        raise ValueError("simulated prices cannot be used for a real run")
+    return frozen
+
+
 def normalize_usage(usage: dict[str, Any] | None) -> dict[str, Any]:
     """Normalize inclusive counters; partial/missing totals remain unknown."""
     result: dict[str, Any] = {"input_tokens": None, "output_tokens": None,
@@ -161,6 +173,17 @@ class Ledger:
                 token_limit INTEGER NOT NULL, cost_limit TEXT NOT NULL,
                 price_json TEXT NOT NULL, simulated INTEGER NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS campaigns (
+                campaign_id TEXT PRIMARY KEY, created_at TEXT NOT NULL,
+                token_limit INTEGER NOT NULL, cost_limit TEXT NOT NULL,
+                call_limit INTEGER NOT NULL, price_json TEXT NOT NULL,
+                simulated INTEGER NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS campaign_runs (
+                run_id TEXT PRIMARY KEY REFERENCES runs(run_id),
+                campaign_id TEXT NOT NULL REFERENCES campaigns(campaign_id)
+            );
+            CREATE INDEX IF NOT EXISTS campaign_members ON campaign_runs(campaign_id);
             CREATE TABLE IF NOT EXISTS attempts (
                 attempt_id TEXT PRIMARY KEY, run_id TEXT NOT NULL REFERENCES runs(run_id),
                 agent TEXT NOT NULL, task_id TEXT NOT NULL, logical_call_id TEXT NOT NULL,
@@ -212,7 +235,38 @@ class Ledger:
         result = dict(row)
         result["price"] = json.loads(result.pop("price_json"))
         result["simulated"] = bool(result["simulated"])
+        membership = db.execute("SELECT campaign_id FROM campaign_runs WHERE run_id=?", (run_id,)).fetchone()
+        if membership is not None:
+            result["campaign_id"] = membership["campaign_id"]
         return result
+
+    @staticmethod
+    def _campaign(db: sqlite3.Connection, campaign_id: str) -> dict[str, Any]:
+        row = db.execute("SELECT * FROM campaigns WHERE campaign_id=?", (campaign_id,)).fetchone()
+        if row is None:
+            raise KeyError(f"unknown campaign: {campaign_id}")
+        result = dict(row)
+        result["price"] = json.loads(result.pop("price_json"))
+        result["simulated"] = bool(result["simulated"])
+        return result
+
+    def create_campaign(self, campaign_id: str, token_limit: int, cost_limit: str,
+                        call_limit: int, price: dict[str, Any], simulated: bool) -> None:
+        """Freeze a shared budget. Reopening cannot reset spend or raise ceilings."""
+        token_limit = _count(token_limit, "token_limit")
+        call_limit = _count(call_limit, "call_limit")
+        ceiling = _amount(_money(cost_limit, "cost_limit"))
+        frozen = _freeze_price(price, simulated)
+        parameters = (token_limit, ceiling, call_limit, _json(frozen), int(simulated))
+        with self._transaction() as db:
+            old = db.execute("SELECT token_limit,cost_limit,call_limit,price_json,simulated FROM campaigns WHERE campaign_id=?",
+                             (campaign_id,)).fetchone()
+            if old is not None:
+                if tuple(old) != parameters:
+                    raise ValueError("campaign already exists with a different budget or frozen price")
+                return
+            db.execute("INSERT INTO campaigns VALUES(?,?,?,?,?,?,?)",
+                       (campaign_id, _now(), *parameters))
 
     @staticmethod
     def _entry(row: sqlite3.Row | dict[str, Any]) -> dict[str, Any]:
@@ -226,27 +280,30 @@ class Ledger:
         return result
 
     def create_run(self, run_id: str, token_limit: int, cost_limit: str,
-                   price: dict[str, Any], simulated: bool) -> None:
+                   price: dict[str, Any], simulated: bool, *, campaign_id: str | None = None) -> None:
         token_limit = _count(token_limit, "token_limit")
         ceiling = _amount(_money(cost_limit, "cost_limit"))
-        frozen = json.loads(_json(_scrub(price)))
-        for field in RATE_FIELDS:
-            if frozen.get(field) is not None:
-                frozen[field] = _amount(_money(frozen[field], field))
-        if frozen.get("rate_units", "per_million_tokens") != "per_million_tokens":
-            raise ValueError("this ledger supports per_million_tokens pricing only")
-        if not simulated and frozen.get("simulated"):
-            raise ValueError("simulated prices cannot be used for a real run")
+        frozen = _freeze_price(price, simulated)
         parameters = (token_limit, ceiling, _json(frozen), int(simulated))
         with self._transaction() as db:
+            if campaign_id is not None:
+                campaign = self._campaign(db, campaign_id)
+                if campaign["price"] != frozen or campaign["simulated"] != bool(simulated):
+                    raise ValueError("run price or simulation mode differs from the campaign")
             old = db.execute("SELECT token_limit,cost_limit,price_json,simulated FROM runs WHERE run_id=?",
                              (run_id,)).fetchone()
             if old is not None:
                 if tuple(old) != parameters:
                     raise ValueError("run already exists with a different budget or frozen price")
+                membership = db.execute("SELECT campaign_id FROM campaign_runs WHERE run_id=?", (run_id,)).fetchone()
+                old_campaign = membership["campaign_id"] if membership else None
+                if old_campaign != campaign_id:
+                    raise ValueError("existing run campaign membership cannot change")
                 return
             db.execute("INSERT INTO runs VALUES(?,?,?,?,?,?)",
                        (run_id, _now(), *parameters))
+            if campaign_id is not None:
+                db.execute("INSERT INTO campaign_runs VALUES(?,?)", (run_id, campaign_id))
 
     def reserve(self, run_id: str, attempt_id: str, agent: str, task_id: str,
                 logical_call_id: str, attempt: int, purpose: str, input_estimate: int,
@@ -277,9 +334,13 @@ class Ledger:
             if price.get("service_tier") and price["service_tier"] != service_tier:
                 raise ValueError("request tier differs from the run's frozen price tier")
             estimate = _cost(price, input_estimate, max_output, reservation=True)
+            campaign = (self._campaign(db, run["campaign_id"])
+                        if "campaign_id" in run else None)
             # Unpriced work consumes the full currency ceiling; it never admits
             # parallel unpriced work by pretending the rate is zero.
-            reserved_cost = estimate if estimate is not None else _money(run["cost_limit"])
+            reserved_cost = (estimate if estimate is not None else
+                             max(_money(run["cost_limit"]),
+                                 _money(campaign["cost_limit"]) if campaign else ZERO))
             entries = [self._entry(row) for row in db.execute("SELECT * FROM attempts WHERE run_id=?", (run_id,))]
             committed = self._aggregate(entries)
             tokens = input_estimate + max_output
@@ -289,6 +350,18 @@ class Ledger:
             # With no price or currency allowance, unknown cost is not admissible.
             if estimate is None and reserved_cost == 0:
                 return False
+            if campaign is not None:
+                campaign_entries = self._campaign_attempts(db, campaign["campaign_id"])
+                # A tariff without a model still cannot pool different models
+                # or service tiers under one accounting budget.
+                if any(entry["model"] != model or entry["service_tier"] != service_tier
+                       for entry in campaign_entries):
+                    raise ValueError("request model or tier differs from the campaign")
+                total = self._aggregate(campaign_entries)
+                if (total["attempts"] >= campaign["call_limit"] or
+                        total["committed_tokens"] + tokens > campaign["token_limit"] or
+                        _money(total["committed_cost"]) + reserved_cost > _money(campaign["cost_limit"])):
+                    return False
             now = _now()
             data = dict(attempt_id=attempt_id, **parameters, created_at=now, updated_at=now,
                         estimated_tokens=tokens, estimated_cost=None if estimate is None else _amount(estimate),
@@ -349,7 +422,10 @@ class Ledger:
             else:
                 reserve_estimate = _cost(run["price"], partial_input, partial_output,
                                          cache_write_tokens=normalized["cache_write_tokens"], reservation=True)
-                reserved_cost = (_money(run["cost_limit"]) if reserve_estimate is None else
+                unpriced_ceiling = max(_money(run["cost_limit"]), _money(old["reserved_cost"]),
+                    _money(self._campaign(db, run["campaign_id"])["cost_limit"])
+                    if "campaign_id" in run else ZERO)
+                reserved_cost = (unpriced_ceiling if reserve_estimate is None else
                                  max(reserve_estimate, _money(old["reserved_cost"])))
             status = ("reconciled" if old["reconciled_cost"] is not None else
                       "observed" if normalized["complete"] else "estimated")
@@ -444,17 +520,17 @@ class Ledger:
             "known_cost": _amount(known), "reserved_cost": _amount(reserved),
             "committed_cost": _amount(known + reserved),
             "unresolved_charges": sum(entry["reconciled_cost"] is None for entry in entries),
-            "retry_attempts": len(entries) - len({entry["logical_call_id"] for entry in entries}),
+            "retry_attempts": len(entries) - len({(entry["run_id"], entry["logical_call_id"]) for entry in entries}),
         }
         result["committed_tokens"] = tokens + result["reserved_tokens"]
         result["unknown_cost_attempts"] = sum(entry["observed_cost"] is None and entry["reconciled_cost"] is None for entry in entries)
         result["cost_total"] = None if result["unknown_cost_attempts"] else result["known_cost"]
         first_attempt = {}
         for entry in entries:
-            key = entry["logical_call_id"]
+            key = (entry["run_id"], entry["logical_call_id"])
             first_attempt[key] = min(first_attempt.get(key, entry["attempt"]), entry["attempt"])
         result["retry_cost"] = _amount(sum((Decimal(entry["reconciled_cost"] or entry["observed_cost"] or "0")
-                                           for entry in entries if entry["attempt"] > first_attempt[entry["logical_call_id"]]), ZERO))
+                                           for entry in entries if entry["attempt"] > first_attempt[(entry["run_id"], entry["logical_call_id"])]), ZERO))
         result["billing_status"] = "reconciled" if entries and not result["unresolved_charges"] else "not_reconciled"
         return result
 
@@ -465,6 +541,33 @@ class Ledger:
             run = self._run(db, run_id)
             entries = [self._entry(row) for row in db.execute("SELECT * FROM attempts WHERE run_id=? ORDER BY created_at,attempt_id", (run_id,))]
         return self._summary(run, entries)
+
+    def _campaign_attempts(self, db: sqlite3.Connection, campaign_id: str) -> list[dict[str, Any]]:
+        return [self._entry(row) for row in db.execute(
+            """SELECT attempts.* FROM attempts JOIN campaign_runs USING(run_id)
+               WHERE campaign_id=? ORDER BY created_at,attempt_id""", (campaign_id,))]
+
+    def _campaign_summary(self, campaign: dict[str, Any], runs: list[dict[str, Any]],
+                          entries: list[dict[str, Any]]) -> dict[str, Any]:
+        result = self._summary(campaign, entries)
+        result["remaining_calls"] = max(0, campaign["call_limit"] - len(entries))
+        result["call_overshoot"] = max(0, len(entries) - campaign["call_limit"])
+        result["call_semantics"] = "Each durable attempt reservation consumes one call slot, including pending or unknown outcomes."
+        result["run_ids"] = [run["run_id"] for run in runs]
+        result["groups"]["run_id"] = {
+            run["run_id"]: self._summary(run, [entry for entry in entries if entry["run_id"] == run["run_id"]])
+            for run in runs
+        }
+        return result
+
+    def campaign_summary(self, campaign_id: str) -> dict[str, Any]:
+        """Read aggregate and per-run balances from the same SQLite snapshot."""
+        with self._transaction() as db:
+            campaign = self._campaign(db, campaign_id)
+            runs = [self._run(db, row["run_id"]) for row in db.execute(
+                "SELECT run_id FROM campaign_runs WHERE campaign_id=? ORDER BY run_id", (campaign_id,))]
+            entries = self._campaign_attempts(db, campaign_id)
+        return self._campaign_summary(campaign, runs, entries)
 
     def _summary(self, run: dict[str, Any], entries: list[dict[str, Any]]) -> dict[str, Any]:
         result = dict(run, **self._aggregate(entries))
@@ -492,7 +595,7 @@ class Ledger:
         for index, entry in enumerate(entries):
             cumulative = self._aggregate(entries[:index + 1])
             result["timeline"].append({"timestamp": entry["created_at"], "attempt_id": entry["attempt_id"],
-                                        "agent": entry["agent"], "status": entry["status"],
+                                        "run_id": entry["run_id"], "agent": entry["agent"], "status": entry["status"],
                                         "total_tokens": cumulative["total_tokens"], "known_cost": cumulative["known_cost"],
                                         "committed_tokens": cumulative["committed_tokens"],
                                         "committed_cost": cumulative["committed_cost"]})
@@ -508,9 +611,28 @@ class Ledger:
             run = self._run(db, run_id)
             entries = self._entries(db, run)
         summary = self._summary(run, entries)
-        paths = {"json": directory / "usage-ledger.json", "csv": directory / "usage-ledger.csv",
-                 "summary": directory / "usage-summary.json"}
-        paths["json"].write_text(json.dumps({"schema_version": 1, "run_id": run_id,
+        return self._write_export(directory, "usage", {"run_id": run_id}, summary, entries)
+
+    def export_campaign(self, campaign_id: str, directory: str | Path) -> dict[str, str]:
+        """Export one snapshot of the campaign, including all constituent runs."""
+        directory = Path(directory)
+        directory.mkdir(parents=True, exist_ok=True)
+        with self._transaction() as db:
+            campaign = self._campaign(db, campaign_id)
+            runs = [self._run(db, row["run_id"]) for row in db.execute(
+                "SELECT run_id FROM campaign_runs WHERE campaign_id=? ORDER BY run_id", (campaign_id,))]
+            entries = [entry for run in runs for entry in self._entries(db, run)]
+            entries.sort(key=lambda entry: (entry["created_at"], entry["attempt_id"]))
+        summary = self._campaign_summary(campaign, runs, entries)
+        return self._write_export(directory, "campaign", {"campaign_id": campaign_id,
+                                  "run_ids": summary["run_ids"]}, summary, entries)
+
+    @staticmethod
+    def _write_export(directory: Path, prefix: str, identity: dict[str, Any],
+                      summary: dict[str, Any], entries: list[dict[str, Any]]) -> dict[str, str]:
+        paths = {"json": directory / f"{prefix}-ledger.json", "csv": directory / f"{prefix}-ledger.csv",
+                 "summary": directory / f"{prefix}-summary.json"}
+        paths["json"].write_text(json.dumps({"schema_version": 1, **identity,
                                              "price": summary["price"], "entries": entries}, indent=2) + "\n", encoding="utf-8")
         paths["summary"].write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
         fields = ["attempt_id", "run_id", "agent", "task_id", "logical_call_id", "attempt", "purpose",
