@@ -122,6 +122,21 @@ class ProjectionTests(unittest.TestCase):
         self.assertEqual(graph_position("scheduler", 1), graph_position("scheduler", 10))
         self.assertEqual(graph_position("custom-worker", 4), graph_position("custom-worker", 10))
 
+    def test_runtime_flat_start_and_artifact_delivery_provenance(self):
+        p = project_events([
+            event(1, "run_started", actor="runtime", payload={"mode": "algorithmic", "m": 12,
+                "agents": 2, "team": [{"agent_id": "agent-0", "role": "coordinator"}]}),
+            event(2, "message_delivered", actor="agent-0", recipient="agent-1",
+                payload={"type": "share_artifact"}),
+            event(3, "artifact_used", actor="agent-1", parent_event_ids=[2]),
+            event(4, "evaluation", actor="evaluator", payload={"lower_bound": 6, "upper_bound": 6}),
+        ])
+        self.assertEqual(p.mode, "algorithmic")
+        self.assertEqual(p.agents["agent-0"].role, "coordinator")
+        self.assertEqual(p.upper_bound, 6)
+        self.assertEqual((p.edges[-1].actor, p.edges[-1].recipient, p.edges[-1].category),
+                         ("agent-0", "agent-1", "artifact"))
+
 
 class JsonlTailTests(unittest.TestCase):
     def test_partial_utf8_record_waits_and_is_counted_once(self):

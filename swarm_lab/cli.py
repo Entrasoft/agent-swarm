@@ -27,7 +27,7 @@ def verify_replay(directory: Path) -> dict:
     seen, lower = set(), 0
     for event in events:
         identity = event['event_id']
-        if identity in seen or identity != len(seen)+1:
+        if type(identity) is not int or identity in seen or identity != len(seen)+1:
             raise ValueError('Duplicate or nonsequential event ID')
         if any(parent not in seen for parent in event['parent_event_ids']):
             raise ValueError('Invalid provenance parent')
@@ -46,20 +46,64 @@ def verify_replay(directory: Path) -> dict:
     finished = [e for e in events if e['event_type']=='run_finished']
     if finished and finished[-1]['payload'] != summary:
         raise ValueError('Summary differs from run_finished event')
-    return {'verified':True,'events':len(events),'lower_bound':lower,'mode':config['mode']}
+    m = config['m']
+    if type(m) is not int or not 1 <= m <= 24:
+        raise ValueError('Replay verification supports 1 <= m <= 24')
+    upper = summary.get('upper_bound')
+    if type(upper) is not int or not lower <= upper <= m:
+        raise ValueError('Summary upper bound is outside feasible bounds')
+    evaluations = [e for e in events if e['event_type']=='evaluation']
+    if finished and len(evaluations) != 1:
+        raise ValueError('Completed run requires exactly one hidden evaluation')
+    if evaluations:
+        evaluation = evaluations[-1]['payload']
+        oracle_lower, oracle_upper = evaluation.get('lower_bound'), evaluation.get('upper_bound')
+        if (type(oracle_lower) is not int or type(oracle_upper) is not int
+                or not 0 <= oracle_lower <= oracle_upper <= m or oracle_upper != upper):
+            raise ValueError('Evaluation and summary bounds disagree')
+        oracle_candidate = evaluation.get('candidate')
+        if (not validate_candidate(m, oracle_candidate).valid
+                or len(oracle_candidate) != oracle_lower):
+            raise ValueError('Evaluation candidate does not establish its lower bound')
+        if evaluation.get('status') not in {'optimal','timed_out'}:
+            raise ValueError('Unknown evaluation status')
+        if evaluation['status'] == 'optimal' and oracle_lower != oracle_upper:
+            raise ValueError('Optimal evaluation must have equal bounds')
+        # This is a mathematical consistency check, not log authentication.
+        # Recompute independently of saved evaluator values at these tiny sizes.
+        checked = exact_optimum(m)
+        if checked.status != 'optimal':
+            raise ValueError('Replay oracle timed out; upper bound could not be independently checked')
+        if upper < checked.lower_bound:
+            raise ValueError('Saved upper bound is below the independently checked optimum')
+    elif upper != m:
+        raise ValueError('A run without evaluation must retain the initial upper bound m')
+    if finished or 'gap' in summary:
+        if type(summary.get('gap')) is not int or summary['gap'] != upper-lower:
+            raise ValueError('Summary gap disagrees with verified bounds')
+    if summary.get('stopping_reason') == 'solved' and (not evaluations or lower != upper):
+        raise ValueError('Solved status requires equal independently verified bounds')
+    return {'verified':True,'events':len(events),'lower_bound':lower,'upper_bound':upper,
+            'complete':bool(finished),'mode':config['mode']}
 
 
 def campaign(args):
-    directory = args.out
-    directory.mkdir(parents=True, exist_ok=True)
-    if any(directory.iterdir()):
-        raise ValueError('Campaign output directory must be empty')
     conditions = [(1,'solo'),(4,'independent'),(4,'fixed'),(4,'adaptive'),
                   (10,'independent'),(10,'fixed'),(10,'adaptive')]
     sizes = [int(x) for x in args.sizes.split(',')]
     seeds = [int(x) for x in args.seeds.split(',')]
     if not sizes or not seeds or len(sizes)*len(seeds)*len(conditions)>100:
         raise ValueError('Campaign limited to 100 runs')
+    if any(not 1 <= m <= 24 for m in sizes):
+        raise ValueError('Campaign requires 1 <= m <= 24; profile before extending')
+    if type(args.steps) is not int or not 1 <= args.steps <= 10000:
+        raise ValueError('Campaign steps must be in 1..10000')
+    if len(set(sizes)) != len(sizes) or len(set(seeds)) != len(seeds):
+        raise ValueError('Campaign sizes and seeds must be unique')
+    directory = args.out
+    directory.mkdir(parents=True, exist_ok=True)
+    if any(directory.iterdir()):
+        raise ValueError('Campaign output directory must be empty')
     protocol_path = Path(__file__).resolve().parents[1]/'docs'/'experiment-protocol.md'
     protocol = protocol_path.read_text() if protocol_path.exists() else 'No external protocol supplied'
     prereg = dict(sizes=sizes,seeds=seeds,conditions=conditions,steps=args.steps,

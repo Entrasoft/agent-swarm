@@ -315,16 +315,19 @@ class Ledger:
             if old["normalized"]["complete"] and correction_reason is None:
                 if old["usage"] != clean_usage or old["outcome"] != outcome:
                     raise ValueError("conflicting telemetry; use correct() with a reason")
-            # Partial counters are visible but the original token reservation
-            # remains intact until both input and output totals are reported.
+            # Partial counters can increase exposure, but never release the
+            # original reservation before both totals have been reported.
             observed = (_cost(run["price"], normalized["input_tokens"], normalized["output_tokens"],
                               normalized["cached_input_tokens"] or 0) if normalized["complete"] else None)
-            reserved_tokens = 0 if normalized["complete"] else old["estimated_tokens"]
+            partial_input = max(old["input_estimate"], normalized["input_tokens"] or 0)
+            partial_output = max(old["max_output"], normalized["output_tokens"] or 0)
+            reserved_tokens = 0 if normalized["complete"] else partial_input + partial_output
             if old["reconciled_cost"] is not None or observed is not None:
                 reserved_cost = ZERO
             else:
-                reserve_estimate = old["estimated_cost"] or run["cost_limit"]
-                reserved_cost = _money(reserve_estimate)
+                reserve_estimate = _cost(run["price"], partial_input, partial_output, reservation=True)
+                reserved_cost = (_money(run["cost_limit"]) if reserve_estimate is None else
+                                 max(reserve_estimate, _money(old["reserved_cost"])))
             status = ("reconciled" if old["reconciled_cost"] is not None else
                       "observed" if normalized["complete"] else "estimated")
             update = dict(outcome=outcome, status=status, request_id=request_id, usage=clean_usage,
@@ -397,6 +400,9 @@ class Ledger:
             "cached_input_tokens": sum(entry["normalized"]["cached_input_tokens"] or 0 for entry in complete),
             "reasoning_tokens": sum(entry["normalized"]["reasoning_tokens"] or 0 for entry in complete),
             "cache_reporting_attempts": sum(entry["normalized"]["cached_input_tokens"] is not None for entry in complete),
+            "missing_cache_pricing_attempts": sum(entry["normalized"]["cached_input_tokens"] is None and
+                                                   entry["normalized"]["input_tokens"] > 0 and
+                                                   entry["observed_cost"] is not None for entry in complete),
             "reasoning_reporting_attempts": sum(entry["normalized"]["reasoning_tokens"] is not None for entry in complete),
             "total_tokens": tokens,
             "reserved_tokens": sum(entry["reserved_tokens"] for entry in entries),
@@ -409,7 +415,8 @@ class Ledger:
             "retry_attempts": len(entries) - len({entry["logical_call_id"] for entry in entries}),
         }
         result["committed_tokens"] = tokens + result["reserved_tokens"]
-        result["cost_total"] = None if result["unknown_attempts"] or result["unpriced_attempts"] else result["known_cost"]
+        result["unknown_cost_attempts"] = sum(entry["observed_cost"] is None and entry["reconciled_cost"] is None for entry in entries)
+        result["cost_total"] = None if result["unknown_cost_attempts"] else result["known_cost"]
         first_attempt = {}
         for entry in entries:
             key = entry["logical_call_id"]
@@ -432,7 +439,10 @@ class Ledger:
         result["currency"] = run["price"].get("currency", "USD")
         result["actual_calls"] = 0 if run["simulated"] else len(entries)
         result["simulated_calls"] = len(entries) if run["simulated"] else 0
-        result["actual_model_cost"] = "0" if run["simulated"] else result["cost_total"]
+        result["calculated_model_cost"] = "0" if run["simulated"] else result["cost_total"]
+        result["actual_model_cost"] = ("0" if run["simulated"] or not entries else
+                                       result["reconciled_cost"] if not result["unresolved_charges"] else None)
+        result["cost_semantics"] = "observed_cost is calculated from reported usage; reconciled_cost is a billing charge"
         result["remaining_tokens"] = max(0, run["token_limit"] - result["committed_tokens"])
         difference = Decimal(run["cost_limit"]) - Decimal(result["committed_cost"])
         result["remaining_cost"] = _amount(max(ZERO, difference))

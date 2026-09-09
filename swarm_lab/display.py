@@ -156,7 +156,7 @@ class EventProjection:
             if identity:
                 self._agent(identity)
         if kind == "run_started":
-            self.config.update(payload.get("config") or {})
+            self.config.update(payload.get("config") or payload)
             self.mode = str(self.config.get("mode", "unknown"))
             self._register_team(payload.get("team") or [])
             self.upper_bound = _tokens(self.config.get("m"))
@@ -174,6 +174,8 @@ class EventProjection:
                     "verified candidate" if valid is True else
                     "rejected candidate" if valid is False else "verification returned"
                 )
+        elif kind == "evaluation" and actor == "evaluator":
+            self._set_bounds(payload)
         elif kind in {"task_completed", "agent_completed"} and actor:
             self.agents[actor].state = "complete"
         elif kind in {"task_cancelled", "agent_cancelled"} and actor:
@@ -200,6 +202,15 @@ class EventProjection:
             category = "verification"
         if category and actor and recipient:
             self.edges.append(EdgeView(actor, recipient, category, event_id))
+        elif category == "artifact" and actor:
+            # Consumption events name the delivered artifact through provenance.
+            # This is a reference edge, not an inference of beneficial influence.
+            for parent_id in event.get("parent_event_ids") or []:
+                parent = self.event_by_id.get(parent_id, {})
+                if parent.get("event_type") == "message_delivered" and parent.get("recipient") == actor:
+                    origin = parent.get("actor")
+                    if origin:
+                        self.edges.append(EdgeView(str(origin), actor, category, event_id))
         return True
 
     def _set_bounds(self, payload: dict[str, Any]) -> None:
@@ -310,8 +321,8 @@ def project_events(events: Iterable[dict[str, Any]], config: dict[str, Any] | No
 
 def graph_position(identity: str, team_size: int) -> tuple[float, float]:
     """Stable normalized positions, unaffected by an agent's state or arrival."""
-    fixed = {"scheduler": (0.30, 0.46), "verifier": (0.70, 0.46),
-             "evaluator": (0.70, 0.65), "runtime": (0.30, 0.65), "system": (0.50, 0.65)}
+    fixed = {"scheduler": (0.32, 0.40), "verifier": (0.68, 0.40),
+             "evaluator": (0.62, 0.57), "runtime": (0.38, 0.57), "system": (0.50, 0.57)}
     if identity in fixed:
         return fixed[identity]
     suffix = identity.removeprefix("agent-")
@@ -320,7 +331,7 @@ def graph_position(identity: str, team_size: int) -> tuple[float, float]:
     else:
         number = int.from_bytes(hashlib.sha256(identity.encode()).digest()[:8], "big")
         angle = 2 * math.pi * number / (2 ** 64)
-    return 0.5 + 0.39 * math.cos(angle), 0.48 + 0.36 * math.sin(angle)
+    return 0.5 + 0.39 * math.cos(angle), 0.44 + 0.30 * math.sin(angle)
 
 
 @dataclass
@@ -425,8 +436,9 @@ class _Display:
     def _build(self) -> None:
         tk, ttk, w = self.tk, self.ttk, self.window
         w.title(f"Agent Swarm Lab · {self.directory.name}")
-        w.geometry("1400x940")
-        w.minsize(1040, 720)
+        available_width, available_height = w.winfo_screenwidth() - 50, w.winfo_screenheight() - 100
+        w.geometry(f"{min(1400, available_width)}x{min(940, available_height)}+20+40")
+        w.minsize(min(1040, available_width), min(720, available_height))
         w.configure(background="#eef1f6")
         style = ttk.Style(w)
         style.theme_use("clam")

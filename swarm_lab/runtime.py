@@ -3,8 +3,9 @@ from __future__ import annotations
 
 import asyncio
 from dataclasses import asdict, dataclass, field
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 import json
+import hashlib
 import math
 from pathlib import Path
 import random
@@ -66,7 +67,11 @@ class RunConfig:
             raise ValueError('Invalid bounded steps or concurrency.')
         if not 0 <= self.max_retries <= 3 or not 1 <= self.max_output <= 32768:
             raise ValueError('Invalid retry or output limit.')
-        if self.token_limit < 0 or not Decimal(self.cost_limit).is_finite() or Decimal(self.cost_limit) < 0:
+        try:
+            cost_ceiling = Decimal(self.cost_limit)
+        except (InvalidOperation, TypeError):
+            raise ValueError('Currency ceiling must be a decimal number.') from None
+        if self.token_limit < 0 or not cost_ceiling.is_finite() or cost_ceiling < 0:
             raise ValueError('Budget must be finite and nonnegative.')
         if not 1 <= self.mailbox_limit <= 128 or not 64 <= self.message_bytes <= 16384 or not 512 <= self.context_bytes <= 65536:
             raise ValueError('Invalid mailbox, message or context bounds.')
@@ -79,6 +84,8 @@ class RunConfig:
                 raise ValueError('Live mode requires explicit --allow-live and a budget.')
             required = {'provider','model','service_tier','currency','version','effective_date','retrieved_date','source_url',
                         'input_per_million','cached_input_per_million','output_per_million'}
+            if self.price.keys() - (required | {'simulated', 'verified_on', 'rate_units'}):
+                raise ValueError('Price snapshots may contain only documented price metadata, never credentials.')
             if not required <= self.price.keys() or self.price.get('simulated', False):
                 raise ValueError('Live mode requires a complete, verified non-simulated price snapshot.')
             if self.price['provider'] != 'openai' or self.price['model'] != self.model or self.price['service_tier'] != 'default':
@@ -202,7 +209,7 @@ class Runtime:
         # Claims of use are limited to data actually delivered in this observation.
         visible = {m['event_id'] for m in observation['mailbox']}
         used = action.get('used_event_ids', [])
-        used = [e for e in used if type(e) is int and e in visible] if isinstance(used, list) else []
+        used = list(dict.fromkeys(e for e in used if type(e) is int and e in visible)) if isinstance(used, list) else []
         parents = [assignment['event_id']] + used
         for event_id in used:
             self.store.emit('artifact_used', actor=agent.agent_id, parents=[event_id], task_id=task_id,
@@ -238,7 +245,6 @@ class Runtime:
             payload=dict(artifact_body, lower_bound=self.lower_bound, upper_bound=self.upper_bound))
         agent.last_event = verification['event_id']
         self.stats[agent.agent_id]['verified_progress'] += progress
-        self.stats[agent.agent_id]['pulls'] += 1
         message = action.get('message')
         if message is not None:
             # Candidate claims travel only after independent local validation.
@@ -268,6 +274,9 @@ class Runtime:
                 estimate = max(1, len(json.dumps(observation).encode()) // 4)
             action = None
             for attempt in range(self.config.max_retries + 1):
+                if self.stop:
+                    self.store.emit('task_cancelled', actor=agent.agent_id, task_id=task_id, payload={'reason': self.stop})
+                    return
                 attempt_id = f'{task_id}/attempt-{attempt}'
                 admitted = self.ledger.reserve(self.run_id, attempt_id, agent.agent_id, task_id, task_id, attempt,
                     'coordination' if agent.role == 'coordinator' else 'research', estimate,
@@ -325,10 +334,18 @@ class Runtime:
                 self.store.emit('attempt_failed', actor=agent.agent_id, task_id=task_id,
                                 payload={'attempt':attempt,'outcome':outcome,'possible_charge':usage is None})
             agent.calls += 1
+            self.stats[agent.agent_id]['pulls'] += 1
             if action is not None:
                 self.accept(agent, action, observation, task_id, assignment)
                 self.workers_completed += 1
             self.store.emit('task_completed' if action is not None else 'task_failed', actor=agent.agent_id, task_id=task_id)
+
+    async def guarded_work(self, agent: AgentState, step: int):
+        try:
+            await self.work(agent, step)
+        except BaseException:
+            self.stop = 'worker_failure'
+            raise
 
     async def run(self) -> dict:
         started = time.perf_counter()
@@ -339,7 +356,8 @@ class Runtime:
         except (subprocess.SubprocessError,OSError):
             revision, dirty = 'unavailable', None
         metadata = dict(cfg, run_id=self.run_id, code_revision=revision, working_tree_dirty=dirty,
-                        scheduling='round barriers; deterministic commit order offline',
+                        scheduling='offline: serial immediate delivery in agent order; live: concurrency-limited tasks with round barriers',
+                        source_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob('*.py')},
                         team=[{'agent_id':a.agent_id,'role':a.role} for a in self.team])
         write_json(self.directory/'config.json',metadata)
         self.store.emit('run_started',payload=metadata)
@@ -353,7 +371,13 @@ class Runtime:
                 if self.config.allocation == 'exploratory':
                     chosen = exploratory_priority(list(self.by_id), self.stats, step)
                     selected = [self.by_id[chosen]]
-                await asyncio.gather(*(self.work(agent, step+i) for i,agent in enumerate(selected)))
+                outcomes = await asyncio.gather(
+                    *(self.guarded_work(agent, step+i) for i,agent in enumerate(selected)),
+                    return_exceptions=True)
+                # Drain every started sibling before closing stores or surfacing an error.
+                for outcome in outcomes:
+                    if isinstance(outcome, BaseException):
+                        raise outcome
                 step += len(selected)
             self.stop = self.stop or 'step_limit'
             worker_seconds = time.perf_counter()-started

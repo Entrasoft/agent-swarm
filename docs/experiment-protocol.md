@@ -152,3 +152,30 @@ supported secret configuration, and a concrete total token/currency ceiling
 approved by the owner. Do not infer permission to spend from permission to create
 or merge repository changes. Predeclare its conditions and stopping rules before
 calls; never substitute scripted output for failed live inference.
+
+## Amendment A — scheduling clarification after initial outcome inspection
+
+Recorded 2026-09-09 after the first 84-run campaign was inspected. The original
+protocol snapshot is preserved in that campaign's `matrix.json`; the preceding
+sections remain unchanged so the discrepancy is inspectable.
+
+The implementation used serial execution of algorithmic decisions, with immediate
+message delivery before the next agent's observation, even when concurrency was
+set to 4. Its offline decision path contained no suspension point. Consequently,
+the earlier description of concurrency-limited observation batches was incorrect
+for offline mode. Nominal rounds bound and allocate tasks, but do not provide an
+observation snapshot barrier. The concurrency setting gates actual overlapping
+live provider calls; live completion order may change information availability.
+
+The inspected initial campaign solved 63 of 84 runs: all m=10,12,18 runs reached
+the oracle optimum, while all m=24 runs ended with gap 1. Every condition showed
+that same solved/gap pattern. This amendment discloses the implementation's
+actual scheduling; it does not alter the candidate search or message-routing
+rules in response to those outcomes.
+
+A final validation rerun after review and reporting fixes will use the same
+serial offline semantics and matrix, recording its current code revision and
+this amended protocol snapshot. It is a validation rerun after outcome inspection,
+not an independent preregistered replication. Preserve both campaign records and
+identify which supplies published tables. A future experiment with shared
+observation snapshots would require a separate protocol and comparison.

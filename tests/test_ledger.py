@@ -229,6 +229,20 @@ class LedgerTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.reserve("bad", context_estimates={"system": 101})
 
+    def test_partial_usage_above_estimate_increases_reserved_exposure(self):
+        self.reserve()
+        self.ledger.settle("a", "failed", {"input_tokens": 1000})
+        result = self.ledger.summary("r")
+        self.assertEqual(result["reserved_tokens"], 1050)
+        self.assertEqual(Decimal(result["reserved_cost"]), Decimal("0.0011"))
+
+    def test_missing_cache_subset_is_labeled_as_inferred_pricing(self):
+        self.reserve()
+        self.ledger.settle("a", "completed", {"input_tokens": 100, "output_tokens": 20})
+        result = self.ledger.summary("r")
+        self.assertEqual(result["missing_cache_pricing_attempts"], 1)
+        self.assertEqual(result["observed_cost"], "0.00014")
+
     def test_exports_preserve_unknown_and_agree_with_summary(self):
         self.reserve()
         self.ledger.settle("a", "failed", None)
