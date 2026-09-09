@@ -8,4 +8,4 @@
 6. Run offline smoke experiments, publish raw small traces, and write evidence-aware documentation and article outlines.
 7. Review the implementation, run checks in a fresh environment, then create and merge a pull request.
 
-Public repository and pull request creation/merging are authorized. MIT was selected by the owner. No paid model run is authorized yet. API credentials must come from the environment; they must never enter configuration artifacts, logs, source, or commits.
+Public repository and pull request creation/merging are authorized. MIT was selected by the owner. No paid model run is authorized yet. API credentials must come from the environment or a protected, Git-ignored local secret file; they must never enter configuration artifacts, logs, source, or commits.

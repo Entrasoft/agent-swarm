@@ -61,8 +61,9 @@ Three modes are explicit:
 | live | Opt-in structured provider response | Actual requests; usage may be reported or unknown |
 
 There is no automatic fallback from live to either offline mode. Offline
-execution needs no credentials. API authentication reads the process environment
-at the request boundary; configuration snapshots do not serialize credentials.
+execution needs no credentials. API authentication reads the process environment or a permission-restricted,
+Git-ignored local `.env` at provider initialization. Configuration snapshots do
+not serialize credentials; local setup uses a hidden Terminal prompt.
 
 ## Roles, routing and validity
 
