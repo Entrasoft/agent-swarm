@@ -206,7 +206,7 @@ agent state or control semantic leakage. The sound checkpoint design is
 documented as future work. No causal result should be inferred from the filter's
 existence.
 
-## Results section — pending live evidence
+## Results section — pending comparative live evidence
 
 The offline protocol was specified before comparative analysis: four universe
 sizes, three seeds, and seven combinations of condition and team size. The
@@ -225,7 +225,15 @@ the final reporting rerun is validation after inspection, not an independent
 preregistered replication. See the [results record](results.md) for preserved
 artifacts, revisions and final timings.
 
-Before completing this section, report the following from authorized live runs:
+A subsequent authorized solo Terra pilot completed three calls and reached the
+independently verified optimum of six members at m=12. It used 2,260 reported
+tokens and USD 0.016160 calculated API cost, below the agreed 100,000-token and
+USD 2 ceilings. The first call found the candidate; the next two repeated it.
+This checks the live integration and accounting on a tiny instance. It supplies
+no evidence that communication improves quality, and the calculated cost has
+not been reconciled against billing. See the [pilot record](terra-pilot.md).
+
+Before completing this section, report the following from authorized comparative live runs:
 
 - Exact model/version, prompts, settings, price dates and total ceilings.
 - Verified quality and gap distributions, solved counts and stopping reasons.

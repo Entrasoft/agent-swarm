@@ -1,6 +1,6 @@
 # Terra live setup
 
-The adapter is ready for a bounded GPT-5.6 Terra pilot and has been tested with mocked responses. No paid model call is part of setup. A credit balance is funding, not an authorization to spend the balance; agree on a specific run ceiling before generation.
+The adapter completed an authorized [three-call GPT-5.6 Terra pilot](terra-pilot.md) on 2026-09-09, in addition to mocked response tests. No paid model call is part of credential setup. A credit balance is funding, not an authorization to spend the balance; agree on a specific run ceiling before generation.
 
 ## Supply the key locally
 
@@ -25,11 +25,15 @@ The check sends only an authenticated GET to the model metadata endpoint. It pri
 
 OpenAI documents key-based authentication and server-side environment/secret handling in the [API authentication reference](https://developers.openai.com/api/reference/overview#authentication).
 
-## Prepared pilot and prices
+### Local certificate configuration
+
+The pilot host's Python installation had no default CA bundle, so the first metadata check failed certificate verification before any generation request. On this macOS host, prefixing both the check and run commands with `SSL_CERT_FILE=/etc/ssl/cert.pem` selected the existing system trust bundle and resolved the error. Certificate verification remained enabled. Other hosts should use their own configured, trusted CA bundle.
+
+## Pilot command and prices
 
 The nonsecret [Terra price snapshot](../configs/gpt-5.6-terra-price.json) was checked against [official standard pricing](https://developers.openai.com/api/docs/pricing) on 2026-09-09. For short context, per million tokens: ordinary input USD 2.00; cache reads USD 0.20; cache writes USD 2.50; output USD 12.00. The effective date describes when this local snapshot was verified, not the original introduction date of the provider tariff. Confirm prices again on the day of the run; `verified_on` must equal that date.
 
-After explicit authorization, the proposed first pilot is:
+The following settings were used for the completed pilot. Running this command again sends new paid requests and requires a new run authorization:
 
 ```sh
 python3 -m swarm_lab run --mode live --allow-live \
@@ -41,7 +45,7 @@ python3 -m swarm_lab run --mode live --allow-live \
   --out runs/terra-pilot
 ```
 
-This allows at most three generation attempts across the run, with no automatic retry. Both total ceilings apply to the whole run. They do not authorize the remainder of an account's credit balance. Use a new empty output directory for a new run.
+This allows at most three generation attempts across the run, with no automatic retry. Both total ceilings apply to the whole run. They do not authorize the remainder of an account's credit balance. Use a new empty output directory for a new run. The completed pilot used 2,260 tokens and USD 0.016160 calculated from provider usage; the [results record](terra-pilot.md) includes the per-call breakdown and billing caveat.
 
 The [reasoning guide](https://developers.openai.com/api/docs/guides/reasoning) recommends initial reasoning/output headroom. `max_output_tokens` includes reasoning and visible output, so the old 512-token fixture setting is not the proposed live setting. Live effort is explicitly recorded (medium by default), and the CLI exposes the HTTP timeout so a deliberate reasoning call is not automatically cut off at the old 30-second default.
 

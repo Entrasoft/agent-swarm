@@ -1,0 +1,63 @@
+{
+  "agents": 1,
+  "allocation": "round_robin",
+  "allow_live": true,
+  "code_revision": "eeb79d7f6d33ffbedef9e0344d39d7aa1cdbcec5",
+  "concurrency": 1,
+  "condition": "solo",
+  "context_bytes": 16384,
+  "cost_limit": "2.00",
+  "m": 12,
+  "mailbox_limit": 16,
+  "max_output": 25000,
+  "max_retries": 0,
+  "message_bytes": 4096,
+  "mode": "live",
+  "model": "gpt-5.6-terra",
+  "oracle_timeout": 5,
+  "price": {
+    "cache_write_per_million": "2.50",
+    "cached_input_per_million": "0.20",
+    "currency": "USD",
+    "effective_date": "2026-09-09",
+    "input_per_million": "2.00",
+    "model": "gpt-5.6-terra",
+    "output_per_million": "12.00",
+    "provider": "openai",
+    "rate_units": "per_million_tokens",
+    "retrieved_date": "2026-09-09",
+    "service_tier": "default",
+    "simulated": false,
+    "source_url": "https://developers.openai.com/api/docs/pricing",
+    "verified_on": "2026-09-09",
+    "version": "openai-terra-standard-short-2026-09-09"
+  },
+  "reasoning_effort": "medium",
+  "run_id": "d45624ab-3a70-44b6-9419-782da420e18b",
+  "scheduling": "offline: serial immediate delivery in agent order; live: concurrency-limited tasks with round barriers",
+  "seed": 0,
+  "source_sha256": {
+    "__init__.py": "5352aa74be6931d69f07ee3e9b7057338e452aa9335b553cf239f362131b09be",
+    "__main__.py": "3129adff95e0f38b87ab34cddfc27082c7892bcaec267ff5d40f160fdf55b44a",
+    "cli.py": "77b5cef497c40a5365e87f8adb5bf75a314181d5660b893c1c0d6e65cf9739fc",
+    "credentials.py": "94700511fe936e9e81fc10118213125d45d49265596651dc8a189995366ec98b",
+    "display.py": "7daaf01389b43834ce386fddf649a58bfa783f96292077ddb34457979114ad0c",
+    "ledger.py": "75dd66c1b7b7a0d0ec43ef2b511131131f8752f30a20ec11ceddc508ee5203ec",
+    "math_task.py": "168202a6db600bd4f15e10f67e58f3f1ac34397edea01737f0ef1cf3dfae5f1f",
+    "policies.py": "855d2f148cdb3d6807f1df11ceaa6c3a24f22f1bc5c216254e325061b2e9cbb4",
+    "providers.py": "43a66b4575442cf6434b0897b1ffe4e8eebe154a2b8ff4451f8c7408993742c9",
+    "runtime.py": "b18208261a1fc71b963998f4a619f9d63d3d6bdc3e71d080d43e1a3a8e5b726b",
+    "store.py": "add7b83f409ed8f48e2cf5215a5734b5c7e46912228b2ce5928f5f0676827860"
+  },
+  "steps": 3,
+  "team": [
+    {
+      "agent_id": "agent-0",
+      "role": "searcher"
+    }
+  ],
+  "timeout_seconds": 120.0,
+  "token_limit": 100000,
+  "withhold_message": null,
+  "working_tree_dirty": false
+}

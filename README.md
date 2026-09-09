@@ -4,7 +4,7 @@
 
 An inspectable Python laboratory for testing multi-agent orchestration against a precisely checkable problem: find a largest subset of `{1, …, m}` with no three distinct members `a < b < c` such that `a + c = 2b`.
 
-The offline runtime, validator, hidden exact evaluator, durable usage ledger, local desktop viewer, and tests are implemented. **Algorithmic runs use seeded search, not LLM reasoning.** Scripted runs are explicit protocol demonstrations. The live adapter is opt-in and tested with mocked responses; no paid experiment has been run.
+The offline runtime, validator, hidden exact evaluator, durable usage ledger, local desktop viewer, and tests are implemented. **Algorithmic runs use seeded search, not LLM reasoning.** Scripted runs are explicit protocol demonstrations. The opt-in live adapter completed a [three-call Terra pilot](docs/terra-pilot.md): 2,260 provider-reported tokens, USD 0.016160 calculated API cost, and a verified optimum at m=12. This is an integration check; comparative live coordination experiments remain future work.
 
 ## Offline quickstart
 
@@ -54,11 +54,12 @@ Each run saves `config.json`, `events.jsonl`, SQLite stores, `summary.json`, `us
 
 The adapter uses the [OpenAI Responses API](https://developers.openai.com/api/reference/python/resources/responses/methods/create), checked on 2026-09-09. It offers a narrow candidate/message schema, with no hosted tools or arbitrary code execution. Secrets come from `OPENAI_API_KEY` in the process environment or a protected local `.env`; credential contents and authorization headers are never recorded. Run `python3 -m swarm_lab.credentials setup` in an interactive Terminal to enter the key at a hidden prompt.
 
-Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price-file`, `--token-limit`, and `--cost-limit`. There is no default live model. A nonsecret Terra price snapshot is supplied and must be reverified on the run date. See [Terra setup, read-only access check, and the prepared $2 pilot](docs/live-provider.md) before an explicitly budgeted run. This session has authorized no paid run.
+Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price-file`, `--token-limit`, and `--cost-limit`. There is no default live model. A nonsecret Terra price snapshot is supplied and must be reverified on the run date. See [Terra setup and the bounded pilot command](docs/live-provider.md) before an explicitly budgeted run. The owner's authorization for the completed pilot covered three calls, USD 2 and 100,000 total tokens; it does not extend to further runs.
 
 ## Evidence and design
 
 - [Results and reproducible commands](docs/results.md)
+- [Completed Terra pilot and public trace](docs/terra-pilot.md)
 - [Architecture](docs/architecture.md) and [predefined experiment protocol](docs/experiment-protocol.md)
 - [Claims and evidence](docs/claims-evidence.md)
 - [Article working draft](docs/article-draft.md) and [LinkedIn draft](docs/linkedin-draft.md), unpublished
