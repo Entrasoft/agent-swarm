@@ -2,6 +2,8 @@
 
 **Ten Agents, One Checkable Problem: When Does Coordination Help?**
 
+Current pilot version: **0.1.1**. See the [changelog](CHANGELOG.md) and [follow-on task prompt](docs/next-experiment-prompt.md).
+
 An inspectable Python laboratory for testing multi-agent orchestration against a precisely checkable problem: find a largest subset of `{1, …, m}` with no three distinct members `a < b < c` such that `a + c = 2b`.
 
 The offline runtime, validator, hidden exact evaluator, durable usage ledger, local desktop viewer, and tests are implemented. **Algorithmic runs use seeded search, not LLM reasoning.** Scripted runs are explicit protocol demonstrations. The opt-in live adapter completed a [three-call Terra pilot](docs/terra-pilot.md): 2,260 provider-reported tokens, USD 0.016160 calculated API cost, and a verified optimum at m=12. This is an integration check; comparative live coordination experiments remain future work.
