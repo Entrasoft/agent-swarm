@@ -2,7 +2,7 @@
 
 **Four Agents, One Checkable Problem: When Does Coordination Help?**
 
-Current pilot version: **0.1.1**. See the [changelog](CHANGELOG.md) and [follow-on task prompt](docs/next-experiment-prompt.md).
+Current laboratory version: **0.2.0**. The completed integration pilot remains version 0.1.1. See the [changelog](CHANGELOG.md).
 
 An inspectable Python laboratory for testing multi-agent orchestration against a precisely checkable problem: find a largest subset of `{1, …, m}` with no three distinct members `a < b < c` such that `a + c = 2b`.
 
@@ -60,6 +60,7 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 
 ## Evidence and design
 
+- [v0.2 solo feedback protocol](docs/feedback-v02-protocol.md) and [budget proposal](docs/feedback-v02-budget-proposal.md): offline preparation complete; no new live findings
 - [Results and reproducible commands](docs/results.md)
 - [Completed Terra pilot and public trace](docs/terra-pilot.md)
 - [Authorized difficulty calibration protocol](docs/calibration-protocol.md)
@@ -80,6 +81,22 @@ The owner approved the m=24 comparison on 2026-09-09: five repetitions each of s
 ```sh
 python3 -m swarm_lab.comparison prepare --price-file configs/gpt-5.6-terra-price.json --out runs/terra-comparison
 ```
+
+## v0.2 feedback preparation
+
+The next proposed study qualifies a solo search loop before testing the value of peer messages. It compares a private-best-only baseline with a worker that also receives up to eight of its own recent attempts and deterministic validator feedback. Both arms use the new `feedback-v0.2` decision protocol: invalid mathematics consumes a decision and can be followed by another; provider or protocol failures stop the run, and unknown usage retains its reservation. The existing default `legacy` protocol preserves the previous stopping behavior.
+
+Preparation is approved. The proposed paid ceiling is **six runs, 72 calls, USD 6 and 600,000 tokens**, with zero retries. Paid execution requires a new authorization and a separately frozen campaign; the preparation module has no execution command, creates no spending ledger and never loads credentials.
+
+```sh
+python3 -m swarm_lab.feedback prepare --out runs/feedback-v02-proposal
+python3 -m swarm_lab run --mode scripted --condition solo --agents 1 --concurrency 1 --max-retries 0 --steps 12 --decision-protocol feedback-v0.2 --memory-mode history_feedback --out runs/feedback-offline
+python3 -m swarm_lab replay runs/feedback-offline --verify
+```
+
+The scripted command is an offline wiring demonstration with a repeated fixed candidate; it supplies no model-effectiveness evidence. Fault-injection tests cover mathematical repair, history isolation and bounds, malformed responses, refusals, timeouts, and unknown-usage holds. Replay reconstructs the v0.2 worker's visible history from verified submissions. Live dispatch now records a client correlation ID before the request and retains sanitized structural diagnostics; IDs do not guarantee execution, cancellation or idempotency. See the official [request-ID guidance](https://developers.openai.com/api/reference/overview#supplying-your-own-request-id-with-x-client-request-id).
+
+Historical evidence and its source hashes remain unchanged. When auditing v1 from this newer checkout, supply its frozen source revision using the instructions in the [public evidence package](examples/terra-comparison/README.md).
 
 ## License
 

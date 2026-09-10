@@ -21,11 +21,89 @@ def read_events(directory: Path) -> list[dict]:
     return [json.loads(line) for line in (directory/'events.jsonl').read_text().splitlines() if line.strip()]
 
 
+def verify_feedback_observations(config: dict, events: list[dict]) -> None:
+    """Reconstruct v0.2 worker-visible state from independently checked submissions."""
+    if config.get('decision_protocol') != 'feedback-v0.2':
+        return
+    if (config['condition'] != 'solo' or config['agents'] != 1
+            or config['memory_mode'] not in {'private_best_only', 'history_feedback'}
+            or type(config['history_limit']) is not int or not 1 <= config['history_limit'] <= 32):
+        raise ValueError('Invalid feedback replay configuration')
+    history, best, decision = [], [], 0
+    expected_reads, expected_record = [], None
+    current_task, verified_decision = None, False
+    evaluated = False
+    for event in events:
+        if expected_reads and event['event_type'] != 'feedback_read':
+            raise ValueError('Missing feedback read provenance')
+        if expected_record is not None and event['event_type'] != 'feedback_recorded':
+            raise ValueError('Missing recorded feedback provenance')
+        if event['event_type'] == 'evaluation':
+            evaluated = True
+        elif event['event_type'] == 'observation':
+            expected = dict(m=config['m'], agent_id='agent-0', role='searcher', round=decision,
+                            private_best=list(best), mailbox=[], peers=[], condition='solo',
+                            task_id=f'task-{decision}')
+            if config['memory_mode'] == 'history_feedback':
+                expected['attempt_history'] = history[-config['history_limit']:]
+                while (len(json.dumps(expected).encode()) > config['context_bytes']
+                       and expected['attempt_history']):
+                    expected['attempt_history'].pop(0)
+            if (evaluated or event['actor'] != 'agent-0' or event['recipient'] is not None
+                    or event['task_id'] != expected['task_id'] or event['payload'] != expected
+                    or len(json.dumps(expected).encode()) > config['context_bytes']):
+                raise ValueError('Feedback observation disagrees with reconstructed private state')
+            expected_reads = list(expected.get('attempt_history', []))
+            current_task, verified_decision = expected['task_id'], False
+            decision += 1
+        elif event['event_type'] == 'verification':
+            candidate = event['payload']['candidate']
+            result = validate_candidate(config['m'], candidate)
+            if (event['recipient'] != 'agent-0' or event['actor'] != 'verifier' or decision == 0
+                    or evaluated or verified_decision or event['task_id'] != current_task):
+                raise ValueError('Feedback verification has no owned decision')
+            verified_decision = True
+            if result.valid:
+                candidate = sorted(candidate)
+                if len(candidate) > len(best):
+                    best = candidate
+            omitted = len(json.dumps(candidate).encode()) > 1024
+            entry = dict(decision=decision, candidate=None if omitted else candidate,
+                         valid=result.valid, reason=result.reason,
+                         forbidden_triple=list(result.forbidden_triple) if result.forbidden_triple else None,
+                         verification_event_id=event['event_id'])
+            if omitted:
+                entry['candidate_omitted'] = True
+            history.append(entry)
+            history = history[-config['history_limit']:]
+            if config['memory_mode'] == 'history_feedback':
+                expected_record = entry
+        elif event['event_type'] == 'feedback_recorded':
+            if (expected_record is None or event['payload'] != expected_record
+                    or event['parent_event_ids'] != [expected_record['verification_event_id']]
+                    or event['actor'] != 'verifier' or event['recipient'] != 'agent-0'
+                    or event['task_id'] != current_task):
+                raise ValueError('Recorded feedback disagrees with verified provenance')
+            expected_record = None
+        elif event['event_type'] == 'feedback_read':
+            if not expected_reads:
+                raise ValueError('Feedback read has no visible history entry')
+            entry = expected_reads.pop(0)
+            if (event['parent_event_ids'] != [entry['verification_event_id']]
+                    or event['payload'] != {'decision':entry['decision'], 'meaning':'included in decision observation'}
+                    or event['actor'] != 'agent-0' or event['recipient'] is not None
+                    or event['task_id'] != current_task):
+                raise ValueError('Feedback read disagrees with visible history provenance')
+    if expected_reads or expected_record is not None:
+        raise ValueError('Incomplete feedback provenance')
+
+
 def verify_replay(directory: Path) -> dict:
     events = read_events(directory)
     config = json.loads((directory/'config.json').read_text())
     summary = json.loads((directory/'summary.json').read_text())
     seen, lower = set(), 0
+    unique_candidates, valid_count = set(), 0
     for event in events:
         identity = event['event_id']
         if type(identity) is not int or identity in seen or identity != len(seen)+1:
@@ -40,6 +118,8 @@ def verify_replay(directory: Path) -> dict:
                 raise ValueError('Verification disagrees with replay')
             if valid:
                 lower = max(lower,len(payload['candidate']))
+                valid_count += 1
+                unique_candidates.add(tuple(sorted(payload['candidate'])))
             if lower != payload['lower_bound']:
                 raise ValueError('Recorded lower bound disagrees with events')
     if lower != summary['lower_bound']:
@@ -84,6 +164,14 @@ def verify_replay(directory: Path) -> dict:
             raise ValueError('Summary gap disagrees with verified bounds')
     if summary.get('stopping_reason') == 'solved' and (not evaluations or lower != upper):
         raise ValueError('Solved status requires equal independently verified bounds')
+    if finished and config.get('decision_protocol') == 'feedback-v0.2':
+        counts = dict(unique_valid_candidates=len(unique_candidates),
+                      duplicate_candidates=valid_count-len(unique_candidates),
+                      decisions_attempted=sum(e['event_type'] == 'usage' for e in events),
+                      decisions_completed=sum(e['event_type'] == 'verification' for e in events))
+        if any(type(summary.get(key)) is not int or summary[key] != value for key, value in counts.items()):
+            raise ValueError('Feedback summary counts disagree with independently verified events')
+    verify_feedback_observations(config, events)
     return {'verified':True,'events':len(events),'lower_bound':lower,'upper_bound':upper,
             'complete':bool(finished),'mode':config['mode']}
 
@@ -158,6 +246,9 @@ def main(argv=None):
     run.add_argument('--concurrency',type=int,default=4)
     run.add_argument('--seed',type=int,default=0)
     run.add_argument('--allocation',choices=['round_robin','exploratory'],default='round_robin')
+    run.add_argument('--decision-protocol', choices=['legacy', 'feedback-v0.2'], default='legacy')
+    run.add_argument('--memory-mode', choices=['private_best_only', 'history_feedback'], default='private_best_only')
+    run.add_argument('--history-limit', type=int, default=8)
     run.add_argument('--token-limit',type=int)
     run.add_argument('--cost-limit')
     run.add_argument('--model')
@@ -191,6 +282,8 @@ def main(argv=None):
                 raise ValueError('Live mode requires --model, --token-limit, --cost-limit, --price-file and --allow-live.')
             config=RunConfig(m=args.m,agents=args.agents,condition=args.condition,mode=args.mode,steps=args.steps,
                 concurrency=args.concurrency,seed=args.seed,allocation=args.allocation,
+                decision_protocol=args.decision_protocol, memory_mode=args.memory_mode,
+                history_limit=args.history_limit,
                 token_limit=args.token_limit if args.token_limit is not None else 100000,
                 cost_limit=args.cost_limit if args.cost_limit is not None else '1',
                 model=args.model or 'fixture-v1',max_output=args.max_output,max_retries=args.max_retries,

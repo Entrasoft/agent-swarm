@@ -52,8 +52,24 @@ class RunConfig:
     allow_live: bool = False
     # Withhold one message including its provenance descendants for paired experiments.
     withhold_message: int | None = None
+    decision_protocol: Literal['legacy', 'feedback-v0.2'] = 'legacy'
+    memory_mode: Literal['private_best_only', 'history_feedback'] = 'private_best_only'
+    history_limit: int = 8
 
     def validate(self):
+        if self.decision_protocol not in {'legacy', 'feedback-v0.2'}:
+            raise ValueError('Unknown decision protocol.')
+        if self.memory_mode not in {'private_best_only', 'history_feedback'}:
+            raise ValueError('Unknown memory mode.')
+        if type(self.history_limit) is not int or not 1 <= self.history_limit <= 32:
+            raise ValueError('History limit must be an integer in 1..32.')
+        if self.memory_mode == 'history_feedback' and self.decision_protocol != 'feedback-v0.2':
+            raise ValueError('Attempt feedback requires the feedback-v0.2 decision protocol.')
+        if self.decision_protocol == 'feedback-v0.2' and (
+                self.condition != 'solo' or self.agents != 1 or self.concurrency != 1
+                or self.max_retries != 0 or self.allocation != 'round_robin'
+                or self.withhold_message is not None):
+            raise ValueError('Feedback v0.2 requires solo, serial round robin, zero retries and no message intervention.')
         if not 1 <= self.m <= 24 or not 1 <= self.agents <= 32:
             raise ValueError('Require 1 <= m <= 24 and 1 <= agents <= 32.')
         if self.condition not in {'solo','independent','fixed','adaptive'} or self.mode not in {'algorithmic','scripted','live'}:
@@ -117,6 +133,7 @@ class AgentState:
     mailbox: list = field(default_factory=list)
     last_event: int | None = None
     calls: int = 0
+    attempt_history: list = field(default_factory=list)
 
 
 class Runtime:
@@ -127,7 +144,7 @@ class Runtime:
         if (ledger_path is None) != (campaign_id is None):
             raise ValueError('Shared ledger path and campaign ID must be supplied together.')
         self.campaign_id = campaign_id
-        self.stop_on_failure = stop_on_failure
+        self.stop_on_failure = stop_on_failure or config.decision_protocol == 'feedback-v0.2'
         self.config, self.directory = config, Path(directory)
         # Authenticate before creating files; never serialize provider configuration or environment.
         self.provider = provider or (OpenAIProvider(config.model, config.max_output, config.timeout_seconds,
@@ -170,6 +187,12 @@ class Runtime:
             round=agent.calls, private_best=list(agent.private_best), mailbox=mailbox,
             peers=[a.agent_id for a in self.team if a is not agent],
             condition=self.config.condition, task_id=task_id)
+        if self.config.memory_mode == 'history_feedback':
+            # Copy public verifier facts only; never copy a verification payload,
+            # which also contains evaluator bounds and aggregate state.
+            result['attempt_history'] = json.loads(json.dumps(agent.attempt_history))
+            while len(json.dumps(result).encode()) > self.config.context_bytes and result['attempt_history']:
+                result['attempt_history'].pop(0)
         while len(json.dumps(result).encode()) > self.config.context_bytes and result['mailbox']:
             result['mailbox'].pop(0)
         if len(json.dumps(result).encode()) > self.config.context_bytes:
@@ -225,6 +248,15 @@ class Runtime:
         return True
 
     def accept(self, agent: AgentState, action, observation: dict, task_id: str, assignment: dict):
+        if self.config.decision_protocol == 'feedback-v0.2' and not (
+                isinstance(action, dict) and set(action) == {'candidate', 'message', 'used_event_ids'}
+                and isinstance(action['candidate'], list)
+                and all(type(value) is int for value in action['candidate'])
+                and action['message'] is None and action['used_event_ids'] == []):
+            self.store.emit('invalid_action', actor=agent.agent_id, task_id=task_id,
+                            payload={'reason':'action violates the solo feedback protocol'})
+            self.invalid += 1
+            return 'protocol_failure'
         if not isinstance(action, dict):
             self.store.emit('invalid_action', actor=agent.agent_id, task_id=task_id, payload={'reason':'action must be an object'})
             self.invalid += 1
@@ -267,6 +299,18 @@ class Runtime:
             verification_status='valid' if result.valid else 'invalid',
             payload=dict(artifact_body, lower_bound=self.lower_bound, upper_bound=self.upper_bound))
         agent.last_event = verification['event_id']
+        if self.config.memory_mode == 'history_feedback':
+            omitted = len(json.dumps(candidate).encode()) > 1024
+            feedback = dict(decision=agent.calls, candidate=None if omitted else candidate,
+                            valid=result.valid, reason=result.reason,
+                            forbidden_triple=list(result.forbidden_triple) if result.forbidden_triple else None,
+                            verification_event_id=verification['event_id'])
+            if omitted:
+                feedback['candidate_omitted'] = True
+            agent.attempt_history.append(feedback)
+            del agent.attempt_history[:-self.config.history_limit]
+            self.store.emit('feedback_recorded', actor='verifier', recipient=agent.agent_id,
+                            task_id=task_id, parents=[verification['event_id']], payload=feedback)
         self.stats[agent.agent_id]['verified_progress'] += progress
         message = action.get('message')
         if message is not None:
@@ -277,6 +321,7 @@ class Runtime:
                 self.store.emit('claim_rejected', actor=agent.agent_id, payload={'reason':'invalid candidate claim'}, parents=parents)
             else:
                 self.send(agent, message, parents+[verification['event_id']], task_id)
+        return 'valid' if result.valid else 'invalid_candidate'
 
     async def work(self, agent: AgentState, step: int):
         async with self.semaphore:
@@ -291,6 +336,10 @@ class Runtime:
                                 payload={'meaning':'included in decision observation'})
             agent.mailbox.clear()
             self.store.emit('observation', actor=agent.agent_id, task_id=task_id, payload=observation)
+            for entry in observation.get('attempt_history', []):
+                self.store.emit('feedback_read', actor=agent.agent_id, task_id=task_id,
+                                parents=[entry['verification_event_id']],
+                                payload={'decision':entry['decision'], 'meaning':'included in decision observation'})
             if self.config.mode == 'live':
                 estimate = self.provider.estimate(observation)
             else:
@@ -313,15 +362,22 @@ class Runtime:
                                     payload={'reason':self.stop})
                     return
                 outcome, usage, request_id = 'completed', None, None
+                client_request_id = str(uuid.uuid4()) if self.config.mode == 'live' else None
                 try:
                     if self.config.mode == 'live':
+                        self.store.emit('provider_request', actor=agent.agent_id, task_id=task_id,
+                                        payload={'attempt_id':attempt_id, 'client_request_id':client_request_id})
                         # A bounded thread call is awaited to completion. Cancelling Python cannot retract provider spend.
-                        result = await asyncio.to_thread(self.provider.call, observation)
+                        correlated_call = getattr(self.provider, 'call_with_id', None)
+                        if callable(correlated_call):
+                            result = await asyncio.to_thread(correlated_call, observation, client_request_id)
+                        else:
+                            result = await asyncio.to_thread(self.provider.call, observation)
                         action, usage, request_id, outcome = result.action, result.usage, result.request_id, result.outcome
                         if result.service_tier and result.service_tier != 'default':
                             usage = None  # Unexpected billing semantics remain unresolved.
                             outcome, action = 'unexpected_service_tier', None
-                        if self.campaign_id is not None:
+                        if self.campaign_id is not None or self.config.decision_protocol == 'feedback-v0.2':
                             if result.model != self.config.model:
                                 usage = None
                                 outcome, action = 'unexpected_model', None
@@ -329,7 +385,9 @@ class Runtime:
                                 usage = None
                                 outcome, action = 'unexpected_service_tier', None
                         self.store.emit('provider_result', actor=agent.agent_id, task_id=task_id,
-                            payload={'model':result.model,'service_tier':result.service_tier,'outcome':outcome, 'usage':result.usage})
+                            payload={'attempt_id':attempt_id, 'client_request_id':client_request_id,
+                                     'request_id':request_id, 'diagnostics':getattr(result, 'diagnostics', {}),
+                                     'model':result.model,'service_tier':result.service_tier,'outcome':outcome, 'usage':result.usage})
                         if usage is not None:
                             usage = dict(usage, reported_model=result.model, reported_service_tier=result.service_tier)
                     elif self.config.mode == 'scripted':
@@ -341,6 +399,10 @@ class Runtime:
                                  'input_tokens_details':{'cached_tokens':0},'output_tokens_details':{'reasoning_tokens':0}}
                 except ProviderFailure as exc:
                     outcome, request_id = exc.outcome, exc.request_id
+                    self.store.emit('provider_failure', actor=agent.agent_id, task_id=task_id,
+                                    payload={'attempt_id':attempt_id, 'client_request_id':client_request_id,
+                                             'request_id':request_id, 'outcome':outcome,
+                                             'diagnostics':getattr(exc, 'diagnostics', {})})
                 except asyncio.CancelledError:
                     self.ledger.settle(attempt_id, 'cancelled_unknown', None)
                     self.store.emit('task_cancelled', actor=agent.agent_id, task_id=task_id, payload={'reason':'cancelled_unknown'})
@@ -375,10 +437,15 @@ class Runtime:
             self.stats[agent.agent_id]['pulls'] += 1
             if action is not None:
                 invalid_before = self.invalid
-                self.accept(agent, action, observation, task_id, assignment)
-                if self.stop_on_failure and self.invalid != invalid_before:
-                    self.stop = 'invalid_candidate'
-                self.workers_completed += 1
+                accepted = self.accept(agent, action, observation, task_id, assignment)
+                if accepted == 'protocol_failure':
+                    self.stop = self.stop or 'protocol_failure'
+                    action = None
+                elif (self.stop_on_failure and self.invalid != invalid_before
+                      and self.config.decision_protocol != 'feedback-v0.2'):
+                    self.stop = self.stop or 'invalid_candidate'
+                if action is not None:
+                    self.workers_completed += 1
             self.store.emit('task_completed' if action is not None else 'task_failed', actor=agent.agent_id, task_id=task_id)
 
     async def guarded_work(self, agent: AgentState, step: int):
@@ -438,6 +505,9 @@ class Runtime:
             usage = self.ledger.summary(self.run_id)
             summary = dict(run_id=self.run_id, mode=self.config.mode, m=self.config.m, agents=self.config.agents,
                 condition=self.config.condition, lower_bound=self.lower_bound, upper_bound=self.upper_bound,
+                decision_protocol=self.config.decision_protocol, memory_mode=self.config.memory_mode,
+                unique_valid_candidates=len(self.seen_candidates),
+                decisions_attempted=sum(a.calls for a in self.team),
                 gap=gap, best_candidate=self.best, stopping_reason=self.stop, decisions_completed=self.workers_completed,
                 elapsed_seconds=time.perf_counter()-started, worker_seconds=worker_seconds,
                 oracle=asdict(oracle), verification_seconds=self.verification_seconds,
