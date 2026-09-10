@@ -1,0 +1,280 @@
+{
+  "audit_passed": true,
+  "checks": 3802,
+  "failures": [],
+  "sqlite_audited": false,
+  "manifest_receipt_audited": false,
+  "independent_enumeration": {
+    "m": 24,
+    "optimum": 10,
+    "maximum_subsets": 2,
+    "valid_subsets": 96847,
+    "counts_by_cardinality": [
+      1,
+      24,
+      276,
+      1892,
+      8058,
+      20940,
+      31527,
+      24956,
+      8537,
+      634,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "maximum_candidates": [
+      [
+        1,
+        2,
+        5,
+        7,
+        11,
+        16,
+        18,
+        19,
+        23,
+        24
+      ],
+      [
+        1,
+        2,
+        6,
+        7,
+        9,
+        14,
+        18,
+        20,
+        23,
+        24
+      ]
+    ],
+    "elapsed_seconds": 0.03253029193729162
+  },
+  "campaign_status": "halted",
+  "attempts": 95,
+  "provider_tokens": 156639,
+  "independently_calculated_cost_usd": "1.499658",
+  "unknown_token_attempts": 1,
+  "unknown_calculated_cost_attempts": 1,
+  "candidate_verifications": 93,
+  "valid_candidates": 90,
+  "invalid_candidates": 3,
+  "delivered_messages": 27,
+  "runs": [
+    {
+      "path": "r01-independent",
+      "status": "completed",
+      "attempts": 12,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 12,
+      "per_agent_calls": {
+        "agent-0": 3,
+        "agent-1": 3,
+        "agent-2": 3,
+        "agent-3": 3
+      }
+    },
+    {
+      "path": "r01-fixed",
+      "status": "failed",
+      "attempts": 10,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 9,
+      "per_agent_calls": {
+        "agent-0": 3,
+        "agent-1": 3,
+        "agent-2": 2,
+        "agent-3": 2
+      }
+    },
+    {
+      "path": "r01-adaptive",
+      "status": "failed",
+      "attempts": 6,
+      "lower_bound": 8,
+      "gap": 2,
+      "candidate_verifications": 6,
+      "per_agent_calls": {
+        "agent-0": 2,
+        "agent-1": 2,
+        "agent-2": 1,
+        "agent-3": 1
+      }
+    },
+    {
+      "path": "r01-solo",
+      "status": "failed",
+      "attempts": 3,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 3,
+      "per_agent_calls": {
+        "agent-0": 3
+      }
+    },
+    {
+      "path": "r02-fixed",
+      "status": "failed",
+      "attempts": 6,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 6,
+      "per_agent_calls": {
+        "agent-0": 2,
+        "agent-1": 2,
+        "agent-2": 1,
+        "agent-3": 1
+      }
+    },
+    {
+      "path": "r02-adaptive",
+      "status": "completed",
+      "attempts": 12,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 12,
+      "per_agent_calls": {
+        "agent-0": 3,
+        "agent-1": 3,
+        "agent-2": 3,
+        "agent-3": 3
+      }
+    },
+    {
+      "path": "r02-independent",
+      "status": "completed",
+      "attempts": 12,
+      "lower_bound": 8,
+      "gap": 2,
+      "candidate_verifications": 12,
+      "per_agent_calls": {
+        "agent-0": 3,
+        "agent-1": 3,
+        "agent-2": 3,
+        "agent-3": 3
+      }
+    },
+    {
+      "path": "r02-solo",
+      "status": "completed",
+      "attempts": 12,
+      "lower_bound": 8,
+      "gap": 2,
+      "candidate_verifications": 12,
+      "per_agent_calls": {
+        "agent-0": 12
+      }
+    },
+    {
+      "path": "r03-independent",
+      "status": "completed",
+      "attempts": 12,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 12,
+      "per_agent_calls": {
+        "agent-0": 3,
+        "agent-1": 3,
+        "agent-2": 3,
+        "agent-3": 3
+      }
+    },
+    {
+      "path": "r03-solo",
+      "status": "interrupted",
+      "attempts": 10,
+      "lower_bound": 9,
+      "gap": 1,
+      "candidate_verifications": 9,
+      "per_agent_calls": {
+        "agent-0": 10
+      }
+    },
+    {
+      "path": "r03-adaptive",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r03-fixed",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r04-solo",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r04-adaptive",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r04-fixed",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r04-independent",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r05-fixed",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r05-solo",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r05-independent",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    },
+    {
+      "path": "r05-adaptive",
+      "status": "unstarted",
+      "attempts": 0,
+      "lower_bound": null,
+      "gap": null
+    }
+  ]
+}

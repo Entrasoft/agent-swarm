@@ -2,11 +2,13 @@
 
 ## Unreleased
 
+- Executed the approved comparison until its mandatory halt: 95 attempts, 94 known responses, 156,639 known tokens and USD 1.499658 known calculated cost. One unresolved transport attempt retains its reservation. Preserved five completed, four failed, one interrupted and ten unstarted rows, plus public audits, charts and revised unpublished drafts. No optimum was found in the ten started runs.
+
 - Added the approved twenty-run m=24 comparison runner with fixed per-run allowances, frozen randomized order and campaign-wide interruption handling. Its separate authorization permits at most 240 calls, USD 20 and 2,000,000 tokens, with zero retries.
 
 - Added durable shared campaign token, currency and call ceilings, plus a fixed, single-execution difficulty calibration runner. Failed or ambiguous calls stop calibration and retain reservations; returned model and service tier must match the approved configuration.
-- Completed the separately authorized six-call Terra calibration: 10,395 tokens and USD 0.102580 calculated cost, with zero retries. m=18 was first-call optimal; m=24 retained gap 2 and was selected by the precommitted rule. Preserved the report and raw evidence; no swarm comparison has run.
-- Added regression coverage for shared budgets, concurrent claims, returned identifiers, failure reporting and difficulty selection; the offline suite now has 125 tests.
+- Completed the separately authorized six-call Terra calibration: 10,395 tokens and USD 0.102580 calculated cost, with zero retries. m=18 was first-call optimal; m=24 retained gap 2 and was selected by the precommitted rule. Preserved the report and raw evidence separately from the later comparison.
+- Added regression coverage for shared budgets, concurrent claims, returned identifiers, failure reporting and difficulty selection; the offline suite now has 154 tests, including comparison and reporting checks.
 
 ## 0.1.1 — 2026-09-09
 

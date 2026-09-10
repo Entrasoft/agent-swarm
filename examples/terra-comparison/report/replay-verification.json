@@ -1,0 +1,42 @@
+[
+  {
+    "path": "r01-independent",
+    "verified": true
+  },
+  {
+    "path": "r01-fixed",
+    "verified": true
+  },
+  {
+    "path": "r01-adaptive",
+    "verified": true
+  },
+  {
+    "path": "r01-solo",
+    "verified": true
+  },
+  {
+    "path": "r02-fixed",
+    "verified": true
+  },
+  {
+    "path": "r02-adaptive",
+    "verified": true
+  },
+  {
+    "path": "r02-independent",
+    "verified": true
+  },
+  {
+    "path": "r02-solo",
+    "verified": true
+  },
+  {
+    "path": "r03-independent",
+    "verified": true
+  },
+  {
+    "path": "r03-solo",
+    "verified": true
+  }
+]

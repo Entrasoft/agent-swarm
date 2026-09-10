@@ -1,5 +1,7 @@
 # Implementation plan — 2026-09-09
 
+Current comparison status: [halted under the approved stop rule](live-comparison-results.md) after 95 attempts, with one request whose usage and possible charge are unresolved, and ten unstarted runs. Preserve the current authorization claim and ledger; no automatic continuation or replacement campaign is authorized.
+
 1. Establish independently tested mathematical validation and bounded exact evaluation.
 2. Build an offline asynchronous runtime, durable event store and usage ledger before live access.
 3. Exercise solo, independent, fixed and adaptive routing with scoped observations and bounded work.

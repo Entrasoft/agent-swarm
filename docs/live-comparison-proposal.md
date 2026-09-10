@@ -1,6 +1,6 @@
 # Proposed live comparison after Terra calibration
 
-Status: the owner approved this proposal on 2026-09-09. The [execution protocol](live-comparison-protocol.md) records the approved scope. The original proposal below is retained as planning history; its statements about missing approval are historical.
+Status: the owner approved this proposal on 2026-09-09. The [execution protocol](live-comparison-protocol.md) records the approved scope. The [result report](live-comparison-results.md) documents its later mandatory halt; ten of twenty planned runs remained unstarted. The original proposal below is retained as planning history; its statements about missing approval are historical.
 
 Prepared 2026-09-09 after inspecting the separately recorded difficulty
 calibration. **This is a proposal, not paid authorization or an executable
