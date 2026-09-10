@@ -60,7 +60,7 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 
 ## Evidence and design
 
-- [v0.2 solo feedback protocol](docs/feedback-v02-protocol.md) and [budget proposal](docs/feedback-v02-budget-proposal.md): offline preparation complete; no new live findings
+- [v0.2 solo feedback protocol](docs/feedback-v02-protocol.md), [budget proposal](docs/feedback-v02-budget-proposal.md), and [approved execution record](docs/feedback-v02-execution.md)
 - [Results and reproducible commands](docs/results.md)
 - [Completed Terra pilot and public trace](docs/terra-pilot.md)
 - [Authorized difficulty calibration protocol](docs/calibration-protocol.md)
@@ -86,7 +86,7 @@ python3 -m swarm_lab.comparison prepare --price-file configs/gpt-5.6-terra-price
 
 The next proposed study qualifies a solo search loop before testing the value of peer messages. It compares a private-best-only baseline with a worker that also receives up to eight of its own recent attempts and deterministic validator feedback. Both arms use the new `feedback-v0.2` decision protocol: invalid mathematics consumes a decision and can be followed by another; provider or protocol failures stop the run, and unknown usage retains its reservation. The existing default `legacy` protocol preserves the previous stopping behavior.
 
-Preparation is approved. The proposed paid ceiling is **six runs, 72 calls, USD 6 and 600,000 tokens**, with zero retries. Paid execution requires a new authorization and a separately frozen campaign; the preparation module has no execution command, creates no spending ledger and never loads credentials.
+The owner approved the new paid ceiling of **six runs, 72 calls, USD 6 and 600,000 tokens**, with zero retries. The separate `feedback_campaign` module freezes all six allowances and enforces a one-use authorization; see the [execution record](docs/feedback-v02-execution.md). The original preparation module below remains a proposal generator with no execution command, spending ledger or credential access.
 
 ```sh
 python3 -m swarm_lab.feedback prepare --out runs/feedback-v02-proposal

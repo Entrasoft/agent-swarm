@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — approved v0.2 execution
+
+- Adds the separately authorized six-run feedback campaign executor, with fixed per-run/shared allowances, frozen source and document receipts, clean-source checks, and a persistent one-use claim. The ceilings are 72 calls, USD 6 and 600,000 tokens, with zero retries.
+- Freezes a new UTC-dated price snapshot and the execution record without modifying the original proposed protocol or historical comparison evidence. Adds descriptive reporting and an independent public mathematics/accounting audit.
+- Before inference, 236 offline tests pass, including 18 campaign guard tests, 15 reporting tests and three independent audit tests. A read-only metadata request confirmed model visibility without generation.
+
 ## 0.2.0 — feedback qualification preparation
 
 - Adds an opt-in solo decision protocol with bounded own-attempt history and deterministic validator feedback. Both proposed arms continue after invalid mathematics while preserving provider/protocol stopping and unknown-usage reservations. Defaults retain the legacy protocol.
