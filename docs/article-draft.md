@@ -2,9 +2,13 @@
 
 **Unpublished article draft. Updated 2026-09-10 with the separately authorized feedback follow-up; requires author review before posting.**
 
-The first experiment stopped before answering its central question.
+We began with a simple curiosity: could we build a small agent swarm and see useful cooperation emerge? We wanted to observe whether agents would build on one another's ideas, explore complementary approaches, and make progress together. A modest experiment, with a small budget and every interaction visible, seemed a practical place to start.
 
-Agent Swarm was built to compare one model-driven worker with small teams, then ask whether communication improved a verified answer enough to justify its cost. Twenty runs were planned. Ten started. After 95 request attempts, a transport failure left one request's usage unknown, and the campaign stopped under its declared protocol.
+Our inspiration was OpenAI's September 8, 2026 announcement reporting a solution to the Navier–Stokes existence and smoothness problem. OpenAI described communicating groups powered by an internal model, with roughly 10,000 concurrent agents in the group that produced the result, and released a proof writeup and a Lean formalization. Researchers also guided the investigation and consolidated intermediate findings. That account made us curious about what cooperation might look like at a scale we could build and inspect ourselves. [OpenAI announcement](https://openai.com/index/navier-stokes-solution/)
+
+We translated that curiosity into a narrower first experiment: give a few agents a shared mathematical problem, control what they could see and communicate, and check every proposed answer independently. Comparing solo search, independent workers and coordinated teams would let us examine whether interaction improved the result enough to justify its cost. Because we supplied roles and communication rules, any claim of emergent organization would require evidence beyond agents following those instructions. The immediate question was whether useful cooperation appeared within those boundaries.
+
+The first experiment stopped before answering that question. Twenty runs were planned. Ten started. After 95 request attempts, a transport failure left one request's usage unknown, and the campaign stopped under its declared protocol.
 
 None of the ten started runs found the optimum. The 94 responses with known usage accounted for 156,639 tokens and USD 1.499658 calculated cost. The final request remains unresolved, so the campaign has no complete cost total.
 
