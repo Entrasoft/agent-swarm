@@ -1,22 +1,21 @@
 # LinkedIn companion — unpublished draft
 
-A four-agent comparison stopped before it answered whether communication helped. The stopping point became part of the result.
+An interrupted four-agent comparison led to a smaller question: could one worker use a record of its own attempts to stop repeating itself?
 
-Agent Swarm is a small public Python laboratory with an independently checkable task: find the largest subset of {1, …, 24} containing no three distinct numbers in arithmetic progression. The exact optimum is ten. Workers never receive the evaluator's answer.
+Agent Swarm is a public Python laboratory with an independently checkable task: find the largest subset of {1, …, 24} containing no three distinct numbers in arithmetic progression. The optimum is ten. Workers never receive the evaluator's answer.
 
-The plan compared solo search, four independent searchers, fixed coordination and adaptive peer routing. Twenty runs shared explicit ceilings, with coordinator calls included and zero retries.
+The first comparison attempted 95 requests across solo search and three team arrangements. Ten of twenty planned runs started; none reached ten. Unknown usage halted that campaign.
 
-What actually happened:
+The separate v0.2 follow-up compared private-best-only observations with bounded attempt history and validator feedback. Six solo runs were planned under equal per-run ceilings. Three started:
 
-- Ten runs started: five completed, four failed and one was interrupted. Ten remain unstarted.
-- All started runs found valid sets of eight or nine members. None reached ten.
-- Ninety-five requests were attempted. The 94 responses with known usage accounted for 156,639 tokens and USD 1.499658 calculated cost.
-- One transport failure left usage unknown, so the protocol halted the campaign. Its reservation remains held; total cost is incomplete and billing unreconciled.
+- The treatment repeated one eight-member set, then stopped on a local protocol failure after nine calls.
+- One baseline completed twelve calls, producing two distinct valid sets and improving from eight to nine members.
+- A second baseline also improved to nine, then encountered a transport timeout on call eleven. Unknown usage halted the campaign; three runs remain unstarted.
 
-This is an interrupted descriptive study, not evidence that a particular team structure wins. The deterministic evaluator's median time was about 8.47 milliseconds on this host—an essential baseline beside the model results.
+The predeclared feedback qualification criterion was unmet. One observed treatment cannot establish that feedback harms performance or settle the swarm question.
 
-The useful artifact is inspectable evidence. Follow a delivered message into a worker's actual observation, check its next candidate, and see what the ledger counted. Delivery and reported use do not establish causal benefit. The report retains failures and every missing row.
+The follow-up attempted 32 requests. Its known subtotal is 65,225 tokens and USD 0.644390; one reservation remains held, and complete cost is unknown. The exact evaluator still solved the task in milliseconds.
 
-The next engineering work concerns failure diagnostics and unresolved accounting. The coordination question remains open.
+The useful result is inspectable evidence: visible history, verified candidates, failures, missing rows and explicit accounting limits.
 
-[Inspect the results, traces and MIT-licensed code](https://github.com/Entrasoft/agent-swarm/blob/main/docs/live-comparison-results.md)
+[Read both studies and inspect the MIT-licensed code](https://github.com/Entrasoft/agent-swarm/blob/main/docs/article-draft.md)

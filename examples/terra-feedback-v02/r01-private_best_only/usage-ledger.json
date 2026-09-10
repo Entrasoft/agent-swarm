@@ -1,0 +1,899 @@
+{
+  "schema_version": 1,
+  "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+  "price": {
+    "cache_write_per_million": "2.50",
+    "cached_input_per_million": "0.20",
+    "currency": "USD",
+    "effective_date": "2026-09-10",
+    "input_per_million": "2.00",
+    "model": "gpt-5.6-terra",
+    "output_per_million": "12.00",
+    "provider": "openai",
+    "rate_units": "per_million_tokens",
+    "retrieved_date": "2026-09-10",
+    "service_tier": "default",
+    "simulated": false,
+    "source_url": "https://developers.openai.com/api/docs/pricing",
+    "verified_on": "2026-09-10",
+    "version": "openai-terra-feedback-v02-standard-short-2026-09-10"
+  },
+  "entries": [
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-0/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-0",
+      "logical_call_id": "task-0",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:47:25.891856+00:00",
+      "updated_at": "2026-09-10T03:48:10.190910+00:00",
+      "input_estimate": 3045,
+      "max_output": 25000,
+      "estimated_tokens": 28045,
+      "estimated_cost": "0.3076125",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_2eff768fb0724f698bb24f543cfdc7db",
+      "observed_cost": "0.038184",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3045
+      },
+      "usage": {
+        "input_tokens": 354,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 3123,
+        "output_tokens_details": {
+          "reasoning_tokens": 3083
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 3477
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 354,
+        "output_tokens": 3123,
+        "reasoning_tokens": 3083,
+        "total_tokens": 3477
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 354,
+      "output_tokens": 3123,
+      "reasoning_tokens": 3083,
+      "total_tokens": 3477,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 10,
+          "timestamp": "2026-09-10T03:48:10.190994+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-0/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3045},\"created_at\":\"2026-09-10T03:47:25.891856+00:00\",\"estimated_cost\":\"0.3076125\",\"estimated_tokens\":28045,\"input_estimate\":3045,\"input_tokens\":null,\"logical_call_id\":\"task-0\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076125\",\"reserved_tokens\":28045,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-0\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:47:25.891856+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":354,\"output_tokens\":3123,\"reasoning_tokens\":3083,\"total_tokens\":3477},\"observed_cost\":\"0.038184\",\"outcome\":\"completed\",\"request_id\":\"req_2eff768fb0724f698bb24f543cfdc7db\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":354,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":3123,\"output_tokens_details\":{\"reasoning_tokens\":3083},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":3477}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-1/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-1",
+      "logical_call_id": "task-1",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:48:10.200544+00:00",
+      "updated_at": "2026-09-10T03:48:23.290338+00:00",
+      "input_estimate": 3045,
+      "max_output": 25000,
+      "estimated_tokens": 28045,
+      "estimated_cost": "0.3076125",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_ea7c8dc94a34402198efb9cd437424e3",
+      "observed_cost": "0.011688",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3045
+      },
+      "usage": {
+        "input_tokens": 354,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 915,
+        "output_tokens_details": {
+          "reasoning_tokens": 877
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 1269
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 354,
+        "output_tokens": 915,
+        "reasoning_tokens": 877,
+        "total_tokens": 1269
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 354,
+      "output_tokens": 915,
+      "reasoning_tokens": 877,
+      "total_tokens": 1269,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 11,
+          "timestamp": "2026-09-10T03:48:23.290383+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-1/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3045},\"created_at\":\"2026-09-10T03:48:10.200544+00:00\",\"estimated_cost\":\"0.3076125\",\"estimated_tokens\":28045,\"input_estimate\":3045,\"input_tokens\":null,\"logical_call_id\":\"task-1\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076125\",\"reserved_tokens\":28045,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-1\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:48:10.200544+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":354,\"output_tokens\":915,\"reasoning_tokens\":877,\"total_tokens\":1269},\"observed_cost\":\"0.011688\",\"outcome\":\"completed\",\"request_id\":\"req_ea7c8dc94a34402198efb9cd437424e3\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":354,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":915,\"output_tokens_details\":{\"reasoning_tokens\":877},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":1269}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-2/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-2",
+      "logical_call_id": "task-2",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:48:23.296278+00:00",
+      "updated_at": "2026-09-10T03:48:53.037334+00:00",
+      "input_estimate": 3071,
+      "max_output": 25000,
+      "estimated_tokens": 28071,
+      "estimated_cost": "0.3076775",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_197379b9a8fa43c3ae3a4359028faccf",
+      "observed_cost": "0.024346",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3071
+      },
+      "usage": {
+        "input_tokens": 377,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1966,
+        "output_tokens_details": {
+          "reasoning_tokens": 1928
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 2343
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 377,
+        "output_tokens": 1966,
+        "reasoning_tokens": 1928,
+        "total_tokens": 2343
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 377,
+      "output_tokens": 1966,
+      "reasoning_tokens": 1928,
+      "total_tokens": 2343,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 12,
+          "timestamp": "2026-09-10T03:48:53.037376+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-2/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3071},\"created_at\":\"2026-09-10T03:48:23.296278+00:00\",\"estimated_cost\":\"0.3076775\",\"estimated_tokens\":28071,\"input_estimate\":3071,\"input_tokens\":null,\"logical_call_id\":\"task-2\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076775\",\"reserved_tokens\":28071,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-2\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:48:23.296278+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":377,\"output_tokens\":1966,\"reasoning_tokens\":1928,\"total_tokens\":2343},\"observed_cost\":\"0.024346\",\"outcome\":\"completed\",\"request_id\":\"req_197379b9a8fa43c3ae3a4359028faccf\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":377,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":1966,\"output_tokens_details\":{\"reasoning_tokens\":1928},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":2343}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-3/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-3",
+      "logical_call_id": "task-3",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:48:53.046828+00:00",
+      "updated_at": "2026-09-10T03:49:04.038893+00:00",
+      "input_estimate": 3071,
+      "max_output": 25000,
+      "estimated_tokens": 28071,
+      "estimated_cost": "0.3076775",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_5e9374eb62a24d4dabeba08a2ba536ae",
+      "observed_cost": "0.010294",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3071
+      },
+      "usage": {
+        "input_tokens": 377,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 795,
+        "output_tokens_details": {
+          "reasoning_tokens": 757
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 1172
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 377,
+        "output_tokens": 795,
+        "reasoning_tokens": 757,
+        "total_tokens": 1172
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 377,
+      "output_tokens": 795,
+      "reasoning_tokens": 757,
+      "total_tokens": 1172,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 13,
+          "timestamp": "2026-09-10T03:49:04.038923+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-3/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3071},\"created_at\":\"2026-09-10T03:48:53.046828+00:00\",\"estimated_cost\":\"0.3076775\",\"estimated_tokens\":28071,\"input_estimate\":3071,\"input_tokens\":null,\"logical_call_id\":\"task-3\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076775\",\"reserved_tokens\":28071,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-3\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:48:53.046828+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":377,\"output_tokens\":795,\"reasoning_tokens\":757,\"total_tokens\":1172},\"observed_cost\":\"0.010294\",\"outcome\":\"completed\",\"request_id\":\"req_5e9374eb62a24d4dabeba08a2ba536ae\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":377,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":795,\"output_tokens_details\":{\"reasoning_tokens\":757},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":1172}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-4/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-4",
+      "logical_call_id": "task-4",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:49:04.046182+00:00",
+      "updated_at": "2026-09-10T03:49:49.251003+00:00",
+      "input_estimate": 3071,
+      "max_output": 25000,
+      "estimated_tokens": 28071,
+      "estimated_cost": "0.3076775",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_ba72bad6b69941ec962341e58617b016",
+      "observed_cost": "0.037798",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3071
+      },
+      "usage": {
+        "input_tokens": 377,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 3087,
+        "output_tokens_details": {
+          "reasoning_tokens": 3047
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 3464
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 377,
+        "output_tokens": 3087,
+        "reasoning_tokens": 3047,
+        "total_tokens": 3464
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 377,
+      "output_tokens": 3087,
+      "reasoning_tokens": 3047,
+      "total_tokens": 3464,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 14,
+          "timestamp": "2026-09-10T03:49:49.251040+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-4/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3071},\"created_at\":\"2026-09-10T03:49:04.046182+00:00\",\"estimated_cost\":\"0.3076775\",\"estimated_tokens\":28071,\"input_estimate\":3071,\"input_tokens\":null,\"logical_call_id\":\"task-4\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076775\",\"reserved_tokens\":28071,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-4\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:49:04.046182+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":377,\"output_tokens\":3087,\"reasoning_tokens\":3047,\"total_tokens\":3464},\"observed_cost\":\"0.037798\",\"outcome\":\"completed\",\"request_id\":\"req_ba72bad6b69941ec962341e58617b016\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":377,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":3087,\"output_tokens_details\":{\"reasoning_tokens\":3047},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":3464}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-5/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-5",
+      "logical_call_id": "task-5",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:49:49.262068+00:00",
+      "updated_at": "2026-09-10T03:50:35.498359+00:00",
+      "input_estimate": 3075,
+      "max_output": 25000,
+      "estimated_tokens": 28075,
+      "estimated_cost": "0.3076875",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_18e26397c0de4caaa0d5768e4b4ba159",
+      "observed_cost": "0.039496",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3075
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 3228,
+        "output_tokens_details": {
+          "reasoning_tokens": 3188
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 3608
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 3228,
+        "reasoning_tokens": 3188,
+        "total_tokens": 3608
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 3228,
+      "reasoning_tokens": 3188,
+      "total_tokens": 3608,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 15,
+          "timestamp": "2026-09-10T03:50:35.498399+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-5/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3075},\"created_at\":\"2026-09-10T03:49:49.262068+00:00\",\"estimated_cost\":\"0.3076875\",\"estimated_tokens\":28075,\"input_estimate\":3075,\"input_tokens\":null,\"logical_call_id\":\"task-5\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076875\",\"reserved_tokens\":28075,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-5\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:49:49.262068+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":3228,\"reasoning_tokens\":3188,\"total_tokens\":3608},\"observed_cost\":\"0.039496\",\"outcome\":\"completed\",\"request_id\":\"req_18e26397c0de4caaa0d5768e4b4ba159\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":3228,\"output_tokens_details\":{\"reasoning_tokens\":3188},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":3608}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-6/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-6",
+      "logical_call_id": "task-6",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:50:35.508371+00:00",
+      "updated_at": "2026-09-10T03:50:51.401940+00:00",
+      "input_estimate": 3075,
+      "max_output": 25000,
+      "estimated_tokens": 28075,
+      "estimated_cost": "0.3076875",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_ddf4a72761454f2a8fb2d251a28097ed",
+      "observed_cost": "0.011956",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3075
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 933,
+        "output_tokens_details": {
+          "reasoning_tokens": 893
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 1313
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 933,
+        "reasoning_tokens": 893,
+        "total_tokens": 1313
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 933,
+      "reasoning_tokens": 893,
+      "total_tokens": 1313,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 16,
+          "timestamp": "2026-09-10T03:50:51.401972+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-6/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3075},\"created_at\":\"2026-09-10T03:50:35.508371+00:00\",\"estimated_cost\":\"0.3076875\",\"estimated_tokens\":28075,\"input_estimate\":3075,\"input_tokens\":null,\"logical_call_id\":\"task-6\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076875\",\"reserved_tokens\":28075,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-6\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:50:35.508371+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":933,\"reasoning_tokens\":893,\"total_tokens\":1313},\"observed_cost\":\"0.011956\",\"outcome\":\"completed\",\"request_id\":\"req_ddf4a72761454f2a8fb2d251a28097ed\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":933,\"output_tokens_details\":{\"reasoning_tokens\":893},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":1313}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-7/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-7",
+      "logical_call_id": "task-7",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:50:51.410068+00:00",
+      "updated_at": "2026-09-10T03:51:27.501515+00:00",
+      "input_estimate": 3075,
+      "max_output": 25000,
+      "estimated_tokens": 28075,
+      "estimated_cost": "0.3076875",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_d84772736a7e43ecb93982a518f8dfd7",
+      "observed_cost": "0.02926",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3075
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2375,
+        "output_tokens_details": {
+          "reasoning_tokens": 2335
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 2755
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 2375,
+        "reasoning_tokens": 2335,
+        "total_tokens": 2755
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 2375,
+      "reasoning_tokens": 2335,
+      "total_tokens": 2755,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 17,
+          "timestamp": "2026-09-10T03:51:27.501546+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-7/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3075},\"created_at\":\"2026-09-10T03:50:51.410068+00:00\",\"estimated_cost\":\"0.3076875\",\"estimated_tokens\":28075,\"input_estimate\":3075,\"input_tokens\":null,\"logical_call_id\":\"task-7\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076875\",\"reserved_tokens\":28075,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-7\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:50:51.410068+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":2375,\"reasoning_tokens\":2335,\"total_tokens\":2755},\"observed_cost\":\"0.02926\",\"outcome\":\"completed\",\"request_id\":\"req_d84772736a7e43ecb93982a518f8dfd7\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":2375,\"output_tokens_details\":{\"reasoning_tokens\":2335},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":2755}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-8/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-8",
+      "logical_call_id": "task-8",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:51:27.510291+00:00",
+      "updated_at": "2026-09-10T03:51:36.407102+00:00",
+      "input_estimate": 3075,
+      "max_output": 25000,
+      "estimated_tokens": 28075,
+      "estimated_cost": "0.3076875",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_a93e760198bb42a9bf720adfc7e2029d",
+      "observed_cost": "0.008608",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3075
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 654,
+        "output_tokens_details": {
+          "reasoning_tokens": 614
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 1034
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 654,
+        "reasoning_tokens": 614,
+        "total_tokens": 1034
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 654,
+      "reasoning_tokens": 614,
+      "total_tokens": 1034,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 18,
+          "timestamp": "2026-09-10T03:51:36.407144+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-8/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3075},\"created_at\":\"2026-09-10T03:51:27.510291+00:00\",\"estimated_cost\":\"0.3076875\",\"estimated_tokens\":28075,\"input_estimate\":3075,\"input_tokens\":null,\"logical_call_id\":\"task-8\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076875\",\"reserved_tokens\":28075,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-8\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:51:27.510291+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":654,\"reasoning_tokens\":614,\"total_tokens\":1034},\"observed_cost\":\"0.008608\",\"outcome\":\"completed\",\"request_id\":\"req_a93e760198bb42a9bf720adfc7e2029d\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":654,\"output_tokens_details\":{\"reasoning_tokens\":614},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":1034}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-9/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-9",
+      "logical_call_id": "task-9",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:51:36.416450+00:00",
+      "updated_at": "2026-09-10T03:51:56.146405+00:00",
+      "input_estimate": 3075,
+      "max_output": 25000,
+      "estimated_tokens": 28075,
+      "estimated_cost": "0.3076875",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_f07ff4574f6347088bf32ca40d919305",
+      "observed_cost": "0.016528",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3075
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1314,
+        "output_tokens_details": {
+          "reasoning_tokens": 1272
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 1694
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 1314,
+        "reasoning_tokens": 1272,
+        "total_tokens": 1694
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 1314,
+      "reasoning_tokens": 1272,
+      "total_tokens": 1694,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 19,
+          "timestamp": "2026-09-10T03:51:56.146435+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-9/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3075},\"created_at\":\"2026-09-10T03:51:36.416450+00:00\",\"estimated_cost\":\"0.3076875\",\"estimated_tokens\":28075,\"input_estimate\":3075,\"input_tokens\":null,\"logical_call_id\":\"task-9\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076875\",\"reserved_tokens\":28075,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-9\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:51:36.416450+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":1314,\"reasoning_tokens\":1272,\"total_tokens\":1694},\"observed_cost\":\"0.016528\",\"outcome\":\"completed\",\"request_id\":\"req_f07ff4574f6347088bf32ca40d919305\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":1314,\"output_tokens_details\":{\"reasoning_tokens\":1272},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":1694}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-10/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-10",
+      "logical_call_id": "task-10",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:51:56.153465+00:00",
+      "updated_at": "2026-09-10T03:52:31.270108+00:00",
+      "input_estimate": 3077,
+      "max_output": 25000,
+      "estimated_tokens": 28077,
+      "estimated_cost": "0.3076925",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_a6b9b82c9714413da473c5e986f03231",
+      "observed_cost": "0.030664",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3077
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2492,
+        "output_tokens_details": {
+          "reasoning_tokens": 2452
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 2872
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 2492,
+        "reasoning_tokens": 2452,
+        "total_tokens": 2872
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 2492,
+      "reasoning_tokens": 2452,
+      "total_tokens": 2872,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 20,
+          "timestamp": "2026-09-10T03:52:31.270140+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-10/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3077},\"created_at\":\"2026-09-10T03:51:56.153465+00:00\",\"estimated_cost\":\"0.3076925\",\"estimated_tokens\":28077,\"input_estimate\":3077,\"input_tokens\":null,\"logical_call_id\":\"task-10\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076925\",\"reserved_tokens\":28077,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-10\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:51:56.153465+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":2492,\"reasoning_tokens\":2452,\"total_tokens\":2872},\"observed_cost\":\"0.030664\",\"outcome\":\"completed\",\"request_id\":\"req_a6b9b82c9714413da473c5e986f03231\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":2492,\"output_tokens_details\":{\"reasoning_tokens\":2452},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":2872}}"
+        }
+      ]
+    },
+    {
+      "attempt_id": "ef102182-cfe9-436e-9530-ca54778d73b1/task-11/attempt-0",
+      "run_id": "ef102182-cfe9-436e-9530-ca54778d73b1",
+      "agent": "agent-0",
+      "task_id": "task-11",
+      "logical_call_id": "task-11",
+      "attempt": 0,
+      "purpose": "research",
+      "model": "gpt-5.6-terra",
+      "service_tier": "default",
+      "created_at": "2026-09-10T03:52:31.279395+00:00",
+      "updated_at": "2026-09-10T03:52:53.148695+00:00",
+      "input_estimate": 3077,
+      "max_output": 25000,
+      "estimated_tokens": 28077,
+      "estimated_cost": "0.3076925",
+      "outcome": "completed",
+      "status": "observed",
+      "request_id": "req_5631596712be4de48b33a9b31d69611b",
+      "observed_cost": "0.019276",
+      "reconciled_cost": null,
+      "reserved_tokens": 0,
+      "reserved_cost": "0",
+      "context_estimates": {
+        "observation": 3077
+      },
+      "usage": {
+        "input_tokens": 380,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1543,
+        "output_tokens_details": {
+          "reasoning_tokens": 1503
+        },
+        "reported_model": "gpt-5.6-terra",
+        "reported_service_tier": "default",
+        "total_tokens": 1923
+      },
+      "normalized": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "complete": true,
+        "input_tokens": 380,
+        "output_tokens": 1543,
+        "reasoning_tokens": 1503,
+        "total_tokens": 1923
+      },
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "complete": true,
+      "input_tokens": 380,
+      "output_tokens": 1543,
+      "reasoning_tokens": 1503,
+      "total_tokens": 1923,
+      "simulated": false,
+      "provider": "openai",
+      "price_version": "openai-terra-feedback-v02-standard-short-2026-09-10",
+      "currency": "USD",
+      "context_accounting": "estimated",
+      "cache_accounting": "reported_disjoint_subsets",
+      "corrections": [
+        {
+          "correction_id": 21,
+          "timestamp": "2026-09-10T03:52:53.148724+00:00",
+          "kind": "telemetry",
+          "reason": "provider usage telemetry",
+          "before_json": "{\"agent\":\"agent-0\",\"attempt\":0,\"attempt_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1/task-11/attempt-0\",\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"context_estimates\":{\"observation\":3077},\"created_at\":\"2026-09-10T03:52:31.279395+00:00\",\"estimated_cost\":\"0.3076925\",\"estimated_tokens\":28077,\"input_estimate\":3077,\"input_tokens\":null,\"logical_call_id\":\"task-11\",\"max_output\":25000,\"model\":\"gpt-5.6-terra\",\"normalized\":{\"cache_write_tokens\":null,\"cached_input_tokens\":null,\"complete\":false,\"input_tokens\":null,\"output_tokens\":null,\"reasoning_tokens\":null,\"total_tokens\":null},\"observed_cost\":null,\"outcome\":\"pending\",\"output_tokens\":null,\"purpose\":\"research\",\"reasoning_tokens\":null,\"reconciled_cost\":null,\"request_id\":null,\"reserved_cost\":\"0.3076925\",\"reserved_tokens\":28077,\"run_id\":\"ef102182-cfe9-436e-9530-ca54778d73b1\",\"service_tier\":\"default\",\"status\":\"estimated\",\"task_id\":\"task-11\",\"total_tokens\":null,\"updated_at\":\"2026-09-10T03:52:31.279395+00:00\",\"usage\":null}",
+          "after_json": "{\"normalized\":{\"cache_write_tokens\":0,\"cached_input_tokens\":0,\"complete\":true,\"input_tokens\":380,\"output_tokens\":1543,\"reasoning_tokens\":1503,\"total_tokens\":1923},\"observed_cost\":\"0.019276\",\"outcome\":\"completed\",\"request_id\":\"req_5631596712be4de48b33a9b31d69611b\",\"reserved_cost\":\"0\",\"reserved_tokens\":0,\"status\":\"observed\",\"usage\":{\"input_tokens\":380,\"input_tokens_details\":{\"cache_write_tokens\":0,\"cached_tokens\":0},\"output_tokens\":1543,\"output_tokens_details\":{\"reasoning_tokens\":1503},\"reported_model\":\"gpt-5.6-terra\",\"reported_service_tier\":\"default\",\"total_tokens\":1923}}"
+        }
+      ]
+    }
+  ]
+}

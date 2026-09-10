@@ -8,6 +8,8 @@ An inspectable Python laboratory for testing multi-agent orchestration against a
 
 The offline runtime, validator, hidden exact evaluator, durable usage ledger, local desktop viewer, and tests are implemented. **Algorithmic runs use seeded search, not LLM reasoning.** Scripted runs are explicit protocol demonstrations. The opt-in live adapter completed a [three-call Terra pilot](docs/terra-pilot.md): 2,260 provider-reported tokens, USD 0.016160 calculated API cost, and a verified optimum at m=12. This is an integration check. The later [live comparison](docs/live-comparison-results.md) halted as prescribed after 95 attempts because one request had unresolved usage: ten runs started and ten remained unstarted. Known usage is 156,639 tokens and USD 1.499658; these are incomplete totals. No started run reached the exact m=24 optimum.
 
+The subsequent [v0.2 solo feedback qualification](docs/feedback-v02-results.md) also halted, after 32 attempts. Its feedback progress criterion was unmet. All six planned rows are preserved; three never started. Known usage is 65,225 tokens and USD 0.644390, with a separate reservation held for one unresolved request. The studies remain inconclusive about coordination and feedback effectiveness.
+
 ## Offline quickstart
 
 Python 3.11 or later. The runtime and tests use the standard library; no API key or package installation is needed from the checkout.
@@ -60,6 +62,7 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 
 ## Evidence and design
 
+- [Halted v0.2 qualification: results and all six planned rows](docs/feedback-v02-results.md), with [public evidence and reproduction](examples/terra-feedback-v02/README.md)
 - [v0.2 solo feedback protocol](docs/feedback-v02-protocol.md), [budget proposal](docs/feedback-v02-budget-proposal.md), and [approved execution record](docs/feedback-v02-execution.md)
 - [Results and reproducible commands](docs/results.md)
 - [Completed Terra pilot and public trace](docs/terra-pilot.md)
@@ -82,11 +85,13 @@ The owner approved the m=24 comparison on 2026-09-09: five repetitions each of s
 python3 -m swarm_lab.comparison prepare --price-file configs/gpt-5.6-terra-price.json --out runs/terra-comparison
 ```
 
-## v0.2 feedback preparation
+## v0.2 feedback qualification
 
-The next proposed study qualifies a solo search loop before testing the value of peer messages. It compares a private-best-only baseline with a worker that also receives up to eight of its own recent attempts and deterministic validator feedback. Both arms use the new `feedback-v0.2` decision protocol: invalid mathematics consumes a decision and can be followed by another; provider or protocol failures stop the run, and unknown usage retains its reservation. The existing default `legacy` protocol preserves the previous stopping behavior.
+The [solo feedback qualification](docs/feedback-v02-results.md) halted after **32 attempted calls**: one run completed, one failed on the local action protocol, one was interrupted by a transport timeout with unknown usage, and three never started. The treatment received repeated-attempt history on seven decisions without improving its verified best; the qualification criterion was **unmet**. One observed pair with unequal completion cannot establish a feedback effect or swarm advantage. [Public evidence](examples/terra-feedback-v02/README.md) preserves every planned row, traces, charts, replay checks and the independent audit.
 
-The owner approved the new paid ceiling of **six runs, 72 calls, USD 6 and 600,000 tokens**, with zero retries. The separate `feedback_campaign` module freezes all six allowances and enforces a one-use authorization; see the [execution record](docs/feedback-v02-execution.md). The original preparation module below remains a proposal generator with no execution command, spending ledger or credential access.
+This study compares a private-best-only baseline with a worker that also receives up to eight of its own recent attempts and deterministic validator feedback. Both arms use the new `feedback-v0.2` decision protocol: invalid mathematics consumes a decision and can be followed by another; provider or protocol failures stop the run, and unknown usage retains its reservation. The existing default `legacy` protocol preserves the previous stopping behavior.
+
+The owner approved **six runs, 72 calls, USD 6 and 600,000 tokens**, with zero retries. Known usage is **65,225 tokens and USD 0.644390 calculated cost**; the unknown request retains **28,077 tokens and USD 0.3076925**. These are incomplete measured totals and a separate reservation, with billing unreconciled. The `feedback_campaign` module enforces a one-use authorization, which is now consumed; see the [execution record](docs/feedback-v02-execution.md). No automatic continuation is authorized. The original preparation module below remains a proposal generator with no execution command, spending ledger or credential access.
 
 ```sh
 python3 -m swarm_lab.feedback prepare --out runs/feedback-v02-proposal

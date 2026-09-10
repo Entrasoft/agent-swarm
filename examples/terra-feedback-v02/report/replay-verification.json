@@ -1,0 +1,33 @@
+{
+  "all_verified": true,
+  "note": "Finalized trace completeness does not mean every scheduled decision completed or the worker reached the optimum.",
+  "runs": [
+    {
+      "complete": true,
+      "events": 118,
+      "lower_bound": 8,
+      "mode": "live",
+      "path": "r01-history_feedback",
+      "upper_bound": 10,
+      "verified": true
+    },
+    {
+      "complete": true,
+      "events": 99,
+      "lower_bound": 9,
+      "mode": "live",
+      "path": "r01-private_best_only",
+      "upper_bound": 10,
+      "verified": true
+    },
+    {
+      "complete": true,
+      "events": 90,
+      "lower_bound": 9,
+      "mode": "live",
+      "path": "r02-private_best_only",
+      "upper_bound": 10,
+      "verified": true
+    }
+  ]
+}
