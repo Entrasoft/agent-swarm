@@ -1,17 +1,17 @@
-# Proposed live comparison after Terra calibration
+# Live comparison protocol v1 — m=24
 
-Status: the owner approved this proposal on 2026-09-09. The [execution protocol](live-comparison-protocol.md) records the approved scope. The [result report](live-comparison-results.md) documents its later mandatory halt; ten of twenty planned runs remained unstarted. The original proposal below is retained as planning history; its statements about missing approval are historical.
+Authorized on 2026-09-09 by the owner after the completed difficulty calibration.
+Commit this protocol and the implementing source before comparative inference.
+The approved scope is at most 240 attempted calls, USD 20 and 2,000,000 tokens,
+with twenty equal twelve-call, USD 1 and 100,000-token run allowances and zero
+retries. The prior pilot and calibration authorizations are exhausted. Preserve
+those traces separately from this comparative sample. Any later change requires
+a dated amendment identifying whether outcomes had already been inspected.
 
-Prepared 2026-09-09 after inspecting the separately recorded difficulty
-calibration. **This is a proposal, not paid authorization or an executable
-campaign.** The generic comparison runner and its frozen execution manifest
-still need implementation and offline validation. The six-call calibration
-authorization is exhausted; no unused headroom carries forward.
-
-## Recommended next study
+## Approved study
 
 Compare four configurations on **m=24**, with five repetition blocks and at most
-twelve total decision calls per run. Recommend a new whole-stage ceiling of
+twelve total decision calls per run. The whole-stage ceiling is
 **240 attempted calls, USD 20 and 2,000,000 tokens**, with zero retries. Allocate
 each of the twenty runs the same **USD 1 and 100,000-token allowance** before
 dispatch. These are maximum allowances, not spending targets or a guarantee that
@@ -76,7 +76,7 @@ the permitted communication policy more closely; observed model choices can
 still differ in several ways. The study does not isolate the causal value of
 one message or establish that a coordinator role alone improves performance.
 
-## Why recommend USD 20 rather than USD 10?
+## Budget rationale
 
 The observed m=24 solo average was 2,162 tokens and approximately USD 0.022251
 per call. Multiplying the entire three-call trace by eighty gives the following
@@ -112,7 +112,7 @@ seeing results to force the matrix to fit.
 ## Order, budget fairness and stopping
 
 Randomize condition order within each repetition block before inference and
-record the realized schedule. The proposed schedule below was generated with
+record the realized schedule. The frozen schedule below was generated with
 Python `random.Random(20260909)`, shuffling a fresh list ordered
 `solo, independent, fixed, adaptive` once per block:
 
@@ -148,7 +148,8 @@ Unknown usage, an unexpected returned model/tier, an interrupted request or
 uncertain dispatch halts the entire campaign, retaining its reservation and
 partial artifacts. No automatic restart or substitute output directory may
 reset this authorization. Known provider usage can exceed local estimates;
-report overages and stop if any aggregate ceiling prevents safe admission.
+report overages and halt on a per-run or aggregate ceiling overage. Stop admission
+whenever the next request's reservation cannot fit its applicable allowances.
 Starting a repetition block does not guarantee that all four runs finish.
 Preserve completed, failed, truncated and unstarted rows in every block; do not
 silently drop partial blocks or top them up. Fresh authorization and a disclosed
@@ -192,18 +193,45 @@ one model family and one set of settings. Difficulty selection used disclosed
 calibration outcomes. Defer ten-agent scaling, model sweeps, task extensions,
 adaptive call allocation and checkpoint-based interventions.
 
-## Work required before execution
+## Execution and preserved manifest
 
-Implement the comparison runner, immutable manifest, fixed authorization claim,
-equal run allocations, aggregate ledger, recorded schedule and failure handling.
-Validate these paths offline, including failures, budget truncation, unknown
-usage, repeat execution, concurrency and independent-worker isolation. Review
-the executed routing behavior against the finalized protocol. Commit the source
-and protocol, prepare conservative per-condition reservation estimates, and
-provide exact executable commands before requesting any missing paid approval.
+The runner preallocates all twenty run IDs and frozen allowances in the shared
+ledger during preparation. Per-run directories refer to those identities; no
+underspend is transferred. Run and campaign limits are checked atomically before
+each provider dispatch. A persistent, exclusive repository authorization claim
+and campaign marker prevent repeating this stage in another output directory.
+There is no automatic resume. Do not delete markers or recreate the ledger to
+repeat this authorization. Local guards cannot prevent deliberate deletion or
+copying to another checkout or host.
 
-The proposed approval scope is up to 240 calls, USD 20 and 2,000,000 total tokens,
-zero retries, with each of twenty runs capped at twelve calls, USD 1 and 100,000
-tokens. **The owner has not approved this stage.** Writing and repository
-preparation can proceed without inference; article drafts remain unpublished
-until the owner approves publication.
+The prepare command freezes the full protocol, randomized schedule, configuration
+matrix, provider price snapshot, source revision and module hashes. It requires
+no API key or model request. Execution rejects changed source, protocol, limits
+or matrix before dispatch and uses the existing protected local credentials.
+Never display or archive credential values or authorization headers.
+
+```sh
+python3 -m swarm_lab.comparison prepare \
+  --price-file configs/gpt-5.6-terra-price.json \
+  --out runs/terra-comparison
+
+SSL_CERT_FILE=/etc/ssl/cert.pem python3 -m swarm_lab.comparison execute \
+  --allow-live --out runs/terra-comparison
+```
+
+The certificate setting selects the existing system trust bundle on the original
+macOS host; certificate verification remains enabled. Default-tier Terra pricing
+and medium reasoning support were rechecked against the [model documentation](https://developers.openai.com/api/docs/models/gpt-5.6-terra)
+and [official pricing](https://developers.openai.com/api/docs/pricing) on 2026-09-09.
+The snapshot prices ordinary input at USD 2, cache reads at USD 0.20, cache writes
+at USD 2.50 and output at USD 12 per million tokens. Reservations retain full
+25,000-token output headroom, and actual provider usage settles each attempt.
+
+Independent offline checks must cover the realized schedule, all twenty rows,
+per-run and aggregate ceilings, message visibility, coordinator accounting,
+known failures versus global halts, repeat execution, and interrupted/unknown
+reservations. The source and protocol are committed before generating the real
+manifest and before the first provider call. Do not change treatment settings
+after inspecting partial outcomes. Charts and article updates use only saved
+public events and provider usage; no auxiliary model inference is authorized.
+Article and LinkedIn drafts remain unpublished until the owner approves posting.

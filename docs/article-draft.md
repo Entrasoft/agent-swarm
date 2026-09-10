@@ -1,262 +1,134 @@
-# Ten Agents, One Checkable Problem: When Does Coordination Help?
+# Four Agents, One Checkable Problem: What an Interrupted Comparison Revealed
 
-**Unpublished conceptual draft.** The implementation and offline results live in
-the repository. This text is not a completed account of live LLM collaboration.
-The results section below is intentionally pending; insert only measurements
-from preserved runs. Author note: add a short personally verified account of
-Chris's work with agent concepts in the late 1990s before publication. No personal
-anecdote or quotation has been invented here.
+**Unpublished article draft. Prepared from the preserved comparison on 2026-09-09; requires author review before posting.**
 
-An animated network of agents can make a modest computation look like an
-organization. One node proposes a plan, another offers a criticism, and a third
-announces an answer. The activity is visible. The harder question is whether any
-of those interactions made the answer better, and whether the improvement paid
-for the extra work.
+The experiment stopped before it answered the question that motivated it.
 
-That question motivates this small laboratory. Give one, four or ten logical
-workers the same checkable problem. Control which workers can communicate. Count
-all their decision opportunities and, when actual models are involved, every
-provider attempt. Then evaluate the answer independently. The aim is to make
-claims about coordination inspectable, including claims that do not survive the
-comparison.
+Agent Swarm was built to compare one model-driven worker with small teams, then ask whether communication improved a verified answer enough to justify its cost. Twenty runs were planned. Ten started. After 95 request attempts, a transport failure left one request's usage unknown, and the campaign stopped under its declared protocol.
 
-## A familiar engineering problem
+None of the ten started runs found the optimum. The 94 responses with known usage accounted for 156,639 tokens and USD 1.499658 calculated cost. The final request remains unresolved, so the campaign has no complete cost total.
 
-Agent coordination has a substantial history. Reid G. Smith's 1980 Contract Net
-paper described task distribution through negotiation among nodes, with task
-announcements, bids and awards. It is a useful reminder that assigning work and
-controlling communication were already explicit design problems decades before
-today's model interfaces. This laboratory is not a reproduction of Contract Net.
-[Smith's original paper](https://www.reidgsmith.com/The_Contract_Net_Protocol_Dec-1980.pdf)
+That leaves an interrupted comparison and a useful reliability case study. Candidates, failures, information boundaries and spending can all be inspected. It does not establish that four agents outperform one, or that communication is harmful. [Full results and evidence](live-comparison-results.md)
 
-The design choice here is to let a language model eventually occupy a narrow
-decision-policy slot. A policy receives a scoped observation and returns a
-candidate plus an optional message. The surrounding runtime decides what may
-be delivered, what counts as valid, and whether another call fits the budget.
-The same interface can also hold a conventional search algorithm. That makes
-it possible to debug the experiment before attributing anything to a model.
+## A familiar coordination problem
 
-Ten workers are ten separate stateful decision units. They need not be ten
-operating-system processes, and ten private contexts do not demonstrate ten
-statistically independent lines of reasoning. The interesting issue is the
-information each worker receives and the decisions it can make with it.
+Task assignment and communication have a long engineering history. Reid G. Smith's 1980 Contract Net paper described distributed problem solving through task announcements, bids and awards. This laboratory does not reproduce that protocol, but its questions remain recognizable: who owns work, what information travels, and how much coordination costs. [Smith's paper](https://www.reidgsmith.com/The_Contract_Net_Protocol_Dec-1980.pdf)
 
-## A problem with a clear answer boundary
+Here, a language model fills a narrow decision slot. It receives a scoped observation and returns a candidate plus an optional message. Deterministic code controls delivery, validation, scheduling and spending. A persuasive answer cannot redefine success or authorize another request.
 
-Choose an integer m. Find the largest subset S of {1,...,m} that contains no three
-distinct members a<b<c satisfying a+c=2b. For example, {1,2,4} is allowed. It is a
-geometric progression, which is irrelevant here. The set {1,2,3} is forbidden
-because its three members form an arithmetic progression.
+An agent is a stateful decision unit. Each decision is a fresh Responses request; persistent state consists of that worker's best candidate and a bounded mailbox. The system does not preserve a full conversation transcript. Four agents therefore means four separate states, not necessarily four processes or four different models. Separate contexts also do not imply statistically independent reasoning.
 
-This task provides a sharp distinction between a candidate and a proof of
-optimality. A validator checks that every member is an integer in the universe,
-that no member repeats, and that no forbidden triple appears. A valid set of
-size L establishes a lower bound. It does not establish that a larger set is
-impossible.
+## A problem with an independent answer
 
-The separate evaluator runs a deterministic exact search. If it finishes, it
-provides the optimum. If it reaches its deadline, it retains a sound upper
-bound U from the unfinished search frontier. Only equality U=L justifies solved
-status. A confident message, several agreeing workers, or a successful candidate
-check cannot close the remaining gap.
+Choose an integer m and find the largest subset of {1, …, m} containing no three distinct numbers a < b < c satisfying a + c = 2b. The set {1, 2, 4} is valid. The set {1, 2, 3} is invalid because it contains an arithmetic progression.
 
-The evaluator runs after the worker phase. Its answer is not in the workers'
-observations, and its own candidate never improves their reported result. That
-separation matters: the experiment would answer a different question if agents
-could call the exact solver and forward its output to one another.
+A validator rejects duplicates, out-of-range values and forbidden triples. A valid candidate with L members establishes a lower bound. It does not prove that a larger candidate is impossible.
 
-Small instances are appropriate for catching mistakes. They may be poor tests
-of sophisticated reasoning. The repository begins with m values from 10 through
-24 and records a deterministic-solver baseline. If that method solves the cases
-almost immediately, the article should say so. Extending the task would require
-a disclosed new protocol and fresh validation, not an invisible change after
-seeing uninteresting outcomes.
+A separate exact evaluator supplies the upper bound U. Equality U=L establishes solved status. The evaluator runs after the worker phase, and its answer never enters a worker observation. Its candidate is never credited to a model.
 
-## Four ways to organize the work
+For the selected instance, m=24, the optimum is ten. Across the ten started runs, the exact evaluator's median recorded time was approximately 8.47 milliseconds. The median worker phase was approximately 190 seconds, including stopped runs and API waiting. These host-specific measurements make the conventional baseline clear: the deterministic solver handles this task easily.
 
-The solo condition gives one searcher the run's decision ceiling. The independent
-condition divides opportunities among multiple searchers without sharing their
-findings. Their results are collected by the experimenter, but their observations
-contain no shared incumbent or common summary. Even an allocator reacting to
-another worker's success could leak information, so independent workers use
-outcome-blind scheduling.
+The study examines model coordination under constrained observations. It does not demonstrate new mathematics or an advantage over a suitable exact algorithm. Possible familiarity with this tiny problem remains another limitation.
 
-Fixed coordination assigns one coordinator and N-1 searchers. Searchers report
-to the coordinator, which rotates its recipients. Adaptive coordination uses
-the same role count but allows its policy to select message timing and a peer
-recipient. In the offline implementation these selections are programmed
-heuristics: share a better candidate, request help periodically, or prioritize
-a peer whose reported result is weak or unknown.
+## Why this instance was selected
 
-Those rules are useful for exercising the protocol. They do not demonstrate
-emergent organization. Roles are assigned, the search procedure is written in
-Python, and the routing behavior is part of the design. A later live policy may
-make different choices within the same constraints, but the evidence must come
-from actual calls and preserved traces.
+An initial live pilot at m=12 found the optimum of six on its first call and repeated it twice. Three calls used 2,260 tokens and USD 0.016160 calculated cost. That checked the integration, while leaving little room for a team to improve quality.
 
-N counts every decision agent, including the coordinator. A ten-agent team has
-one coordinator and nine searchers, not ten searchers plus free management. The
-verifier and scheduler are deterministic infrastructure. Their elapsed compute
-still belongs in the resource report even though they are outside N.
+A separately authorized calibration used three solo decisions each at m=18 and m=24. The first m=18 candidate reached its optimum of eight. All three m=24 candidates had eight members against an optimum of ten. A rule declared before calibration therefore selected m=24 for the comparison. Those six calls used 10,395 tokens and USD 0.102580 calculated cost. [Calibration record](terra-calibration-results.md)
 
-## A runtime that makes the boundaries visible
+Pilot and calibration traces remain outside the comparative sample. Selection demonstrated headroom in one trace, not a stable estimate of difficulty.
 
-The implementation separates scheduling, policies, artifacts, verification and
-display. Each agent has a private incumbent and a bounded mailbox. A decision
-returns a candidate, at most one message, and identifiers for delivered messages
-the policy reports using. Recipient rules and candidate checks run before claims
-are accepted into the permitted communication path.
+Earlier offline runs exercised the runtime with real local search and simulated model accounting. Their quality pattern showed no coordination advantage. Review also found that an original scheduling description did not match the implementation. The repository preserves the correction and identifies the later reporting rerun as validation after inspection. That history is separate from the live campaign. [Offline record](results.md)
 
-Tasks have one-decision ownership and finite retries. The runtime limits
-concurrency independently of team size and records assignments, submissions,
-verification outcomes, message delivery and completion. SQLite stores events,
-artifact versions and usage entries durably. A local viewer projects that record
-into a team graph and timeline; it does not invent activity to make the graph
-look busy.
+## Four configurations, explicit boundaries
 
-An edge is only an edge. Sending a message differs from delivering it. Delivering
-it differs from including it in a later observation. A policy's reported use
-provides provenance, not proof that the message improved the result. Clicking
-through to payloads and parents helps inspect the trace, but the viewer does
-not expose or manufacture private chain of thought.
+Each run received ceilings of twelve decision calls, 100,000 tokens and USD 1:
 
-Scheduling is part of the experimental condition too. The current runtime works
-in bounded rounds, but offline decisions execute serially with immediate message
-delivery before the next agent's observation. A round does not provide a shared
-observation snapshot. Live calls can overlap, and their completion order can vary
-with provider latency, so a fixed seed alone cannot guarantee the same live trace.
+| Configuration | Decision agents | Permitted communication |
+| --- | --- | --- |
+| Solo | One searcher | None |
+| Independent | Four searchers | None |
+| Fixed | One coordinator and three searchers | Through the coordinator |
+| Adaptive | One coordinator and three searchers | Each agent may choose another peer |
 
-## Accounting before inference
+The coordinator counts toward the four-agent roster and pays for its calls. It can submit candidates under the same task prompt; its role is not exclusively managerial. With twelve completed calls, each team member receives three opportunities, while the solo state receives twelve.
 
-The laboratory has three explicit modes. Scripted mode supplies predetermined
-actions for protocol and display checks. Algorithmic mode performs real seeded
-local search. Live mode uses actual provider calls and never silently substitutes
-a fixture when a call fails.
+Every configuration used gpt-5.6-terra with medium reasoning, the default service tier, a 25,000-token maximum output allowance including reasoning, a 120-second timeout and zero retries. Concurrency was one. Within a team, dispatch followed agent order, allowing a later agent to see a message delivered earlier in the round.
 
-The first two modes still exercise a usage ledger. Their token and currency
-entries are visibly simulated. They make zero actual model calls, while consuming
-real local time, storage and CPU. A simulated dollar total is a test of arithmetic
-and attribution, not a claim about the cost of model reasoning.
+Each run began with empty private state. Independent workers received no common incumbent, peer result or summary, and their scheduling did not react to others' success. Fixed and adaptive used the same role composition and call allocation. Fixed routing allowed the coordinator to choose a searcher recipient; adaptive permitted additional routes.
 
-For live calls, the ledger separates pre-call estimates, provider-reported usage
-with calculated cost, and billing-reconciled charges. Every attempt has its own
-identity. A retry is another attempt, while duplicate telemetry about the same
-attempt must not duplicate spending. A timeout with missing usage remains
-potentially chargeable; the ledger does not turn an absent number into zero.
+The independent-versus-coordinated contrast changes both communication and role composition. Fixed-versus-adaptive compares routing permission more closely, but still cannot isolate the value of one message.
 
-Reservations happen atomically before concurrent dispatch. Each reserves an
-input estimate and bounded output allowance against shared token and currency
-ceilings. Coordinator requests, research requests and retries draw from that
-same ceiling. Usage then settles the reservation, or an unresolved charge keeps
-a conservative commitment. Provider activity can outlast a local cancellation,
-so the implementation reports overshoot instead of promising perfect control
-over billing.
+Five repetition blocks produced twenty planned rows. Condition order was randomized within each block and frozen before inference with the protocol, configurations and source hashes. Recorded seeds identify runs; they do not control provider sampling. The workers were not stopped early because an experimenter recognized a good candidate.
 
-The price snapshot is frozen with the run. Cached input and reasoning counters
-are treated as subsets of their reported parent totals. Adding those counters
-again would inflate tokens and distort comparisons. Peer messages become part
-of model cost when they enter a request's context; local delivery alone is not
-another model charge. Exact context attribution remains an estimate unless the
-provider supplies a more precise breakdown.
+## The missing half stays visible
 
-## Allocation is an experiment too
+Only five runs completed all twelve calls. Three other runs ended on invalid mathematical candidates. A fourth stopped when the adapter labeled its response `invalid_action`. That response's usage was available, but its undecoded public output was not retained, so the underlying response problem cannot be diagnosed from the saved evidence.
 
-The initial campaign uses round robin. Each team receives 48 total decision
-opportunities, so a larger team divides the same ceiling across more private
-states. This is a matched decision comparison. It does not match real tokens,
-dollars or elapsed time, and those distinctions remain visible in the report.
+The third solo run then encountered `transport_unknown` on its tenth request, attempt 95 overall. The adapter does not distinguish a timeout from another network failure in that outcome. No request ID or usage was available. Under the protocol, that ambiguity halted the entire campaign.
 
-The code also contains an experimental allocation heuristic that combines mean
-verified progress with an exploration allowance and divides by estimated cost.
-The exploration term reserves opportunity for work whose reward has not yet
-appeared. It is excluded from the primary comparison so changing allocation does
-not become another unexplained difference between communication conditions.
+The table retains every planned run. Numbers are best independently valid candidate sizes; the exact optimum is ten throughout the started sample.
 
-Auer, Cesa-Bianchi and Fischer's 2002 paper provides finite-time results for
-specific bandit policies. This laboratory's dependent, changing search tasks do
-not inherit those guarantees merely because an allocation formula contains an
-exploration term. The formula here is an engineering hypothesis to test.
-[Original paper](https://cesa-bianchi.di.unimi.it/Pubblicazioni/ml-02.pdf)
+| Repetition | Solo | Independent | Fixed | Adaptive |
+| --- | --- | --- | --- | --- |
+| 1 | 9; failed | 9; completed | 9; failed | 8; failed |
+| 2 | 8; completed | 8; completed | 9; failed | 9; completed |
+| 3 | 9; interrupted | 9; completed | Unstarted | Unstarted |
+| 4 | Unstarted | Unstarted | Unstarted | Unstarted |
+| 5 | Unstarted | Unstarted | Unstarted | Unstarted |
 
-## What would count as cooperation?
+All ten started runs retain measurable quality despite their different stopping states. Seven finished with a best candidate of nine members, three with eight. None reached ten. Solved/attempted counts are 0/3 for solo, 0/3 for independent, 0/2 for fixed and 0/2 for adaptive. Unstarted rows have no quality value.
 
-Adaptive communication means recipient or timing choices were available to a
-policy. Emergent organization would require recurring specialization or
-collaboration that was not assigned in advance. Effective cooperation requires
-an improvement in verified outcomes under a controlled comparison. These are
-different claims with different evidence requirements.
+Fixed reached nine in both observed runs; adaptive reached eight and nine. Both fixed runs failed, while one adaptive run completed. Independent and solo also each produced eight- and nine-member outcomes. These small, uneven, interrupted samples support no reliable ranking of the configurations.
 
-Jaques and colleagues investigated rewarding causal influence over other agents'
-actions in multi-agent reinforcement learning, using counterfactual reasoning.
-That offers a methodological connection, not a result about this laboratory.
-Here, the evaluation criterion remains verified problem-solving quality: changing
-another worker's behavior can also spread a mistake.
-[Original paper](https://arxiv.org/abs/1810.08647)
+Duplicate work was visible too. The second solo and independent runs each made twelve decisions without improving beyond eight; each recorded eleven duplicate candidates. Additional opportunities did not improve those particular traces. That is an observation about their outputs, not a general conclusion about model reasoning.
 
-A stronger message-value test would fork a checkpoint just before a delivery.
-One continuation receives the message, while the other does not. Both retain
-comparable remaining budgets, and the same information must not leak through
-another artifact, summary or paraphrased message. Repeating those continuations
-across cases would make a causal claim more credible than highlighting one
-attractive trace.
+## What the ledger can actually say
 
-The current withholding option is only a diagnostic filter. It can suppress a
-numbered message and repeated identical content, but it does not restore full
-agent state or control semantic leakage. The sound checkpoint design is
-documented as future work. No causal result should be inferred from the filter's
-existence.
+The authorized stage had aggregate ceilings of 240 attempts, two million tokens and USD 20. Every comparison request, including failed and coordinator requests, shared those limits. Earlier pilots, Codex-assisted development and local compute are outside the reported comparison API spending.
 
-## Results section — pending comparative live evidence
+Before dispatch, the ledger reserved a conservative input estimate and maximum output headroom against both the run and campaign allowances. Reported usage released unused capacity. Underspend was not transferred between conditions. A known failure ended its run without replacement calls; ambiguous usage required the campaign stop.
 
-The offline protocol was specified before comparative analysis: four universe
-sizes, three seeds, and seven combinations of condition and team size. The
-preserved campaign report is the source for offline quality, gap, timing,
-communication and accounting observations. Insert its findings here with the
-code revision, protocol hash, attempt denominator and an explicitly algorithmic
-label. Include the deterministic baseline and failures.
+| Configuration | Attempts | Known tokens | Known calculated USD |
+| --- | ---: | ---: | ---: |
+| Solo | 25 | 39,706† | 0.386382† |
+| Independent | 36 | 54,437 | 0.514824 |
+| Fixed | 16 | 30,968 | 0.299966 |
+| Adaptive | 18 | 31,528 | 0.298486 |
+| **Campaign** | **95** | **156,639**† | **1.499658**† |
 
-The initial offline campaign solved 63 of 84 runs. Every run at m=10,12,18 reached
-the independently computed optimum; every m=24 run ended one member below it.
-The solved/gap pattern was the same across all seven team configurations, so
-these observations do not support an advantage for coordination. Review also
-found that the protocol's original scheduling description did not match the
-serial offline implementation. Amendment A preserves and discloses that mismatch;
-the final reporting rerun is validation after inspection, not an independent
-preregistered replication. See the [results record](results.md) for preserved
-artifacts, revisions and final timings.
+The dagger (†) marks an incomplete subtotal: one solo request has unknown usage. Its reservation remains 28,075 tokens and USD 0.3076875. Known use plus that reservation gives committed accounting of 184,714 tokens and USD 1.8073455. A reservation is not a measured charge, and it does not establish the provider's final bill.
 
-A subsequent authorized solo Terra pilot completed three calls and reached the
-independently verified optimum of six members at m=12. It used 2,260 reported
-tokens and USD 0.016160 calculated API cost, below the agreed 100,000-token and
-USD 2 ceilings. The first call found the candidate; the next two repeated it.
-This checks the live integration and accounting on a tiny instance. It supplies
-no evidence that communication improves quality, and the calculated cost has
-not been reconciled against billing. See the [pilot record](terra-pilot.md).
+No budget overshoot or retry was recorded. No run stopped for budget exhaustion. The campaign stopped because accounting became uncertain, despite substantial unused allowances.
 
-A separately authorized difficulty calibration then used three solo decisions
-at each of m=18 and m=24. The first m=18 decision reached its optimum of eight.
-At m=24, all three decisions returned eight members while independent evaluation
-established an optimum of ten. The predeclared rule therefore selected m=24 for
-a proposed comparison. The six calls used 10,395 tokens and USD 0.102580 calculated
-API cost. Every output repeated the same eight-member construction; extra calls
-did not improve either trace's candidate size. These are calibration observations,
-kept separate from the comparative sample. See the [calibration report](terra-calibration-results.md).
+The 94 known responses reported 38,001 input and 118,638 output tokens, including 112,695 reasoning tokens within output. Cache reads and writes were explicitly zero. The price snapshot, verified and frozen on September 9, 2026, priced ordinary input at USD 2 and output at USD 12 per million tokens. Those totals produce the USD 1.499658 known subtotal. All billing remains unreconciled. [Frozen price snapshot](../configs/gpt-5.6-terra-price.json)
 
-Before completing this section, report the following from authorized comparative live runs:
+Ten coordinator-purpose calls account for 9,219 known tokens and USD 0.054538, already included above. Messages carried in searcher inputs also consume tokens; their exact individual contribution is not separately measured. Local delivery does not itself create another API request.
 
-- Exact model/version, prompts, settings, price dates and total ceilings.
-- Verified quality and gap distributions, solved counts and stopping reasons.
-- Full-campaign tokens and cost, including retries and unsuccessful attempts.
-- Coordination overhead, timing and unknown or unreconciled charges.
-- Controlled fixed/adaptive comparisons and evidence against the favored hypothesis.
+Cost per solution is undefined because no run solved. The campaign's overall efficiency calculation is additionally incomplete because one charge is unresolved.
 
-With three offline seeds, descriptive variation is appropriate; significance
-claims are not. If no configuration succeeds, cost per success is undefined.
-If a deterministic algorithm dominates, that is a useful result about this
-task. If communication improves a few outcomes, that is a reason for a larger
-controlled test, not a conclusion about organizations of models in general.
+![Verified quality against known provider-reported tokens](../examples/terra-comparison/report/quality-vs-tokens.png)
 
-The repository makes these decisions visible: inspect a candidate, verify its
-provenance, replay the same record, and check what was counted. That is the work
-needed before an interesting network animation becomes evidence about useful
-coordination.
+![Verified quality against known calculated API cost](../examples/terra-comparison/report/quality-vs-cost.png)
+
+The curves use saved verification events and accounting. Endpoints retain known failure costs; the interrupted endpoint contains only a known subtotal. Stopped curves are not extended into hypothetical later decisions.
+
+## A message can travel without improving the answer
+
+The annotated example was selected by a reproducible rule: take the earliest adaptive run with a delivered message, its first delivery, and the receiver's first observation and valid candidate in that task. It is not a success highlight.
+
+In `r01-adaptive`, event 9 delivered the coordinator's eight-member candidate to agent 1 with a request for help. Event 13 shows that exact message in the receiver's observation. The receiver reported using it, recorded by event 16, and event 18 validated the same eight-member set. Across those first two requests, the team used 5,355 tokens and USD 0.056020 calculated cost. Its best candidate remained eight. [Annotated public trace](../examples/terra-comparison/report/trace-annotations.md)
+
+That sequence establishes delivery, visibility and reported use. It does not establish that the message caused the repeated answer or prevented an improvement. The run later failed on an invalid candidate, and that outcome stays attached to the example. At event 62, the proposed set included 16, 19 and 22. Those three numbers form an arithmetic progression, so the verifier rejected the candidate and retained the earlier valid result.
+
+Across the started coordinated runs, 27 messages were delivered and 20 provenance events recorded policy-reported reuse. Neither count demonstrates beneficial cooperation. A stronger test would restore a checkpoint and compare continuations with and without selected information, preventing leakage through other messages or artifacts. The repository does not implement that complete intervention; its diagnostic withholding filter is insufficient for a causal claim.
+
+## The next useful engineering step
+
+This interrupted stage exposed two practical requirements: independent verification must survive plausible model output, and uncertain provider usage must survive a failed request. Both affect whether a later comparison can be trusted.
+
+The immediate follow-up is an offline review of the failure paths and sanitized diagnostic retention. Preserve enough public response status and parsing information to investigate `invalid_action`, while continuing to exclude credentials and private reasoning. The unresolved request needs billing or provider evidence before anyone can describe a complete cost total. A continuation would require a disclosed protocol amendment and fresh authorization; it would not silently fill the missing rows.
+
+For practitioners, the reusable work is the measurement boundary. Define success independently, make worker visibility explicit, count management and unsuccessful attempts, and retain missing results. Compare against the conventional method suited to the task. Here, that method establishes the optimum in milliseconds.
+
+The source, protocol and traces are available under the MIT license. The executed source was [revision 4a30a25](https://github.com/Entrasoft/agent-swarm/commit/4a30a2519491f355c60bcaa19799ab14010e71ab); the [results report](live-comparison-results.md) links the frozen manifest and replay checks. Readers can inspect the candidates and replay events without new model requests. That evidence is enough to examine what failed, while keeping the coordination question open.

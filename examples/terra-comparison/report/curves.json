@@ -1,0 +1,2034 @@
+[
+  {
+    "condition": "independent",
+    "path": "r01-independent",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.024546",
+        "known_tokens": 2353,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.024546",
+        "known_tokens": 2353,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 12,
+        "kind": "usage",
+        "known_cost_usd": "0.036468",
+        "known_tokens": 3654,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 14,
+        "kind": "verification",
+        "known_cost_usd": "0.036468",
+        "known_tokens": 3654,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 19,
+        "kind": "usage",
+        "known_cost_usd": "0.053610",
+        "known_tokens": 5390,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 21,
+        "kind": "verification",
+        "known_cost_usd": "0.053610",
+        "known_tokens": 5390,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 26,
+        "kind": "usage",
+        "known_cost_usd": "0.088008",
+        "known_tokens": 8564,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 28,
+        "kind": "verification",
+        "known_cost_usd": "0.088008",
+        "known_tokens": 8564,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 33,
+        "kind": "usage",
+        "known_cost_usd": "0.102226",
+        "known_tokens": 10078,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 35,
+        "kind": "verification",
+        "known_cost_usd": "0.102226",
+        "known_tokens": 10078,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 40,
+        "kind": "usage",
+        "known_cost_usd": "0.124454",
+        "known_tokens": 12257,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 42,
+        "kind": "verification",
+        "known_cost_usd": "0.124454",
+        "known_tokens": 12257,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 47,
+        "kind": "usage",
+        "known_cost_usd": "0.138774",
+        "known_tokens": 13777,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 49,
+        "kind": "verification",
+        "known_cost_usd": "0.138774",
+        "known_tokens": 13777,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 54,
+        "kind": "usage",
+        "known_cost_usd": "0.147490",
+        "known_tokens": 14830,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "verification",
+        "known_cost_usd": "0.147490",
+        "known_tokens": 14830,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 61,
+        "kind": "usage",
+        "known_cost_usd": "0.152684",
+        "known_tokens": 15592,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 63,
+        "kind": "verification",
+        "known_cost_usd": "0.152684",
+        "known_tokens": 15592,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 68,
+        "kind": "usage",
+        "known_cost_usd": "0.202092",
+        "known_tokens": 20036,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 70,
+        "kind": "verification",
+        "known_cost_usd": "0.202092",
+        "known_tokens": 20036,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 76,
+        "kind": "usage",
+        "known_cost_usd": "0.210940",
+        "known_tokens": 21100,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 78,
+        "kind": "verification",
+        "known_cost_usd": "0.210940",
+        "known_tokens": 21100,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 83,
+        "kind": "usage",
+        "known_cost_usd": "0.221924",
+        "known_tokens": 22342,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 85,
+        "kind": "verification",
+        "known_cost_usd": "0.221924",
+        "known_tokens": 22342,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 88,
+        "kind": "endpoint",
+        "known_cost_usd": "0.221924",
+        "known_tokens": 22342,
+        "lower_bound": 9,
+        "status": "completed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 1,
+    "status": "completed"
+  },
+  {
+    "condition": "fixed",
+    "path": "r01-fixed",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.004804",
+        "known_tokens": 707,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.004804",
+        "known_tokens": 707,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 15,
+        "kind": "usage",
+        "known_cost_usd": "0.046238",
+        "known_tokens": 4534,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 18,
+        "kind": "verification",
+        "known_cost_usd": "0.046238",
+        "known_tokens": 4534,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 25,
+        "kind": "usage",
+        "known_cost_usd": "0.059706",
+        "known_tokens": 5963,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 27,
+        "kind": "verification",
+        "known_cost_usd": "0.059706",
+        "known_tokens": 5963,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 34,
+        "kind": "usage",
+        "known_cost_usd": "0.069370",
+        "known_tokens": 7075,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 36,
+        "kind": "verification",
+        "known_cost_usd": "0.069370",
+        "known_tokens": 7075,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 46,
+        "kind": "usage",
+        "known_cost_usd": "0.075018",
+        "known_tokens": 8159,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 51,
+        "kind": "verification",
+        "known_cost_usd": "0.075018",
+        "known_tokens": 8159,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "usage",
+        "known_cost_usd": "0.100688",
+        "known_tokens": 10624,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 58,
+        "kind": "verification",
+        "known_cost_usd": "0.100688",
+        "known_tokens": 10624,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 65,
+        "kind": "usage",
+        "known_cost_usd": "0.154234",
+        "known_tokens": 15412,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 67,
+        "kind": "verification",
+        "known_cost_usd": "0.154234",
+        "known_tokens": 15412,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 74,
+        "kind": "usage",
+        "known_cost_usd": "0.168144",
+        "known_tokens": 16897,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 76,
+        "kind": "verification",
+        "known_cost_usd": "0.168144",
+        "known_tokens": 16897,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 86,
+        "kind": "usage",
+        "known_cost_usd": "0.174610",
+        "known_tokens": 18000,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 89,
+        "kind": "verification",
+        "known_cost_usd": "0.174610",
+        "known_tokens": 18000,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 94,
+        "kind": "usage",
+        "known_cost_usd": "0.201822",
+        "known_tokens": 20596,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 98,
+        "kind": "endpoint",
+        "known_cost_usd": "0.201822",
+        "known_tokens": 20596,
+        "lower_bound": 9,
+        "status": "failed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 1,
+    "status": "failed"
+  },
+  {
+    "condition": "adaptive",
+    "path": "r01-adaptive",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.004624",
+        "known_tokens": 692,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.004624",
+        "known_tokens": 692,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 15,
+        "kind": "usage",
+        "known_cost_usd": "0.056020",
+        "known_tokens": 5355,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 18,
+        "kind": "verification",
+        "known_cost_usd": "0.056020",
+        "known_tokens": 5355,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 25,
+        "kind": "usage",
+        "known_cost_usd": "0.064916",
+        "known_tokens": 6403,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 27,
+        "kind": "verification",
+        "known_cost_usd": "0.064916",
+        "known_tokens": 6403,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 34,
+        "kind": "usage",
+        "known_cost_usd": "0.096720",
+        "known_tokens": 9360,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 36,
+        "kind": "verification",
+        "known_cost_usd": "0.096720",
+        "known_tokens": 9360,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 46,
+        "kind": "usage",
+        "known_cost_usd": "0.105386",
+        "known_tokens": 10633,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 51,
+        "kind": "verification",
+        "known_cost_usd": "0.105386",
+        "known_tokens": 10633,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 59,
+        "kind": "usage",
+        "known_cost_usd": "0.149910",
+        "known_tokens": 14725,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 62,
+        "kind": "verification",
+        "known_cost_usd": "0.149910",
+        "known_tokens": 14725,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 66,
+        "kind": "endpoint",
+        "known_cost_usd": "0.149910",
+        "known_tokens": 14725,
+        "lower_bound": 8,
+        "status": "failed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 1,
+    "status": "failed"
+  },
+  {
+    "condition": "solo",
+    "path": "r01-solo",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.02796",
+        "known_tokens": 2625,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.02796",
+        "known_tokens": 2625,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 12,
+        "kind": "usage",
+        "known_cost_usd": "0.039088",
+        "known_tokens": 3869,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 14,
+        "kind": "verification",
+        "known_cost_usd": "0.039088",
+        "known_tokens": 3869,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 19,
+        "kind": "usage",
+        "known_cost_usd": "0.048620",
+        "known_tokens": 4980,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 21,
+        "kind": "verification",
+        "known_cost_usd": "0.048620",
+        "known_tokens": 4980,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 24,
+        "kind": "endpoint",
+        "known_cost_usd": "0.048620",
+        "known_tokens": 4980,
+        "lower_bound": 9,
+        "status": "failed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 1,
+    "status": "failed"
+  },
+  {
+    "condition": "fixed",
+    "path": "r02-fixed",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.004612",
+        "known_tokens": 691,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.004612",
+        "known_tokens": 691,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 15,
+        "kind": "usage",
+        "known_cost_usd": "0.021494",
+        "known_tokens": 2457,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 18,
+        "kind": "verification",
+        "known_cost_usd": "0.021494",
+        "known_tokens": 2457,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 25,
+        "kind": "usage",
+        "known_cost_usd": "0.058386",
+        "known_tokens": 5838,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 27,
+        "kind": "verification",
+        "known_cost_usd": "0.058386",
+        "known_tokens": 5838,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 34,
+        "kind": "usage",
+        "known_cost_usd": "0.086686",
+        "known_tokens": 8503,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 36,
+        "kind": "verification",
+        "known_cost_usd": "0.086686",
+        "known_tokens": 8503,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 46,
+        "kind": "usage",
+        "known_cost_usd": "0.091290",
+        "known_tokens": 9475,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 49,
+        "kind": "verification",
+        "known_cost_usd": "0.091290",
+        "known_tokens": 9475,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 54,
+        "kind": "usage",
+        "known_cost_usd": "0.098144",
+        "known_tokens": 10372,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "verification",
+        "known_cost_usd": "0.098144",
+        "known_tokens": 10372,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 60,
+        "kind": "endpoint",
+        "known_cost_usd": "0.098144",
+        "known_tokens": 10372,
+        "lower_bound": 9,
+        "status": "failed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 2,
+    "status": "failed"
+  },
+  {
+    "condition": "adaptive",
+    "path": "r02-adaptive",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.005824",
+        "known_tokens": 792,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.005824",
+        "known_tokens": 792,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 15,
+        "kind": "usage",
+        "known_cost_usd": "0.025192",
+        "known_tokens": 2766,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 18,
+        "kind": "verification",
+        "known_cost_usd": "0.025192",
+        "known_tokens": 2766,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 25,
+        "kind": "usage",
+        "known_cost_usd": "0.032396",
+        "known_tokens": 3673,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 27,
+        "kind": "verification",
+        "known_cost_usd": "0.032396",
+        "known_tokens": 3673,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 34,
+        "kind": "usage",
+        "known_cost_usd": "0.038496",
+        "known_tokens": 4488,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 36,
+        "kind": "verification",
+        "known_cost_usd": "0.038496",
+        "known_tokens": 4488,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 46,
+        "kind": "usage",
+        "known_cost_usd": "0.044380",
+        "known_tokens": 5550,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 51,
+        "kind": "verification",
+        "known_cost_usd": "0.044380",
+        "known_tokens": 5550,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 59,
+        "kind": "usage",
+        "known_cost_usd": "0.078320",
+        "known_tokens": 8760,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 62,
+        "kind": "verification",
+        "known_cost_usd": "0.078320",
+        "known_tokens": 8760,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 69,
+        "kind": "usage",
+        "known_cost_usd": "0.083710",
+        "known_tokens": 9535,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 71,
+        "kind": "verification",
+        "known_cost_usd": "0.083710",
+        "known_tokens": 9535,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 78,
+        "kind": "usage",
+        "known_cost_usd": "0.091560",
+        "known_tokens": 10515,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 80,
+        "kind": "verification",
+        "known_cost_usd": "0.091560",
+        "known_tokens": 10515,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 90,
+        "kind": "usage",
+        "known_cost_usd": "0.094966",
+        "known_tokens": 11358,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 95,
+        "kind": "verification",
+        "known_cost_usd": "0.094966",
+        "known_tokens": 11358,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 100,
+        "kind": "usage",
+        "known_cost_usd": "0.106344",
+        "known_tokens": 12632,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 102,
+        "kind": "verification",
+        "known_cost_usd": "0.106344",
+        "known_tokens": 12632,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 109,
+        "kind": "usage",
+        "known_cost_usd": "0.142910",
+        "known_tokens": 16005,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 111,
+        "kind": "verification",
+        "known_cost_usd": "0.142910",
+        "known_tokens": 16005,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 118,
+        "kind": "usage",
+        "known_cost_usd": "0.148576",
+        "known_tokens": 16803,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 120,
+        "kind": "verification",
+        "known_cost_usd": "0.148576",
+        "known_tokens": 16803,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 125,
+        "kind": "endpoint",
+        "known_cost_usd": "0.148576",
+        "known_tokens": 16803,
+        "lower_bound": 9,
+        "status": "completed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 2,
+    "status": "completed"
+  },
+  {
+    "condition": "independent",
+    "path": "r02-independent",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.013278",
+        "known_tokens": 1414,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.013278",
+        "known_tokens": 1414,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 12,
+        "kind": "usage",
+        "known_cost_usd": "0.023964",
+        "known_tokens": 2612,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 14,
+        "kind": "verification",
+        "known_cost_usd": "0.023964",
+        "known_tokens": 2612,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 19,
+        "kind": "usage",
+        "known_cost_usd": "0.037566",
+        "known_tokens": 4053,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 21,
+        "kind": "verification",
+        "known_cost_usd": "0.037566",
+        "known_tokens": 4053,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 26,
+        "kind": "usage",
+        "known_cost_usd": "0.044184",
+        "known_tokens": 4912,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 28,
+        "kind": "verification",
+        "known_cost_usd": "0.044184",
+        "known_tokens": 4912,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 33,
+        "kind": "usage",
+        "known_cost_usd": "0.051616",
+        "known_tokens": 5858,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 35,
+        "kind": "verification",
+        "known_cost_usd": "0.051616",
+        "known_tokens": 5858,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 40,
+        "kind": "usage",
+        "known_cost_usd": "0.057368",
+        "known_tokens": 6664,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 42,
+        "kind": "verification",
+        "known_cost_usd": "0.057368",
+        "known_tokens": 6664,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 47,
+        "kind": "usage",
+        "known_cost_usd": "0.064344",
+        "known_tokens": 7572,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 49,
+        "kind": "verification",
+        "known_cost_usd": "0.064344",
+        "known_tokens": 7572,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 54,
+        "kind": "usage",
+        "known_cost_usd": "0.077752",
+        "known_tokens": 9016,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "verification",
+        "known_cost_usd": "0.077752",
+        "known_tokens": 9016,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 61,
+        "kind": "usage",
+        "known_cost_usd": "0.084260",
+        "known_tokens": 9885,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 63,
+        "kind": "verification",
+        "known_cost_usd": "0.084260",
+        "known_tokens": 9885,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 68,
+        "kind": "usage",
+        "known_cost_usd": "0.102000",
+        "known_tokens": 11690,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 70,
+        "kind": "verification",
+        "known_cost_usd": "0.102000",
+        "known_tokens": 11690,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 75,
+        "kind": "usage",
+        "known_cost_usd": "0.120376",
+        "known_tokens": 13548,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 77,
+        "kind": "verification",
+        "known_cost_usd": "0.120376",
+        "known_tokens": 13548,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 82,
+        "kind": "usage",
+        "known_cost_usd": "0.126788",
+        "known_tokens": 14409,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 84,
+        "kind": "verification",
+        "known_cost_usd": "0.126788",
+        "known_tokens": 14409,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 87,
+        "kind": "endpoint",
+        "known_cost_usd": "0.126788",
+        "known_tokens": 14409,
+        "lower_bound": 8,
+        "status": "completed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 2,
+    "status": "completed"
+  },
+  {
+    "condition": "solo",
+    "path": "r02-solo",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.010632",
+        "known_tokens": 1181,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.010632",
+        "known_tokens": 1181,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 12,
+        "kind": "usage",
+        "known_cost_usd": "0.022306",
+        "known_tokens": 2468,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 14,
+        "kind": "verification",
+        "known_cost_usd": "0.022306",
+        "known_tokens": 2468,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 19,
+        "kind": "usage",
+        "known_cost_usd": "0.035468",
+        "known_tokens": 3879,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 21,
+        "kind": "verification",
+        "known_cost_usd": "0.035468",
+        "known_tokens": 3879,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 26,
+        "kind": "usage",
+        "known_cost_usd": "0.068238",
+        "known_tokens": 6924,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 28,
+        "kind": "verification",
+        "known_cost_usd": "0.068238",
+        "known_tokens": 6924,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 33,
+        "kind": "usage",
+        "known_cost_usd": "0.081016",
+        "known_tokens": 8303,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 35,
+        "kind": "verification",
+        "known_cost_usd": "0.081016",
+        "known_tokens": 8303,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 40,
+        "kind": "usage",
+        "known_cost_usd": "0.096830",
+        "known_tokens": 9935,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 42,
+        "kind": "verification",
+        "known_cost_usd": "0.096830",
+        "known_tokens": 9935,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 47,
+        "kind": "usage",
+        "known_cost_usd": "0.109788",
+        "known_tokens": 11329,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 49,
+        "kind": "verification",
+        "known_cost_usd": "0.109788",
+        "known_tokens": 11329,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 54,
+        "kind": "usage",
+        "known_cost_usd": "0.114982",
+        "known_tokens": 12076,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "verification",
+        "known_cost_usd": "0.114982",
+        "known_tokens": 12076,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 61,
+        "kind": "usage",
+        "known_cost_usd": "0.136244",
+        "known_tokens": 14162,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 63,
+        "kind": "verification",
+        "known_cost_usd": "0.136244",
+        "known_tokens": 14162,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 68,
+        "kind": "usage",
+        "known_cost_usd": "0.148326",
+        "known_tokens": 15483,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 70,
+        "kind": "verification",
+        "known_cost_usd": "0.148326",
+        "known_tokens": 15483,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 75,
+        "kind": "usage",
+        "known_cost_usd": "0.154984",
+        "known_tokens": 16352,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 77,
+        "kind": "verification",
+        "known_cost_usd": "0.154984",
+        "known_tokens": 16352,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 82,
+        "kind": "usage",
+        "known_cost_usd": "0.169622",
+        "known_tokens": 17886,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 84,
+        "kind": "verification",
+        "known_cost_usd": "0.169622",
+        "known_tokens": 17886,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 87,
+        "kind": "endpoint",
+        "known_cost_usd": "0.169622",
+        "known_tokens": 17886,
+        "lower_bound": 8,
+        "status": "completed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 2,
+    "status": "completed"
+  },
+  {
+    "condition": "independent",
+    "path": "r03-independent",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.006426",
+        "known_tokens": 843,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.006426",
+        "known_tokens": 843,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 12,
+        "kind": "usage",
+        "known_cost_usd": "0.014976",
+        "known_tokens": 1863,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 14,
+        "kind": "verification",
+        "known_cost_usd": "0.014976",
+        "known_tokens": 1863,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 19,
+        "kind": "usage",
+        "known_cost_usd": "0.035802",
+        "known_tokens": 3906,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 21,
+        "kind": "verification",
+        "known_cost_usd": "0.035802",
+        "known_tokens": 3906,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 26,
+        "kind": "usage",
+        "known_cost_usd": "0.049092",
+        "known_tokens": 5321,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 28,
+        "kind": "verification",
+        "known_cost_usd": "0.049092",
+        "known_tokens": 5321,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 33,
+        "kind": "usage",
+        "known_cost_usd": "0.063784",
+        "known_tokens": 6872,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 35,
+        "kind": "verification",
+        "known_cost_usd": "0.063784",
+        "known_tokens": 6872,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 40,
+        "kind": "usage",
+        "known_cost_usd": "0.069164",
+        "known_tokens": 7647,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 42,
+        "kind": "verification",
+        "known_cost_usd": "0.069164",
+        "known_tokens": 7647,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 47,
+        "kind": "usage",
+        "known_cost_usd": "0.098016",
+        "known_tokens": 10378,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 49,
+        "kind": "verification",
+        "known_cost_usd": "0.098016",
+        "known_tokens": 10378,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 54,
+        "kind": "usage",
+        "known_cost_usd": "0.107512",
+        "known_tokens": 11496,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "verification",
+        "known_cost_usd": "0.107512",
+        "known_tokens": 11496,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 61,
+        "kind": "usage",
+        "known_cost_usd": "0.118352",
+        "known_tokens": 12726,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 63,
+        "kind": "verification",
+        "known_cost_usd": "0.118352",
+        "known_tokens": 12726,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 68,
+        "kind": "usage",
+        "known_cost_usd": "0.142332",
+        "known_tokens": 15051,
+        "lower_bound": 8,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 70,
+        "kind": "verification",
+        "known_cost_usd": "0.142332",
+        "known_tokens": 15051,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 75,
+        "kind": "usage",
+        "known_cost_usd": "0.160456",
+        "known_tokens": 16888,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 77,
+        "kind": "verification",
+        "known_cost_usd": "0.160456",
+        "known_tokens": 16888,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 82,
+        "kind": "usage",
+        "known_cost_usd": "0.166112",
+        "known_tokens": 17686,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 84,
+        "kind": "verification",
+        "known_cost_usd": "0.166112",
+        "known_tokens": 17686,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 87,
+        "kind": "endpoint",
+        "known_cost_usd": "0.166112",
+        "known_tokens": 17686,
+        "lower_bound": 9,
+        "status": "completed",
+        "tokens_complete": true
+      }
+    ],
+    "repetition": 3,
+    "status": "completed"
+  },
+  {
+    "condition": "solo",
+    "path": "r03-solo",
+    "points": [
+      {
+        "cost_complete": true,
+        "event_id": null,
+        "kind": "initial",
+        "known_cost_usd": "0",
+        "known_tokens": 0,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 5,
+        "kind": "usage",
+        "known_cost_usd": "0.03546",
+        "known_tokens": 3250,
+        "lower_bound": 0,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 7,
+        "kind": "verification",
+        "known_cost_usd": "0.03546",
+        "known_tokens": 3250,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 12,
+        "kind": "usage",
+        "known_cost_usd": "0.051244",
+        "known_tokens": 4882,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 14,
+        "kind": "verification",
+        "known_cost_usd": "0.051244",
+        "known_tokens": 4882,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 19,
+        "kind": "usage",
+        "known_cost_usd": "0.068852",
+        "known_tokens": 6666,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 21,
+        "kind": "verification",
+        "known_cost_usd": "0.068852",
+        "known_tokens": 6666,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 26,
+        "kind": "usage",
+        "known_cost_usd": "0.083196",
+        "known_tokens": 8178,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 28,
+        "kind": "verification",
+        "known_cost_usd": "0.083196",
+        "known_tokens": 8178,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 33,
+        "kind": "usage",
+        "known_cost_usd": "0.102700",
+        "known_tokens": 10120,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 35,
+        "kind": "verification",
+        "known_cost_usd": "0.102700",
+        "known_tokens": 10120,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 40,
+        "kind": "usage",
+        "known_cost_usd": "0.115292",
+        "known_tokens": 11486,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 42,
+        "kind": "verification",
+        "known_cost_usd": "0.115292",
+        "known_tokens": 11486,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 47,
+        "kind": "usage",
+        "known_cost_usd": "0.148320",
+        "known_tokens": 14555,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 49,
+        "kind": "verification",
+        "known_cost_usd": "0.148320",
+        "known_tokens": 14555,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 54,
+        "kind": "usage",
+        "known_cost_usd": "0.154744",
+        "known_tokens": 15407,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 56,
+        "kind": "verification",
+        "known_cost_usd": "0.154744",
+        "known_tokens": 15407,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 61,
+        "kind": "usage",
+        "known_cost_usd": "0.168140",
+        "known_tokens": 16840,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": true,
+        "event_id": 63,
+        "kind": "verification",
+        "known_cost_usd": "0.168140",
+        "known_tokens": 16840,
+        "lower_bound": 9,
+        "tokens_complete": true
+      },
+      {
+        "cost_complete": false,
+        "event_id": 67,
+        "kind": "usage",
+        "known_cost_usd": "0.168140",
+        "known_tokens": 16840,
+        "lower_bound": 9,
+        "tokens_complete": false
+      },
+      {
+        "cost_complete": false,
+        "event_id": 71,
+        "kind": "endpoint",
+        "known_cost_usd": "0.168140",
+        "known_tokens": 16840,
+        "lower_bound": 9,
+        "status": "interrupted",
+        "tokens_complete": false
+      }
+    ],
+    "repetition": 3,
+    "status": "interrupted"
+  },
+  {
+    "condition": "adaptive",
+    "path": "r03-adaptive",
+    "points": [],
+    "repetition": 3,
+    "status": "unstarted"
+  },
+  {
+    "condition": "fixed",
+    "path": "r03-fixed",
+    "points": [],
+    "repetition": 3,
+    "status": "unstarted"
+  },
+  {
+    "condition": "solo",
+    "path": "r04-solo",
+    "points": [],
+    "repetition": 4,
+    "status": "unstarted"
+  },
+  {
+    "condition": "adaptive",
+    "path": "r04-adaptive",
+    "points": [],
+    "repetition": 4,
+    "status": "unstarted"
+  },
+  {
+    "condition": "fixed",
+    "path": "r04-fixed",
+    "points": [],
+    "repetition": 4,
+    "status": "unstarted"
+  },
+  {
+    "condition": "independent",
+    "path": "r04-independent",
+    "points": [],
+    "repetition": 4,
+    "status": "unstarted"
+  },
+  {
+    "condition": "fixed",
+    "path": "r05-fixed",
+    "points": [],
+    "repetition": 5,
+    "status": "unstarted"
+  },
+  {
+    "condition": "solo",
+    "path": "r05-solo",
+    "points": [],
+    "repetition": 5,
+    "status": "unstarted"
+  },
+  {
+    "condition": "independent",
+    "path": "r05-independent",
+    "points": [],
+    "repetition": 5,
+    "status": "unstarted"
+  },
+  {
+    "condition": "adaptive",
+    "path": "r05-adaptive",
+    "points": [],
+    "repetition": 5,
+    "status": "unstarted"
+  }
+]
