@@ -1,14 +1,16 @@
-# Four Agents, One Checkable Problem: What an Interrupted Comparison Revealed
+# Four Agents, One Checkable Problem: What Two Interrupted Studies Revealed
 
-**Unpublished article draft. Prepared from the preserved comparison on 2026-09-09; requires author review before posting.**
+**Unpublished article draft. Updated 2026-09-10 with the separately authorized feedback follow-up; requires author review before posting.**
 
-The experiment stopped before it answered the question that motivated it.
+The first experiment stopped before answering its central question.
 
 Agent Swarm was built to compare one model-driven worker with small teams, then ask whether communication improved a verified answer enough to justify its cost. Twenty runs were planned. Ten started. After 95 request attempts, a transport failure left one request's usage unknown, and the campaign stopped under its declared protocol.
 
 None of the ten started runs found the optimum. The 94 responses with known usage accounted for 156,639 tokens and USD 1.499658 calculated cost. The final request remains unresolved, so the campaign has no complete cost total.
 
-That leaves an interrupted comparison and a useful reliability case study. Candidates, failures, information boundaries and spending can all be inspected. It does not establish that four agents outperform one, or that communication is harmful. [Full results and evidence](live-comparison-results.md)
+A smaller follow-up then tested a worker's own attempt history and validation feedback. It also halted, after 32 attempts. The sole observed treatment repeated one valid set; both observed baseline runs improved from eight members to nine.
+
+These interrupted studies leave inspectable evidence about repetition, information boundaries and reliability. They establish neither a swarm advantage nor a harmful effect of feedback. Both campaigns have separate protocols and budgets. [Coordination comparison](live-comparison-results.md), [feedback follow-up](feedback-v02-results.md)
 
 ## A familiar coordination problem
 
@@ -16,7 +18,7 @@ Task assignment and communication have a long engineering history. Reid G. Smith
 
 Here, a language model fills a narrow decision slot. It receives a scoped observation and returns a candidate plus an optional message. Deterministic code controls delivery, validation, scheduling and spending. A persuasive answer cannot redefine success or authorize another request.
 
-An agent is a stateful decision unit. Each decision is a fresh Responses request; persistent state consists of that worker's best candidate and a bounded mailbox. The system does not preserve a full conversation transcript. Four agents therefore means four separate states, not necessarily four processes or four different models. Separate contexts also do not imply statistically independent reasoning.
+An agent is a stateful decision unit. Each decision is a fresh Responses request; in the first comparison, persistent state consisted of that worker's best candidate and a bounded mailbox. The system does not preserve a full conversation transcript. Four agents therefore means four separate states, not necessarily four processes or four different models. Separate contexts also do not imply statistically independent reasoning.
 
 ## A problem with an independent answer
 
@@ -36,7 +38,7 @@ An initial live pilot at m=12 found the optimum of six on its first call and rep
 
 A separately authorized calibration used three solo decisions each at m=18 and m=24. The first m=18 candidate reached its optimum of eight. All three m=24 candidates had eight members against an optimum of ten. A rule declared before calibration therefore selected m=24 for the comparison. Those six calls used 10,395 tokens and USD 0.102580 calculated cost. [Calibration record](terra-calibration-results.md)
 
-Pilot and calibration traces remain outside the comparative sample. Selection demonstrated headroom in one trace, not a stable estimate of difficulty.
+Neither stage contributes observations to the comparison. Selection demonstrated headroom in one trace.
 
 Earlier offline runs exercised the runtime with real local search and simulated model accounting. Their quality pattern showed no coordination advantage. Review also found that an original scheduling description did not match the implementation. The repository preserves the correction and identifies the later reporting rerun as validation after inspection. That history is separate from the live campaign. [Offline record](results.md)
 
@@ -59,7 +61,7 @@ Each run began with empty private state. Independent workers received no common 
 
 The independent-versus-coordinated contrast changes both communication and role composition. Fixed-versus-adaptive compares routing permission more closely, but still cannot isolate the value of one message.
 
-Five repetition blocks produced twenty planned rows. Condition order was randomized within each block and frozen before inference with the protocol, configurations and source hashes. Recorded seeds identify runs; they do not control provider sampling. The workers were not stopped early because an experimenter recognized a good candidate.
+Five repetition blocks produced twenty planned rows. Condition order was randomized within each block and frozen before inference with the protocol, configurations and source hashes. Recorded seeds identify runs; they do not control provider sampling. Candidate quality did not trigger early stopping.
 
 ## The missing half stays visible
 
@@ -81,7 +83,7 @@ All ten started runs retain measurable quality despite their different stopping 
 
 Fixed reached nine in both observed runs; adaptive reached eight and nine. Both fixed runs failed, while one adaptive run completed. Independent and solo also each produced eight- and nine-member outcomes. These small, uneven, interrupted samples support no reliable ranking of the configurations.
 
-Duplicate work was visible too. The second solo and independent runs each made twelve decisions without improving beyond eight; each recorded eleven duplicate candidates. Additional opportunities did not improve those particular traces. That is an observation about their outputs, not a general conclusion about model reasoning.
+Duplicate work was visible too. The second solo and independent runs each made twelve decisions without improving beyond eight; each recorded eleven duplicate candidates. Additional opportunities did not improve those particular traces.
 
 ## What the ledger can actually say
 
@@ -115,7 +117,7 @@ The curves use saved verification events and accounting. Endpoints retain known 
 
 ## A message can travel without improving the answer
 
-The annotated example was selected by a reproducible rule: take the earliest adaptive run with a delivered message, its first delivery, and the receiver's first observation and valid candidate in that task. It is not a success highlight.
+The annotated example follows a reproducible rule: the earliest adaptive run with a delivered message, its first delivery, and the receiver's first observation and valid candidate in that task.
 
 In `r01-adaptive`, event 9 delivered the coordinator's eight-member candidate to agent 1 with a request for help. Event 13 shows that exact message in the receiver's observation. The receiver reported using it, recorded by event 16, and event 18 validated the same eight-member set. Across those first two requests, the team used 5,355 tokens and USD 0.056020 calculated cost. Its best candidate remained eight. [Annotated public trace](../examples/terra-comparison/report/trace-annotations.md)
 
@@ -123,12 +125,33 @@ That sequence establishes delivery, visibility and reported use. It does not est
 
 Across the started coordinated runs, 27 messages were delivered and 20 provenance events recorded policy-reported reuse. Neither count demonstrates beneficial cooperation. A stronger test would restore a checkpoint and compare continuations with and without selected information, preventing leakage through other messages or artifacts. The repository does not implement that complete intervention; its diagnostic withholding filter is insufficient for a causal claim.
 
-## The next useful engineering step
+## A smaller follow-up tested the search loop
 
-This interrupted stage exposed two practical requirements: independent verification must survive plausible model output, and uncertain provider usage must survive a failed request. Both affect whether a later comparison can be trusted.
+The first comparison recorded 74 duplicates among 90 valid submissions. Workers retained a private best but no attempt history or explicit validation feedback. Before testing peer influence, the next study asked whether a solo worker could use a bounded record of its own attempts to make progress.
 
-The immediate follow-up is an offline review of the failure paths and sanitized diagnostic retention. Preserve enough public response status and parsing information to investigate `invalid_action`, while continuing to exclude credentials and private reasoning. The unresolved request needs billing or provider evidence before anyone can describe a complete cost total. A continuation would require a disclosed protocol amendment and fresh authorization; it would not silently fill the missing rows.
+Version 0.2 added sanitized failure diagnostics and offline tests for history isolation, validation, stopping and accounting. A separately approved pilot compared private-best-only observations with observations containing up to eight prior attempts and validator feedback, keeping other settings equal. Memory and feedback were a combined intervention; their individual effects were not isolated.
 
-For practitioners, the reusable work is the measurement boundary. Define success independently, make worker visibility explicit, count management and unsuccessful attempts, and retain missing results. Compare against the conventional method suited to the task. Here, that method establishes the optimum in milliseconds.
+Both arms now consumed a scheduled decision on invalid mathematics and could continue to the next admissible request. Malformed or prohibited actions still stopped the run. Three paired blocks froze six solo runs, each limited to twelve attempts, 100,000 tokens and USD 1; aggregate ceilings were 72 attempts, 600,000 tokens and USD 6. Earlier runs were not added to this new control sample.
 
-The source, protocol and traces are available under the MIT license. The executed source was [revision 4a30a25](https://github.com/Entrasoft/agent-swarm/commit/4a30a2519491f355c60bcaa19799ab14010e71ab); the [results report](live-comparison-results.md) links the frozen manifest and replay checks. Readers can inspect the candidates and replay events without new model requests. That evidence is enough to examine what failed, while keeping the coordination question open.
+The primary outcome was distinct valid candidate sets across each run. Best size was reported alongside diversity. These are all six planned rows:
+
+| Block | Arm | Attempts | Distinct valid sets | Best size | Status |
+| --- | --- | ---: | ---: | ---: | --- |
+| 1 | History and feedback | 9 | 1 | 8 | Protocol failure |
+| 1 | Private best only | 12 | 2 | 9 | Completed |
+| 2 | Private best only | 11 | 2 | 9 | Interrupted |
+| 2 | History and feedback | — | — | — | Unstarted |
+| 3 | History and feedback | — | — | — | Unstarted |
+| 3 | Private best only | — | — | — | Unstarted |
+
+The treatment submitted the same eight-member set eight times. Its observations contained prior repetitions, yet no verified improvement followed. The predeclared qualification criterion—progress after seeing a prior invalid or repeated attempt—was therefore unmet. In the only block with both arms observed, treatment minus baseline was −1 distinct valid set, with different stopping states. This single pair cannot establish that feedback harmed performance.
+
+Both baseline runs improved from eight to nine. Three invalid mathematical submissions occurred in those baseline traces, and subsequent decisions proceeded under the new rule. Treatment correction after invalid mathematics was not exercised live. Its ninth response failed the local action contract; the log retained a generic reason, so the offending field cannot be identified.
+
+Attempt 32 ended in a client-side transport timeout with no response headers received. Diagnostics retained a client correlation ID; no provider request ID or usage was available. That narrows the observed failure category, without identifying its underlying cause, whether the provider executed the request, or its charge. Unknown accounting again halted the campaign.
+
+The 31 known attempts used 65,225 tokens and USD 0.644390 calculated cost. A further 28,077 tokens and USD 0.3076925 remain reserved. Complete cost is unknown; billing is unreconciled. These figures belong solely to v0.2 and do not settle the first campaign's unresolved request. [Follow-up report and traces](feedback-v02-results.md)
+
+The next work is to review the unsuccessful search loop offline, investigate the request timeout and retain specific, sanitized local contract-failure categories. The deterministic evaluator remained a millisecond-scale baseline. More paid sampling would need a new proposal; neither campaign's missing rows will be silently filled.
+
+The MIT-licensed repository preserves [the first executed source](https://github.com/Entrasoft/agent-swarm/commit/4a30a2519491f355c60bcaa19799ab14010e71ab), [the v0.2 source](https://github.com/Entrasoft/agent-swarm/commit/d86c9c38ba0d8a283423087f13fe148d88253b94) and both evidence packages. Readers can replay candidates, history and accounting without another model request. The coordination question remains open.
