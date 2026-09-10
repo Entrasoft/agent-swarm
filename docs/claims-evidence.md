@@ -1,8 +1,9 @@
 # Claims-to-evidence register
 
 Prepared 2026-09-09; updated 2026-09-10 with the separately authorized v0.2
-feedback results. Historical sources were fetched and checked against primary
-papers on 2026-09-09. This register separates source-backed history, implemented
+feedback results and the author's stated motivation. Historical sources were
+checked against primary papers on 2026-09-09; the OpenAI announcement was checked
+on 2026-09-10. This register separates source-backed history, implemented
 design, hypotheses and measured evidence. Drafts are unpublished; offline tests
 and live observations remain separate evidence.
 
@@ -41,7 +42,8 @@ and live observations remain separate evidence.
 | The initial protocol correctly specified all scheduling details | Disproved implementation-description claim | Runtime review found serial offline decisions with immediate delivery, contrary to the original batch description. [Protocol Amendment A](experiment-protocol.md#amendment-a--scheduling-clarification-after-initial-outcome-inspection) | Original snapshot retained; correction made after initial outcomes were seen. Do not call the final rerun an independent preregistered replication. |
 | A particular message caused useful progress | Unestablished causal claim | Proposed checkpoint/fork design in [protocol](experiment-protocol.md) | Current numbered-message withholding is a filter without full checkpoint restoration or semantic leakage control. |
 | Live workers improve on a deterministic solver | Unestablished empirical claim | Requires a suitable task and controlled comparison | The tiny Terra pilot's exact evaluator took about 0.095 ms, versus about 26.2 seconds for the worker phase. The pilot supports integration, not an advantage over deterministic search. |
-| A contemporary frontier-lab mathematical effort explains this architecture | Omitted claim | No such claim is required by this article | Do not infer another organization's internal architecture or proof status from conversation, a headline or a reconstructed diagram. |
+| The project was motivated by a desire to observe cooperation emerging in a small agent swarm, inspired by OpenAI's Navier–Stokes work | Author-confirmed motivation | The author explicitly supplied this motivation for the article prelude on 2026-09-10 | This establishes the reason for the project, not an observed emergence result or a reproduction of OpenAI's system. Assigned roles and permitted messages alone do not demonstrate emergent organization. |
+| OpenAI reported a Navier–Stokes solution produced through a large coordinated-agent effort | Source-backed announcement | [OpenAI's September 8 announcement](https://openai.com/index/navier-stokes-solution/), checked 2026-09-10, describes communicating groups, roughly 10,000 concurrent agents in the successful group, researcher guidance, a proof writeup and a Lean formalization | Attribute the reported result to OpenAI. Its Navier–Stokes claim concerns forced breakdown alternatives C and D. The announcement alone does not establish independent acceptance, spontaneous cooperation, or cooperation's causal contribution; do not infer undisclosed architecture. |
 
 The supplied UCF mirror of Smith's paper returned HTTP 403 during direct fetch.
 The author's own hosted PDF above was available and verified. Publication dates
