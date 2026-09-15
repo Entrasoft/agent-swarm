@@ -2,13 +2,13 @@
 
 **Our small swarm experiment did not establish an advantage from cooperation.** Agents exchanged results and reported using one another's contributions, but we could not show that working together improved their answers.
 
+We asked agents to find the largest subset of the numbers 1 through 24 containing no three evenly spaced numbers. We chose it because every candidate could be checked independently and preliminary model attempts left room for improvement. An exact solver established in milliseconds that the largest valid set contained ten numbers, giving us a clear measure of progress.
+
 The comparison recorded 27 delivered messages and 20 reports of reuse. None of the ten started runs reached the known optimum. Only five of twenty planned runs completed, leaving the comparison inconclusive.
 
 We had set out to see whether useful cooperation would emerge: one agent finding something another could challenge, extend, or combine into a better result.
 
 Our inspiration was OpenAI's reported Navier–Stokes result, involving roughly 10,000 concurrent agents in the successful group. Our comparison used at most four agent states, taking turns under very different conditions. [OpenAI's account](https://openai.com/index/navier-stokes-solution/)
-
-We chose a modest mathematical task with independently checkable answers: find a large integer set containing no three distinct numbers in arithmetic progression. An exact solver handled our instance in milliseconds. Our purpose was to inspect how agents worked together.
 
 One trace made the distinction concrete: a recipient reported using a colleague's message, then submitted the same candidate. Information traveled; that step produced no improvement.
 
