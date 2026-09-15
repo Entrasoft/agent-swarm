@@ -10,6 +10,8 @@ The offline runtime, validator, hidden exact evaluator, durable usage ledger, lo
 
 The subsequent [v0.2 solo feedback qualification](docs/feedback-v02-results.md) also halted, after 32 attempts. Its feedback progress criterion was unmet. All six planned rows are preserved; three never started. Known usage is 65,225 tokens and USD 0.644390, with a separate reservation held for one unresolved request. The studies remain inconclusive about coordination and feedback effectiveness.
 
+**Current focus: publication.** Further paid experiments are paused. The [revised article](docs/article-draft.md) explains the motivation, scale limits, and lessons from the interrupted studies; the [detailed study account](docs/study-account.md) preserves the longer technical narrative. See [publication notes](docs/publication-notes.md) for the current editorial scope and future research preferences.
+
 ## Offline quickstart
 
 Python 3.11 or later. The runtime and tests use the standard library; no API key or package installation is needed from the checkout.
@@ -73,6 +75,7 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 - [Architecture](docs/architecture.md) and [predefined experiment protocol](docs/experiment-protocol.md)
 - [Claims and evidence](docs/claims-evidence.md)
 - [Article working draft](docs/article-draft.md) and [LinkedIn draft](docs/linkedin-draft.md), unpublished
+- [Detailed study account](docs/study-account.md) and [publication notes](docs/publication-notes.md)
 - [Original handoff](docs/codex-swarm-lab-handoff.md), describing the broader intended project
 
 Checkpoint/fork causal interventions and empirical claims of emergent or effective cooperation remain future work. The message-withholding prototype is not a causal experiment. See the protocol for the required leakage controls.
