@@ -1,6 +1,10 @@
 # What Two Interrupted Agent Experiments Taught Us About Testing Cooperation
 
-**Unpublished article draft. Revised September 15, 2026.**
+**Publication deferred September 15, 2026. Retained as an unpublished project record.**
+
+The draft below preserves the previous narrative, including its former publication
+plan. It is not being prepared for release. See the [current decision](publication-notes.md)
+and [research watch](research-watch.md).
 
 We began with a simple curiosity: could we build a small agent swarm and watch useful cooperation emerge? We wanted agents to build on one another's discoveries, challenge weak ideas, and find complementary ways forward. A modest experiment, with every interaction visible, seemed a practical place to start.
 

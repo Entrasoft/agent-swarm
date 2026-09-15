@@ -2,16 +2,32 @@
 
 Updated September 15, 2026, following the author's direction.
 
-## Current deliverable
+## Publication is deferred
 
-The primary objective is a useful practitioner article, with a shorter LinkedIn
-companion. The [article](article-draft.md) leads with the original motivation,
-one observable interaction, the interruptions, and the limits of the evidence.
-The [detailed study account](study-account.md) retains the previous technical
-narrative. Full results and frozen experimental records remain unchanged.
+The author has decided to leave this work on hold and monitor outside research.
+The aim of publication is a substantive contribution that demonstrates capability
+or expertise, rather than publication for its own sake. This exploratory project
+has not established a novel approach or a sufficiently informative result to meet
+that standard. The earlier plan to publish a practitioner article is superseded.
 
-The drafts remain unpublished articles. Repository changes do not constitute
-posting to LinkedIn or another editorial outlet.
+The [article](article-draft.md), [LinkedIn companion](linkedin-draft.md), and
+[detailed study account](study-account.md) remain as records. Do not continue
+polishing or posting them without a new direction from the author. Full results,
+executed protocols, and frozen experimental records remain unchanged.
+
+## Preserve the original research aim
+
+The author reaffirmed the motivating hypothesis: with a suitable problem and
+sufficient opportunity to interact, a modest team might exhibit useful
+cooperation by building on intermediate results and improving verified outcomes.
+This restates the research aim; the frozen protocols remain the record of the
+specific tests actually planned and performed.
+
+We did not observe the expected beneficial cooperation in the executed setup.
+Messages and reported reuse did occur, but no performance advantage was
+established, and the comparisons were incomplete. Do not reframe the original
+hypothesis as expecting no cooperation and then declare success. The evidence
+also does not identify a minimum useful scale or rule out a meaningful effect.
 
 ## Further experiments are paused
 
@@ -23,12 +39,21 @@ advantage over equally resourced alternatives.
 The oscillator task and stronger encouragement mechanisms discussed in planning
 are possibilities, not selected or authorized experiments. Existing unused
 budget allowances do not authorize continuation. No experiment, infrastructure
-repair, or larger swarm is part of this publication edit.
+repair, or larger swarm is planned.
 
 Any later proposal should distinguish observable reuse, unassigned organization,
 and improved verified results per resource budget. It should justify its task
 and scale before observing outcomes, and identify what would warrant stopping.
 Increasing scale or requiring interaction cannot itself guarantee benefit.
+
+## Monitor rather than resume
+
+A monthly [research watch](research-watch.md) follows primary research in
+mathematical and scientific agent cooperation. It should surface only findings
+that materially affect whether a novel, feasible follow-up is worth considering.
+Positive results, informative null results, and failed replications can all
+change that decision. An alert is a reason to assess evidence, not authorization
+to resume experiments or publication.
 
 ## Separate future scientific interest
 
