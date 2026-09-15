@@ -1,5 +1,8 @@
 # LinkedIn companion — unpublished draft
 
+**Publication deferred September 15, 2026.** The text below is retained as a draft,
+including its former publication plan. See the [current decision](publication-notes.md).
+
 **Our small swarm experiment did not establish an advantage from cooperation.** Agents exchanged results and reported using one another's contributions, but we could not show that working together improved their answers.
 
 We asked agents to find the largest subset of the numbers 1 through 24 containing no three evenly spaced numbers. We chose it because every candidate could be checked independently and preliminary model attempts left room for improvement. An exact solver established in milliseconds that the largest valid set contained ten numbers, giving us a clear measure of progress.

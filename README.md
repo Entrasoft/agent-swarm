@@ -10,7 +10,7 @@ The offline runtime, validator, hidden exact evaluator, durable usage ledger, lo
 
 The subsequent [v0.2 solo feedback qualification](docs/feedback-v02-results.md) also halted, after 32 attempts. Its feedback progress criterion was unmet. All six planned rows are preserved; three never started. Known usage is 65,225 tokens and USD 0.644390, with a separate reservation held for one unresolved request. The studies remain inconclusive about coordination and feedback effectiveness.
 
-**Current focus: publication.** Further paid experiments are paused. The [revised article](docs/article-draft.md) explains the motivation, scale limits, and lessons from the interrupted studies; the [detailed study account](docs/study-account.md) preserves the longer technical narrative. See [publication notes](docs/publication-notes.md) for the current editorial scope and future research preferences.
+**Current status: publication and further experiments deferred.** The work remains an exploratory record; it has not established the substantive contribution the author wants to publish. The [article draft](docs/article-draft.md), [LinkedIn draft](docs/linkedin-draft.md), and [detailed study account](docs/study-account.md) are retained. A [monthly research watch](docs/research-watch.md) will look for evidence that could justify reconsidering the project. See [publication notes](docs/publication-notes.md) for the decision and future research preferences.
 
 ## Offline quickstart
 
