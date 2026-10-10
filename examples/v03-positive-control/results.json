@@ -1,0 +1,4412 @@
+{
+  "actual_model_calls": 0,
+  "actual_model_cost": "0",
+  "code_revision": "e88b0319ccec0e0068315d48dcb64cb260044732",
+  "finished": "2026-10-10T21:06:33.945244+00:00",
+  "gate": {
+    "comparisons": 60,
+    "detail": [
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 0,
+        "shared": [
+          22,
+          28
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 0,
+        "shared": [
+          15,
+          36
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 0,
+        "shared": [
+          14,
+          8
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 0,
+        "shared": [
+          18,
+          16
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 0,
+        "shared": [
+          18,
+          93
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 0,
+        "shared": [
+          16,
+          30
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 1,
+        "shared": [
+          23,
+          308
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 1,
+        "shared": [
+          15,
+          42
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 1,
+        "shared": [
+          14,
+          22
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 1,
+        "shared": [
+          18,
+          2
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 1,
+        "shared": [
+          17,
+          27
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 1,
+        "shared": [
+          16,
+          24
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 2,
+        "shared": [
+          22,
+          28
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 2,
+        "shared": [
+          15,
+          30
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 2,
+        "shared": [
+          14,
+          18
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 2,
+        "shared": [
+          19,
+          46
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 2,
+        "shared": [
+          18,
+          198
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 2,
+        "shared": [
+          16,
+          30
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 3,
+        "shared": [
+          22,
+          14
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 3,
+        "shared": [
+          15,
+          27
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 3,
+        "shared": [
+          14,
+          4
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 3,
+        "shared": [
+          18,
+          10
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 3,
+        "shared": [
+          18,
+          111
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 3,
+        "shared": [
+          16,
+          15
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 4,
+        "shared": [
+          22,
+          28
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 4,
+        "shared": [
+          15,
+          75
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 4,
+        "shared": [
+          14,
+          6
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 4,
+        "shared": [
+          18,
+          2
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 4,
+        "shared": [
+          17,
+          27
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 4,
+        "shared": [
+          16,
+          36
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 5,
+        "shared": [
+          22,
+          56
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 5,
+        "shared": [
+          15,
+          69
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 5,
+        "shared": [
+          14,
+          2
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 5,
+        "shared": [
+          18,
+          2
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 5,
+        "shared": [
+          18,
+          216
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 5,
+        "shared": [
+          16,
+          33
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 6,
+        "shared": [
+          22,
+          28
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 6,
+        "shared": [
+          15,
+          66
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 6,
+        "shared": [
+          14,
+          10
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 6,
+        "shared": [
+          18,
+          10
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 6,
+        "shared": [
+          18,
+          198
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 6,
+        "shared": [
+          16,
+          36
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 7,
+        "shared": [
+          23,
+          224
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 7,
+        "shared": [
+          15,
+          36
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 7,
+        "shared": [
+          14,
+          8
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 7,
+        "shared": [
+          18,
+          6
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 7,
+        "shared": [
+          18,
+          171
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 7,
+        "shared": [
+          16,
+          45
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 8,
+        "shared": [
+          22,
+          28
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 8,
+        "shared": [
+          15,
+          75
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 8,
+        "shared": [
+          14,
+          8
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 8,
+        "shared": [
+          18,
+          2
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 8,
+        "shared": [
+          18,
+          219
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 8,
+        "shared": [
+          16,
+          30
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 9,
+        "shared": [
+          22,
+          28
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          56,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          36
+        ],
+        "seed": 9,
+        "shared": [
+          15,
+          33
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          37,
+          12
+        ]
+      },
+      {
+        "independent": [
+          1,
+          22
+        ],
+        "seed": 9,
+        "shared": [
+          14,
+          18
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          37,
+          11
+        ]
+      },
+      {
+        "independent": [
+          1,
+          28
+        ],
+        "seed": 9,
+        "shared": [
+          18,
+          4
+        ],
+        "shared_wins": true,
+        "target": [
+          3,
+          50,
+          14
+        ]
+      },
+      {
+        "independent": [
+          1,
+          27
+        ],
+        "seed": 9,
+        "shared": [
+          18,
+          183
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          9
+        ]
+      },
+      {
+        "independent": [
+          1,
+          30
+        ],
+        "seed": 9,
+        "shared": [
+          16,
+          36
+        ],
+        "shared_wins": true,
+        "target": [
+          4,
+          36,
+          10
+        ]
+      }
+    ],
+    "passed": true,
+    "rule": "shared beats independent on every target in every seed",
+    "shared_wins": 60
+  },
+  "runs": [
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 22,
+        "agent-1": 22,
+        "agent-2": 22,
+        "agent-3": 22
+      },
+      "invalid": 43,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s0",
+      "replay_verified": true,
+      "rounds": 22,
+      "seed": 0,
+      "simulated_tokens": 37424,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 45
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 44,
+      "d": 22,
+      "decisions": {
+        "agent-0": 16,
+        "agent-1": 16,
+        "agent-2": 16,
+        "agent-3": 16
+      },
+      "invalid": 2,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-shared-s0",
+      "replay_verified": true,
+      "rounds": 16,
+      "seed": 0,
+      "simulated_tokens": 36060,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 62
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 31,
+        "agent-1": 31,
+        "agent-2": 31,
+        "agent-3": 31
+      },
+      "invalid": 85,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s0",
+      "replay_verified": true,
+      "rounds": 31,
+      "seed": 0,
+      "simulated_tokens": 37292,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 39
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 3,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-shared-s0",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 0,
+      "simulated_tokens": 36460,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 69
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 54,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s0",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 0,
+      "simulated_tokens": 36464,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 54
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 7,
+      "min_weight_count": 8,
+      "path": "q3-n37-k11-pc-shared-s0",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 0,
+      "simulated_tokens": 36972,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 73
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 25,
+        "agent-1": 25,
+        "agent-2": 25,
+        "agent-3": 25
+      },
+      "invalid": 59,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s0",
+      "replay_verified": true,
+      "rounds": 25,
+      "seed": 0,
+      "simulated_tokens": 37841,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 41
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 47,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 3,
+      "min_weight_count": 16,
+      "path": "q3-n50-k14-pc-shared-s0",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 0,
+      "simulated_tokens": 37952,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 65
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 64,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s0",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 0,
+      "simulated_tokens": 36574,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 48
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 59,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 2,
+      "min_weight_count": 93,
+      "path": "q4-n36-k9-pc-shared-s0",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 0,
+      "simulated_tokens": 37868,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 82
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 60,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s0",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 0,
+      "simulated_tokens": 38063,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 56
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 57,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 4,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-shared-s0",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 0,
+      "simulated_tokens": 36584,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 76
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 22,
+        "agent-1": 22,
+        "agent-2": 22,
+        "agent-3": 22
+      },
+      "invalid": 45,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s1",
+      "replay_verified": true,
+      "rounds": 22,
+      "seed": 1,
+      "simulated_tokens": 35788,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 43
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 23,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 308,
+      "path": "q3-n56-k14-pc-shared-s1",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 1,
+      "simulated_tokens": 36960,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 33,
+        "agent-1": 33,
+        "agent-2": 33,
+        "agent-3": 33
+      },
+      "invalid": 93,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s1",
+      "replay_verified": true,
+      "rounds": 33,
+      "seed": 1,
+      "simulated_tokens": 37773,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 39
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 8,
+      "min_weight_count": 42,
+      "path": "q4-n37-k12-pc-shared-s1",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 1,
+      "simulated_tokens": 36288,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 68
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 54,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s1",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 1,
+      "simulated_tokens": 37636,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 54
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 2,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-shared-s1",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 1,
+      "simulated_tokens": 37072,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 74
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 69,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s1",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 1,
+      "simulated_tokens": 37578,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 39
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 2,
+      "path": "q3-n50-k14-pc-shared-s1",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 1,
+      "simulated_tokens": 36920,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 66,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s1",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 1,
+      "simulated_tokens": 37293,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 46
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 59,
+      "d": 17,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 4,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-shared-s1",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 1,
+      "simulated_tokens": 37016,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 80
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 61,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s1",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 1,
+      "simulated_tokens": 36575,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 55
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 56,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 3,
+      "min_weight_count": 24,
+      "path": "q4-n36-k10-pc-shared-s1",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 1,
+      "simulated_tokens": 37220,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 77
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 70,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s2",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 2,
+      "simulated_tokens": 36974,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 38
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 22,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-shared-s2",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 2,
+      "simulated_tokens": 36948,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 83,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s2",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 2,
+      "simulated_tokens": 37356,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 37
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 4,
+      "min_weight_count": 30,
+      "path": "q4-n37-k12-pc-shared-s2",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 2,
+      "simulated_tokens": 36004,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 68
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 50,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s2",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 2,
+      "simulated_tokens": 37807,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 58
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 1,
+      "min_weight_count": 18,
+      "path": "q3-n37-k11-pc-shared-s2",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 2,
+      "simulated_tokens": 37484,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 75
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 87,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s2",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 2,
+      "simulated_tokens": 36804,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 33
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 47,
+      "d": 19,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 5,
+      "min_weight_count": 46,
+      "path": "q3-n50-k14-pc-shared-s2",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 2,
+      "simulated_tokens": 36628,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 63
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 31,
+        "agent-1": 31,
+        "agent-2": 31,
+        "agent-3": 31
+      },
+      "invalid": 79,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s2",
+      "replay_verified": true,
+      "rounds": 31,
+      "seed": 2,
+      "simulated_tokens": 38007,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 45
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 2,
+      "min_weight_count": 198,
+      "path": "q4-n36-k9-pc-shared-s2",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 2,
+      "simulated_tokens": 37208,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 82
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 51,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s2",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 2,
+      "simulated_tokens": 37524,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 61
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 57,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 3,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-shared-s2",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 2,
+      "simulated_tokens": 36836,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 77
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 22,
+        "agent-1": 22,
+        "agent-2": 22,
+        "agent-3": 22
+      },
+      "invalid": 41,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s3",
+      "replay_verified": true,
+      "rounds": 22,
+      "seed": 3,
+      "simulated_tokens": 36882,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 47
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 22,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 2,
+      "min_weight_count": 14,
+      "path": "q3-n56-k14-pc-shared-s3",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 3,
+      "simulated_tokens": 38008,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 66
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 71,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s3",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 3,
+      "simulated_tokens": 36959,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 37
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 3,
+      "min_weight_count": 27,
+      "path": "q4-n37-k12-pc-shared-s3",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 3,
+      "simulated_tokens": 36244,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 69
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 56,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s3",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 3,
+      "simulated_tokens": 36578,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 52
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 2,
+      "min_weight_count": 4,
+      "path": "q3-n37-k11-pc-shared-s3",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 3,
+      "simulated_tokens": 37292,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 74
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 26,
+        "agent-1": 26,
+        "agent-2": 26,
+        "agent-3": 26
+      },
+      "invalid": 62,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s3",
+      "replay_verified": true,
+      "rounds": 26,
+      "seed": 3,
+      "simulated_tokens": 37669,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 42
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 3,
+      "min_weight_count": 10,
+      "path": "q3-n50-k14-pc-shared-s3",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 3,
+      "simulated_tokens": 37436,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 65
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 62,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s3",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 3,
+      "simulated_tokens": 36892,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 46
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 3,
+      "min_weight_count": 111,
+      "path": "q4-n36-k9-pc-shared-s3",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 3,
+      "simulated_tokens": 37064,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 81
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 54,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s3",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 3,
+      "simulated_tokens": 36625,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 58
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 57,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 2,
+      "min_weight_count": 15,
+      "path": "q4-n36-k10-pc-shared-s3",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 3,
+      "simulated_tokens": 37212,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 78
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 24,
+        "agent-1": 24,
+        "agent-2": 24,
+        "agent-3": 24
+      },
+      "invalid": 57,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s4",
+      "replay_verified": true,
+      "rounds": 24,
+      "seed": 4,
+      "simulated_tokens": 37806,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 39
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 22,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 3,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-shared-s4",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 4,
+      "simulated_tokens": 37492,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 65
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 78,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s4",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 4,
+      "simulated_tokens": 37359,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 42
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 7,
+      "min_weight_count": 75,
+      "path": "q4-n37-k12-pc-shared-s4",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 4,
+      "simulated_tokens": 36612,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 69
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 54,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s4",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 4,
+      "simulated_tokens": 37351,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 58
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 3,
+      "min_weight_count": 6,
+      "path": "q3-n37-k11-pc-shared-s4",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 4,
+      "simulated_tokens": 36588,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 73
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 76,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s4",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 4,
+      "simulated_tokens": 36424,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 36
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 2,
+      "path": "q3-n50-k14-pc-shared-s4",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 4,
+      "simulated_tokens": 36904,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 70,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s4",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 4,
+      "simulated_tokens": 37638,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 50
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 17,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 3,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-shared-s4",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 4,
+      "simulated_tokens": 37020,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 81
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 64,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s4",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 4,
+      "simulated_tokens": 37426,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 56
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 57,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 3,
+      "min_weight_count": 36,
+      "path": "q4-n36-k10-pc-shared-s4",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 4,
+      "simulated_tokens": 36752,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 77
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 24,
+        "agent-1": 24,
+        "agent-2": 24,
+        "agent-3": 24
+      },
+      "invalid": 58,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s5",
+      "replay_verified": true,
+      "rounds": 24,
+      "seed": 5,
+      "simulated_tokens": 36825,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 38
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 22,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 56,
+      "path": "q3-n56-k14-pc-shared-s5",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 5,
+      "simulated_tokens": 36996,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 32,
+        "agent-1": 32,
+        "agent-2": 32,
+        "agent-3": 32
+      },
+      "invalid": 87,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s5",
+      "replay_verified": true,
+      "rounds": 32,
+      "seed": 5,
+      "simulated_tokens": 37263,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 41
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 4,
+      "min_weight_count": 69,
+      "path": "q4-n37-k12-pc-shared-s5",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 5,
+      "simulated_tokens": 35984,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 68
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 55,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s5",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 5,
+      "simulated_tokens": 36726,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 53
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 2,
+      "min_weight_count": 2,
+      "path": "q3-n37-k11-pc-shared-s5",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 5,
+      "simulated_tokens": 37064,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 74
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 80,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s5",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 5,
+      "simulated_tokens": 37401,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 32
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 2,
+      "path": "q3-n50-k14-pc-shared-s5",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 5,
+      "simulated_tokens": 36944,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 77,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s5",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 5,
+      "simulated_tokens": 37461,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 43
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 4,
+      "min_weight_count": 216,
+      "path": "q4-n36-k9-pc-shared-s5",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 5,
+      "simulated_tokens": 36620,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 80
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 31,
+        "agent-1": 31,
+        "agent-2": 31,
+        "agent-3": 31
+      },
+      "invalid": 70,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s5",
+      "replay_verified": true,
+      "rounds": 31,
+      "seed": 5,
+      "simulated_tokens": 37869,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 54
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 56,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 5,
+      "min_weight_count": 33,
+      "path": "q4-n36-k10-pc-shared-s5",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 5,
+      "simulated_tokens": 36340,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 75
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 22,
+        "agent-1": 22,
+        "agent-2": 22,
+        "agent-3": 22
+      },
+      "invalid": 42,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s6",
+      "replay_verified": true,
+      "rounds": 22,
+      "seed": 6,
+      "simulated_tokens": 36191,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 46
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 22,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 2,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-shared-s6",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 6,
+      "simulated_tokens": 37728,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 66
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 30,
+        "agent-1": 30,
+        "agent-2": 30,
+        "agent-3": 30
+      },
+      "invalid": 80,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s6",
+      "replay_verified": true,
+      "rounds": 30,
+      "seed": 6,
+      "simulated_tokens": 36815,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 40
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 2,
+      "min_weight_count": 66,
+      "path": "q4-n37-k12-pc-shared-s6",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 6,
+      "simulated_tokens": 36736,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 70
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 51,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s6",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 6,
+      "simulated_tokens": 37449,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 57
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 3,
+      "min_weight_count": 10,
+      "path": "q3-n37-k11-pc-shared-s6",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 6,
+      "simulated_tokens": 36844,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 73
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 26,
+        "agent-1": 26,
+        "agent-2": 26,
+        "agent-3": 26
+      },
+      "invalid": 62,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s6",
+      "replay_verified": true,
+      "rounds": 26,
+      "seed": 6,
+      "simulated_tokens": 37491,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 42
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 47,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 3,
+      "min_weight_count": 10,
+      "path": "q3-n50-k14-pc-shared-s6",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 6,
+      "simulated_tokens": 37724,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 65
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 63,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s6",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 6,
+      "simulated_tokens": 36816,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 49
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 4,
+      "min_weight_count": 198,
+      "path": "q4-n36-k9-pc-shared-s6",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 6,
+      "simulated_tokens": 36628,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 80
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 56,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s6",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 6,
+      "simulated_tokens": 37252,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 60
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 56,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 5,
+      "min_weight_count": 36,
+      "path": "q4-n36-k10-pc-shared-s6",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 6,
+      "simulated_tokens": 36352,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 75
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 24,
+        "agent-1": 24,
+        "agent-2": 24,
+        "agent-3": 24
+      },
+      "invalid": 53,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s7",
+      "replay_verified": true,
+      "rounds": 24,
+      "seed": 7,
+      "simulated_tokens": 37096,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 43
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 23,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 2,
+      "min_weight_count": 224,
+      "path": "q3-n56-k14-pc-shared-s7",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 7,
+      "simulated_tokens": 37772,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 66
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 75,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s7",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 7,
+      "simulated_tokens": 36569,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 37
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 2,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-shared-s7",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 7,
+      "simulated_tokens": 36980,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 70
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 60,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s7",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 7,
+      "simulated_tokens": 36744,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 52
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 4,
+      "min_weight_count": 8,
+      "path": "q3-n37-k11-pc-shared-s7",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 7,
+      "simulated_tokens": 36372,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 72
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 76,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s7",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 7,
+      "simulated_tokens": 37737,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 36
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 47,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 3,
+      "min_weight_count": 6,
+      "path": "q3-n50-k14-pc-shared-s7",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 7,
+      "simulated_tokens": 37700,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 65
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 55,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s7",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 7,
+      "simulated_tokens": 37082,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 53
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 3,
+      "min_weight_count": 171,
+      "path": "q4-n36-k9-pc-shared-s7",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 7,
+      "simulated_tokens": 37032,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 81
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 31,
+        "agent-1": 31,
+        "agent-2": 31,
+        "agent-3": 31
+      },
+      "invalid": 61,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s7",
+      "replay_verified": true,
+      "rounds": 31,
+      "seed": 7,
+      "simulated_tokens": 36843,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 63
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 56,
+      "d": 16,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 9,
+      "min_weight_count": 45,
+      "path": "q4-n36-k10-pc-shared-s7",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 7,
+      "simulated_tokens": 36668,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 75
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 24,
+        "agent-1": 24,
+        "agent-2": 24,
+        "agent-3": 24
+      },
+      "invalid": 53,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s8",
+      "replay_verified": true,
+      "rounds": 24,
+      "seed": 8,
+      "simulated_tokens": 37163,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 43
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 22,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-shared-s8",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 8,
+      "simulated_tokens": 36952,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 77,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s8",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 8,
+      "simulated_tokens": 37417,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 35
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 3,
+      "min_weight_count": 75,
+      "path": "q4-n37-k12-pc-shared-s8",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 8,
+      "simulated_tokens": 36240,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 69
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 57,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s8",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 8,
+      "simulated_tokens": 36555,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 51
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 3,
+      "min_weight_count": 8,
+      "path": "q3-n37-k11-pc-shared-s8",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 8,
+      "simulated_tokens": 36820,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 73
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 80,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s8",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 8,
+      "simulated_tokens": 38156,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 36
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 48,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 4,
+      "min_weight_count": 2,
+      "path": "q3-n50-k14-pc-shared-s8",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 8,
+      "simulated_tokens": 36904,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 64
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 26,
+        "agent-1": 26,
+        "agent-2": 26,
+        "agent-3": 26
+      },
+      "invalid": 53,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s8",
+      "replay_verified": true,
+      "rounds": 26,
+      "seed": 8,
+      "simulated_tokens": 36776,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 51
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 2,
+      "min_weight_count": 219,
+      "path": "q4-n36-k9-pc-shared-s8",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 8,
+      "simulated_tokens": 37256,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 82
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 54,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s8",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 8,
+      "simulated_tokens": 37709,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 62
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 57,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 4,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-shared-s8",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 8,
+      "simulated_tokens": 36584,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 76
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 24,
+        "agent-1": 24,
+        "agent-2": 24,
+        "agent-3": 24
+      },
+      "invalid": 61,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-independent-s9",
+      "replay_verified": true,
+      "rounds": 24,
+      "seed": 9,
+      "simulated_tokens": 36294,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 35
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 44,
+      "d": 22,
+      "decisions": {
+        "agent-0": 16,
+        "agent-1": 16,
+        "agent-2": 16,
+        "agent-3": 16
+      },
+      "invalid": 2,
+      "min_weight_count": 28,
+      "path": "q3-n56-k14-pc-shared-s9",
+      "replay_verified": true,
+      "rounds": 16,
+      "seed": 9,
+      "simulated_tokens": 35800,
+      "target": {
+        "k": 14,
+        "lower": 24,
+        "n": 56,
+        "q": 3,
+        "upper": 28
+      },
+      "valid": 62
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 70,
+      "min_weight_count": 36,
+      "path": "q4-n37-k12-pc-independent-s9",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 9,
+      "simulated_tokens": 36626,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 42
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 51,
+      "d": 15,
+      "decisions": {
+        "agent-0": 18,
+        "agent-1": 18,
+        "agent-2": 18,
+        "agent-3": 18
+      },
+      "invalid": 3,
+      "min_weight_count": 33,
+      "path": "q4-n37-k12-pc-shared-s9",
+      "replay_verified": true,
+      "rounds": 18,
+      "seed": 9,
+      "simulated_tokens": 36444,
+      "target": {
+        "k": 12,
+        "lower": 16,
+        "n": 37,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 69
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 28,
+        "agent-1": 28,
+        "agent-2": 28,
+        "agent-3": 28
+      },
+      "invalid": 51,
+      "min_weight_count": 22,
+      "path": "q3-n37-k11-pc-independent-s9",
+      "replay_verified": true,
+      "rounds": 28,
+      "seed": 9,
+      "simulated_tokens": 37802,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 61
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 54,
+      "d": 14,
+      "decisions": {
+        "agent-0": 19,
+        "agent-1": 19,
+        "agent-2": 19,
+        "agent-3": 19
+      },
+      "invalid": 4,
+      "min_weight_count": 18,
+      "path": "q3-n37-k11-pc-shared-s9",
+      "replay_verified": true,
+      "rounds": 19,
+      "seed": 9,
+      "simulated_tokens": 36384,
+      "target": {
+        "k": 11,
+        "lower": 17,
+        "n": 37,
+        "q": 3,
+        "upper": 18
+      },
+      "valid": 72
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 86,
+      "min_weight_count": 28,
+      "path": "q3-n50-k14-pc-independent-s9",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 9,
+      "simulated_tokens": 36768,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 30
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 47,
+      "d": 18,
+      "decisions": {
+        "agent-0": 17,
+        "agent-1": 17,
+        "agent-2": 17,
+        "agent-3": 17
+      },
+      "invalid": 3,
+      "min_weight_count": 4,
+      "path": "q3-n50-k14-pc-shared-s9",
+      "replay_verified": true,
+      "rounds": 17,
+      "seed": 9,
+      "simulated_tokens": 37672,
+      "target": {
+        "k": 14,
+        "lower": 20,
+        "n": 50,
+        "q": 3,
+        "upper": 24
+      },
+      "valid": 65
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 27,
+        "agent-1": 27,
+        "agent-2": 27,
+        "agent-3": 27
+      },
+      "invalid": 57,
+      "min_weight_count": 27,
+      "path": "q4-n36-k9-pc-independent-s9",
+      "replay_verified": true,
+      "rounds": 27,
+      "seed": 9,
+      "simulated_tokens": 37099,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 51
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 60,
+      "d": 18,
+      "decisions": {
+        "agent-0": 21,
+        "agent-1": 21,
+        "agent-2": 21,
+        "agent-3": 21
+      },
+      "invalid": 3,
+      "min_weight_count": 183,
+      "path": "q4-n36-k9-pc-shared-s9",
+      "replay_verified": true,
+      "rounds": 21,
+      "seed": 9,
+      "simulated_tokens": 36860,
+      "target": {
+        "k": 9,
+        "lower": 19,
+        "n": 36,
+        "q": 4,
+        "upper": 21
+      },
+      "valid": 81
+    },
+    {
+      "arm": "pc-independent",
+      "beats_record": false,
+      "best_lineage_crosses_agents": false,
+      "cross_agent_extensions": 0,
+      "d": 1,
+      "decisions": {
+        "agent-0": 29,
+        "agent-1": 29,
+        "agent-2": 29,
+        "agent-3": 29
+      },
+      "invalid": 59,
+      "min_weight_count": 30,
+      "path": "q4-n36-k10-pc-independent-s9",
+      "replay_verified": true,
+      "rounds": 29,
+      "seed": 9,
+      "simulated_tokens": 37291,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 57
+    },
+    {
+      "arm": "pc-shared",
+      "beats_record": false,
+      "best_lineage_crosses_agents": true,
+      "cross_agent_extensions": 57,
+      "d": 16,
+      "decisions": {
+        "agent-0": 20,
+        "agent-1": 20,
+        "agent-2": 20,
+        "agent-3": 20
+      },
+      "invalid": 2,
+      "min_weight_count": 36,
+      "path": "q4-n36-k10-pc-shared-s9",
+      "replay_verified": true,
+      "rounds": 20,
+      "seed": 9,
+      "simulated_tokens": 37212,
+      "target": {
+        "k": 10,
+        "lower": 18,
+        "n": 36,
+        "q": 4,
+        "upper": 20
+      },
+      "valid": 78
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "source_dirty": false,
+  "stage": "v0.3 Stage 1 positive control",
+  "started": "2026-10-10T20:24:50.719952+00:00",
+  "targets_file": "configs/v03/targets.json"
+}

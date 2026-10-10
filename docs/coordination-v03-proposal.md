@@ -1,8 +1,9 @@
 # Coordination v0.3 proposal: shared stepping stones on an open record
 
 **Status: Stages 0 and 1 approved by the owner on 2026-10-10 (offline only: no
-model requests and no API spending). Stages 2–4 remain proposed and need
-separate approval.** It responds to the standard in
+model requests and no API spending). Both gates passed; see the
+[Stage 0 and 1 record](coordination-v03-stage0-1.md). Stages 2–4 remain
+proposed and need separate approval.** It responds to the standard in
 [publication notes](publication-notes.md): a later proposal should justify its
 task and scale before observing outcomes, distinguish observable reuse from
 unassigned organization and from improved verified results per resource budget,

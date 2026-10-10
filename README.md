@@ -72,6 +72,7 @@ Live mode requires **all** of `--mode live`, `--allow-live`, `--model`, `--price
 - [Completed difficulty calibration and m=24 selection](docs/terra-calibration-results.md)
 - [Interrupted live comparison: results, costs and all twenty planned rows](docs/live-comparison-results.md)
 - [Approved four-condition live comparison protocol](docs/live-comparison-protocol.md) and [original proposal](docs/live-comparison-proposal.md)
+- [Coordination v0.3 proposal](docs/coordination-v03-proposal.md) and [Stage 0 and 1 record](docs/coordination-v03-stage0-1.md): offline verifier, frozen open-record targets and a passed positive control; no paid stage approved
 - [Architecture](docs/architecture.md) and [predefined experiment protocol](docs/experiment-protocol.md)
 - [Claims and evidence](docs/claims-evidence.md)
 - [Article working draft](docs/article-draft.md) and [LinkedIn draft](docs/linkedin-draft.md), unpublished
