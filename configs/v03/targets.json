@@ -1,0 +1,153 @@
+{
+  "examined": [
+    {
+      "k": 14,
+      "last_modified": "2003-09-22",
+      "lower": 24,
+      "n": 56,
+      "q": 3,
+      "rejection": null,
+      "sha256": "8d7118a735871442dc899744425a759b7aa3bc18ed90670dca81d9706242ee66",
+      "upper": 28,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=3&n=56&k=14"
+    },
+    {
+      "k": 12,
+      "last_modified": "2001-12-17",
+      "lower": 16,
+      "n": 37,
+      "q": 4,
+      "rejection": null,
+      "sha256": "60fc5fe7bd5ef55c2134c26b9a7db58fbba123e10001411ae2f373f4a87ae440",
+      "upper": 20,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=4&n=37&k=12"
+    },
+    {
+      "k": 11,
+      "last_modified": "2013-12-09",
+      "lower": 17,
+      "n": 37,
+      "q": 3,
+      "rejection": null,
+      "sha256": "e01ab0a005b89fef261a8be3a89353bc89eb4d736108b1c2d79ed14f906285a9",
+      "upper": 18,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=3&n=37&k=11"
+    },
+    {
+      "k": 14,
+      "last_modified": "2001-12-17",
+      "lower": 20,
+      "n": 50,
+      "q": 3,
+      "rejection": null,
+      "sha256": "3cb4e759b8b1eba5bb2761cc8ed0745760c6abcacac96d262d5856d540aa705f",
+      "upper": 24,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=3&n=50&k=14"
+    },
+    {
+      "k": 9,
+      "last_modified": "2002-03-18",
+      "lower": 19,
+      "n": 36,
+      "q": 4,
+      "rejection": null,
+      "sha256": "6299329557ab46fa3984bd312d23d02dcf0ab30e63d48c5db65b9859a4858051",
+      "upper": 21,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=4&n=36&k=9"
+    },
+    {
+      "k": 10,
+      "last_modified": "2012-11-28",
+      "lower": 18,
+      "n": 36,
+      "q": 4,
+      "rejection": null,
+      "sha256": "997b8f0eed11cb987e30b51cbaab0bc4d32a9114db549d89ada9dfff5ea2e3e5",
+      "upper": 20,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=4&n=36&k=10"
+    }
+  ],
+  "fallback_required": false,
+  "qualifying": 198,
+  "rule": {
+    "ai_terms": "language model|\\bLLM|\\bGPT|AlphaEvolve|FunSearch|Evolve\\b|neural|machine learning|artificial intelligence|\\bAI\\b|reinforcement learning",
+    "count": 6,
+    "length_range": "2k <= n <= 4k",
+    "recent_cutoff": "2023-01-01",
+    "seed": 20261010,
+    "verify_limits": {
+      "3": 14,
+      "4": 12
+    }
+  },
+  "selected_at": "2026-10-10T20:15:47.959038+00:00",
+  "snapshot_retrieved": "2026-10-10T20:15:45.172839+00:00",
+  "targets": [
+    {
+      "k": 14,
+      "last_modified": "2003-09-22",
+      "lower": 24,
+      "n": 56,
+      "q": 3,
+      "rejection": null,
+      "sha256": "8d7118a735871442dc899744425a759b7aa3bc18ed90670dca81d9706242ee66",
+      "upper": 28,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=3&n=56&k=14"
+    },
+    {
+      "k": 12,
+      "last_modified": "2001-12-17",
+      "lower": 16,
+      "n": 37,
+      "q": 4,
+      "rejection": null,
+      "sha256": "60fc5fe7bd5ef55c2134c26b9a7db58fbba123e10001411ae2f373f4a87ae440",
+      "upper": 20,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=4&n=37&k=12"
+    },
+    {
+      "k": 11,
+      "last_modified": "2013-12-09",
+      "lower": 17,
+      "n": 37,
+      "q": 3,
+      "rejection": null,
+      "sha256": "e01ab0a005b89fef261a8be3a89353bc89eb4d736108b1c2d79ed14f906285a9",
+      "upper": 18,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=3&n=37&k=11"
+    },
+    {
+      "k": 14,
+      "last_modified": "2001-12-17",
+      "lower": 20,
+      "n": 50,
+      "q": 3,
+      "rejection": null,
+      "sha256": "3cb4e759b8b1eba5bb2761cc8ed0745760c6abcacac96d262d5856d540aa705f",
+      "upper": 24,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=3&n=50&k=14"
+    },
+    {
+      "k": 9,
+      "last_modified": "2002-03-18",
+      "lower": 19,
+      "n": 36,
+      "q": 4,
+      "rejection": null,
+      "sha256": "6299329557ab46fa3984bd312d23d02dcf0ab30e63d48c5db65b9859a4858051",
+      "upper": 21,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=4&n=36&k=9"
+    },
+    {
+      "k": 10,
+      "last_modified": "2012-11-28",
+      "lower": 18,
+      "n": 36,
+      "q": 4,
+      "rejection": null,
+      "sha256": "997b8f0eed11cb987e30b51cbaab0bc4d32a9114db549d89ada9dfff5ea2e3e5",
+      "upper": 20,
+      "url": "https://www.codetables.de/BKLC/BKLC.php?q=4&n=36&k=10"
+    }
+  ]
+}
