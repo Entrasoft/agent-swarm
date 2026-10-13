@@ -23,6 +23,7 @@ import uuid
 
 from .codes import CodeResult, Target, evaluate
 from .ledger import Ledger, _cost
+from .v03_strategies import STRATEGIES, strategy_policy
 from .runtime import OFFLINE_PRICE
 from .store import EventStore, write_json
 
@@ -30,8 +31,13 @@ ARMS = {
     # name: (team-wide archive, strategy assignment)
     'pc-independent': (False, 'slots'),
     'pc-shared': (True, 'slots'),
+    'I-H': (False, 'homogeneous'),
+    'I-D': (False, 'diverse'),
+    'S-H': (True, 'homogeneous'),
+    'S-D': (True, 'diverse'),
+    'solo': (False, 'homogeneous'),
 }
-POLICIES = ('positive_control',)
+POLICIES = ('positive_control', 'strategies')
 
 
 @dataclass
@@ -53,6 +59,10 @@ class ArchiveConfig:
             raise ValueError(f'unknown arm {self.arm!r}')
         if self.policy not in POLICIES:
             raise ValueError(f'unknown policy {self.policy!r}')
+        if (self.policy == 'positive_control') != (ARMS[self.arm][1] == 'slots'):
+            raise ValueError('positive-control arms and the positive-control policy go together')
+        if (self.arm == 'solo') != (self.agents == 1):
+            raise ValueError('solo uses one agent; team arms use more than one')
         if not 1 <= self.agents <= 8 or not 1 <= self.archive_size <= 32:
             raise ValueError('agents must be in 1..8 and archive_size in 1..32')
         if self.token_limit <= 0 or not 1 <= self.max_rounds <= 10_000:
@@ -89,6 +99,15 @@ def slot_of(agent_index: int, target: Target) -> int:
     return agent_index % target.blocks
 
 
+def strategy_of(assignment: str, agent_index: int, seed: int) -> str | None:
+    """Diverse teams give agent i strategy i; homogeneous teams rotate one strategy by seed."""
+    if assignment == 'diverse':
+        return STRATEGIES[agent_index % len(STRATEGIES)]
+    if assignment == 'homogeneous':
+        return STRATEGIES[seed % len(STRATEGIES)]
+    return None
+
+
 def positive_control_policy(observation: dict, rng: random.Random) -> dict:
     """Set only this agent's slot to fresh random coefficients on the best visible base."""
     q, k, blocks = (observation['target'][key] for key in ('q', 'k', 'blocks'))
@@ -102,7 +121,7 @@ def positive_control_policy(observation: dict, rng: random.Random) -> dict:
                 used_event_ids=[base['event_id']] if base else [])
 
 
-POLICY_FUNCTIONS = {'positive_control': positive_control_policy}
+POLICY_FUNCTIONS = {'positive_control': positive_control_policy, 'strategies': strategy_policy}
 
 
 def check_action(action, observation: dict, target: Target) -> tuple[str | None, dict | None]:
@@ -160,6 +179,7 @@ class ArchiveRuntime:
                                 punctured=target.punctured),
                     agent_id=agent, round=round_number,
                     slot=slot_of(agent_index, target) if self.strategy == 'slots' else None,
+                    strategy=strategy_of(self.strategy, agent_index, self.config.seed),
                     archive=archive.snapshot())
 
     def round_fits(self, estimates: list[int]) -> bool:
@@ -311,6 +331,8 @@ def verify_replay(directory: Path) -> dict:
             expected_slot = slot_of(agents.index(agent), target) if strategy == 'slots' else None
             if event['payload']['slot'] != expected_slot:
                 raise ValueError('observation slot does not match the arm')
+            if event['payload']['strategy'] != strategy_of(strategy, agents.index(agent), config['seed']):
+                raise ValueError('observation strategy does not match the arm')
             observations[event['task_id']] = event['payload']
         elif kind == 'candidate_submitted':
             submissions[event['event_id']] = event

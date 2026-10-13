@@ -155,6 +155,50 @@ def minimum_distance(q: int, rows: list[list[int]]) -> tuple[int, int]:
     return best, count * (q - 1)
 
 
+def minimum_word(q: int, rows: list[list[int]]) -> list[int]:
+    """Message coefficients of one minimum-weight codeword, for search heuristics.
+
+    Uses the same enumeration as minimum_distance and returns the first
+    minimum found in that order. The verifier never relies on this function.
+    """
+    if q not in FIELDS or not rows or len(rows) > MAX_K or rank(q, rows) != len(rows):
+        raise ValueError('need a full-rank generator matrix over GF(3) or GF(4)')
+    planes = [_planes(row) for row in rows]
+    multiples = [_multiples(q, plane) for plane in planes]
+    scalars = (1, 2) if q == 3 else (1, 2, 3)  # same order as _multiples
+    k = len(rows)
+    message, best, best_message = [0] * k, 1 << 30, None
+
+    def combine(x: tuple[int, int], y: tuple[int, int]) -> tuple[int, int]:
+        if q == 4:
+            return x[0] ^ y[0], x[1] ^ y[1]
+        t = (x[0] | y[1]) ^ (x[1] | y[0])
+        return (x[1] | y[1]) ^ t, (x[0] | y[0]) ^ t
+
+    def record(word: tuple[int, int]) -> None:
+        nonlocal best, best_message
+        weight = (word[0] | word[1]).bit_count()
+        if weight < best:
+            best, best_message = weight, list(message)
+
+    def visit(start: int, word: tuple[int, int]) -> None:
+        for j in range(start, k):
+            for scalar, multiple in zip(scalars, multiples[j]):
+                message[j] = scalar
+                child = combine(word, multiple)
+                record(child)
+                if j + 1 < k:
+                    visit(j + 1, child)
+            message[j] = 0
+
+    for j in range(k):
+        message[j] = 1
+        record(planes[j])
+        visit(j + 1, planes[j])
+        message[j] = 0
+    return best_message
+
+
 @dataclass(frozen=True)
 class Target:
     """One best-known-codes table entry, frozen in the target manifest."""
